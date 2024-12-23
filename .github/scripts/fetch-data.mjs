@@ -1,63 +1,59 @@
-import path from 'node:path'
-import { exit } from 'node:process'
-import fs from 'fs-extra'
+import process from 'node:process'
+import { writeFile } from 'fs-extra'
 
-const data_list = [
-  {
-    local_path: 'src/.vitepress/data/_data/update-time.json',
-    remote_url:
-      'https://raw.githubusercontent.com/zotero-chinese/zotero-plugins/gh-pages/dist/shields.json',
-  },
-  {
-    local_path: 'src/.vitepress/data/_data/dashboard.json',
-    remote_url:
-      'https://raw.githubusercontent.com/l0o0/translators_CN/master/data/dashboard.json',
-  },
-]
+const RAW_CONTENT_URL = 'https://raw.githubusercontent.com/cursor-tutorial/website'
+const CONTRIBUTORS_PATH = '_data/contributors_cursor_tutorial.json'
 
-const tasks_data = data_list.map(async (d) => {
-  const data = await (await fetch(d.remote_url)).json()
-  fs.outputJSONSync(path.resolve(d.local_path), data)
-  console.log(`Download ${d.local_path} success!`)
-})
+async function fetchContributors() {
+  const response = await fetch(`${RAW_CONTENT_URL}/main/${CONTRIBUTORS_PATH}`)
+  if (!response.ok)
+    throw new Error('Failed to fetch contributors data')
+  return response.json()
+}
 
-// Contributors images
-const contributors_list = [
-  // {
-  //   local_path: 'src/.vitepress/data/_data/contributors_zotero-chinese_wiki.svg',
-  //   remote_url:
-  //       'https://github.com/zotero-chinese/.github/raw/main/.github-contributors/zotero-chinese_wiki.svg',
-  // },
-  // {
-  //   local_path: 'src/.vitepress/data/_data/contributors_zotero-chinese_zotero-plugins.svg',
-  //   remote_url:
-  //       'https://github.com/zotero-chinese/.github/raw/main/.github-contributors/zotero-chinese_zotero-plugins.svg',
-  // },
-  // {
-  //   local_path: 'src/.vitepress/data/_data/contributors_zotero-chinese_styles.svg',
-  //   remote_url:
-  //       'https://github.com/zotero-chinese/.github/raw/main/.github-contributors/zotero-chinese_styles.svg',
-  // },
-  // {
-  //   local_path: 'src/.vitepress/data/_data/contributors_l0o0_translators_CN.svg',
-  //   remote_url:
-  //       'https://github.com/zotero-chinese/.github/raw/main/.github-contributors/l0o0_translators_CN.svg',
-  // },
-]
+async function fetchGithubContributors() {
+  const response = await fetch(
+    'https://api.github.com/repos/cursor-tutorial/website/contributors',
+    {
+      headers: {
+        Authorization: `token ${process.env.GITHUB_TOKEN}`,
+      },
+    },
+  )
+  if (!response.ok)
+    throw new Error('Failed to fetch GitHub contributors')
+  return response.json()
+}
 
-const tasks_contributors = contributors_list.map(async (d) => {
-  const data = await (await fetch(d.remote_url)).text()
-  fs.outputFileSync(path.resolve(d.local_path), data)
-  console.log(`Download ${d.local_path} success!`)
-})
+function mergeCursorContributors(local, github) {
+  return {
+    contributors: github.map(contributor => ({
+      username: contributor.login,
+      contributions: contributor.contributions,
+      avatar_url: contributor.avatar_url,
+    })),
+  }
+}
 
-const tasks = [...tasks_data, ...tasks_contributors]
+async function saveContributorsData(data) {
+  const outputPath = './src/data/contributors_cursor_tutorial.json'
+  await writeFile(outputPath, JSON.stringify(data, null, 2))
+}
 
-Promise.all(tasks)
-  .then(() => {
-    console.log('Done!')
-  })
-  .catch((e) => {
-    console.error(e)
-    exit(1)
-  })
+async function main() {
+  try {
+    const [localContributors, githubContributors] = await Promise.all([
+      fetchContributors(),
+      fetchGithubContributors(),
+    ])
+
+    const mergedContributors = mergeCursorContributors(localContributors, githubContributors)
+    await saveContributorsData(mergedContributors)
+  }
+  catch (error) {
+    console.error('Error fetching data:', error)
+    process.exit(1)
+  }
+}
+
+main()

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../node_modules/.pnpm/element-plus@2.9.0_vue@3.5.13_typescript@5.7.2_/node_modules/element-plus/es/components/empty/style/css.mjs"],
+  "sourcesContent": ["import '../../base/style/css.mjs';\nimport 'element-plus/theme-chalk/el-empty.css';\n//# sourceMappingURL=css.mjs.map\n"],
+  "mappings": ";;;AACA,OAAO;",
+  "names": []
+}

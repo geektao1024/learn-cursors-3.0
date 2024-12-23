@@ -49,3 +49,7 @@ export async function generateFeed(config: any) {
 
   writeFileSync(resolve(config.outDir, 'feed.rss'), feed.rss2())
 }
+
+export function buildEnd() {
+  // 你的 buildEnd 函数实现
+}

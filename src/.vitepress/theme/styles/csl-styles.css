@@ -1,34 +1,54 @@
-.csl-bib-body {
-  word-break: break-word;
-  text-align: justify;
+/* Cursor Tutorial Website Styles */
+:root {
+  --cursor-primary: #007acc;
+  --cursor-secondary: #1e1e1e;
+  --cursor-accent: #0098ff;
+  --cursor-text: #333333;
+  --cursor-background: #ffffff;
 }
 
-/* second-field-align 首行缩进适配 */
-/* https://github.com/zotero-chinese/website/issues/48 */
-.csl-bib-body.second-field-align-flush .csl-entry {
-  display: flex;
-  align-items: flex-start;
+.tutorial-section {
+  padding: 2rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  background-color: var(--cursor-background);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.csl-bib-body.second-field-align-flush .csl-left-margin {
-  width: 2em;
-  flex-shrink: 0; /* 确保左边距不会缩小 */
+.tutorial-heading {
+  color: var(--cursor-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
-.csl-bib-body.second-field-align-flush.maxoffset-3 .csl-left-margin {
-  width: 2.5em;
+.tutorial-content {
+  color: var(--cursor-text);
+  line-height: 1.6;
 }
 
-.csl-bib-body.second-field-align-flush.maxoffset-4 .csl-left-margin {
-  width: 3em;
+.tutorial-code {
+  background-color: var(--cursor-secondary);
+  color: #ffffff;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+  font-family: 'Fira Code', monospace;
 }
 
-.csl-bib-body.second-field-align-flush.maxoffset-5 .csl-left-margin {
-  width: 3.5em;
+.tutorial-note {
+  background-color: #f8f9fa;
+  border-left: 4px solid var(--cursor-accent);
+  padding: 1rem;
+  margin: 1rem 0;
 }
 
-/* hangingindent 悬挂缩进适配 */
-.csl-bib-body.hangingindent-true .csl-entry {
-  padding-left: 2em;
-  text-indent: -2em;
+@media (max-width: 768px) {
+  .tutorial-section {
+    padding: 1rem;
+  }
+
+  .tutorial-heading {
+    font-size: 1.25rem;
+  }
 }

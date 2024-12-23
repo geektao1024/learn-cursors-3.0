@@ -9,9 +9,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.repository == 'cursor-tutorial/website'
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
         with:
           submodules: true
 

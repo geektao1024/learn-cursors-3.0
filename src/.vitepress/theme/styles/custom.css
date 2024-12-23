@@ -1,4 +1,26 @@
-@import url('@wiki/.vitepress/theme/styles/custom.css');
+/* 自定义样式 */
+:root {
+  --vp-c-brand: #646cff;
+  --vp-c-brand-light: #747bff;
+  --vp-c-brand-lighter: #9499ff;
+  --vp-c-brand-dark: #535bf2;
+  --vp-c-brand-darker: #454ce1;
+}
+
+/* 响应式布局调整 */
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-width: 300px;
+    --vp-home-hero-image-height: 300px;
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-home-hero-image-width: 400px;
+    --vp-home-hero-image-height: 400px;
+  }
+}
 
 .el-descriptions {
   display: block;

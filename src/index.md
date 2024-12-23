@@ -29,7 +29,7 @@ hero:
   actions:
     - theme: brand
       text: 开始阅读教程
-      link: /wiki/user-guide/
+      link: /wiki/user-guide/cursor-introduction
     - theme: alt
       text: 核心功能
       link: /docs-zh/
@@ -38,7 +38,7 @@ features:
   - icon: 📖
     title: Cursor 教程
     details: 全面的 Cursor 掌握指南，从入门到精通的系统学习路径
-    link: /wiki/user-guide/
+    link: /wiki/user-guide/cursor-introduction
   - icon: ⌨️
     title: Cursor 快捷键
     details: 提升效率的键盘快捷键速查表，让你的编程更加高效流畅

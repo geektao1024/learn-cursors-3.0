@@ -1,0 +1,13 @@
+{
+  "basic-usage": "基本用法",
+  "files": "@Files",
+  "folders": "@Folders",
+  "code": "@Code",
+  "docs": "@Docs",
+  "git": "@Git",
+  "codebase": "@Codebase",
+  "web": "@Web",
+  "chat": "@Chat",
+  "definitions": "@Definitions",
+  "paste-links": "粘贴链接"
+}

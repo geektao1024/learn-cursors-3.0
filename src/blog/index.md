@@ -1,0 +1,5 @@
+---
+layout: BlogList
+sidebar: false
+---
+

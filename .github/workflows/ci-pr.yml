@@ -1,0 +1,28 @@
+name: 部署预览
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: 构建文档
+    uses: ./.github/workflows/build.yml
+
+  upload:
+    name: 上传运行信息
+    runs-on: ubuntu-latest
+    if: github.repository == 'zotero-chinese/website' && github.event_name == 'pull_request'
+    steps:
+      - name: 保存 PR 编号
+        run: |
+          echo "${{ github.event.number }}" > pr_num
+      - name: 上传 PR 编号
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-num
+          path: ./pr_num

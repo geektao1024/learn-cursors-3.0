@@ -1,0 +1,24 @@
+.DS_Store
+node_modules/
+package-lock.json
+# pnpm-lock.yaml
+
+**/.vuepress/.cache/
+**/.vuepress/.temp/
+**/.vuepress/dist/
+**/.vitepress/cache
+**/.vitepress/dist
+**/.vitepress/.temp
+**/.vitepress/**/*.timestamp-*.*
+
+dist
+**/.obsidian
+
+# 下载的数据
+**/data/_data/
+
+# Local Netlify folder
+.netlify
+
+# Vite 依赖缓存
+cache/deps/

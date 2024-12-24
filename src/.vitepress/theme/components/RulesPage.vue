@@ -49,7 +49,7 @@ const ruleCategories: RuleCategory[] = [
       '提供智能代码建议和自动补全',
       '确保团队代码风格统一',
       '自动执行最佳实践',
-      '提高代码��量和可维护性',
+      '提高代码质量和可维护性',
     ],
   },
   {
@@ -310,6 +310,16 @@ const faqs: FAQ[] = [
   padding: 2rem;
 }
 
+/* Add strict SVG controls */
+:deep(svg) {
+  width: 100%;
+  height: 100%;
+  max-width: 24px;
+  max-height: 24px;
+  stroke: currentColor;
+  flex-shrink: 0;
+}
+
 .hero-section {
   text-align: center;
   margin-bottom: 4rem;
@@ -355,12 +365,15 @@ const faqs: FAQ[] = [
   width: 24px;
   height: 24px;
   margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .step-icon :deep(svg) {
-  width: 100%;
-  height: 100%;
-  stroke: currentColor;
+  max-width: 20px;
+  max-height: 20px;
 }
 
 .step-number {
@@ -415,11 +428,15 @@ const faqs: FAQ[] = [
   width: 24px;
   height: 24px;
   margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .type-icon :deep(svg) {
-  width: 100%;
-  height: 100%;
+  max-width: 20px;
+  max-height: 20px;
   stroke: var(--vp-c-brand);
 }
 
@@ -477,11 +494,15 @@ const faqs: FAQ[] = [
   width: 48px;
   height: 48px;
   margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .advantage-icon :deep(svg) {
-  width: 100%;
-  height: 100%;
+  max-width: 32px;
+  max-height: 32px;
   stroke: var(--vp-c-brand);
 }
 

@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 
-import type { Plugin } from '@/types/plugin'
 import { existsSync, readFileSync } from 'node:fs'
 import path from 'node:path'
 

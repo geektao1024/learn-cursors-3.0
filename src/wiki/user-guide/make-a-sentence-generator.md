@@ -5,7 +5,7 @@ description: 使用 Cursor AI 开发一个智能金句生成器，可以根据�
 
 # 制作网页金句生成器
 
-![Generator Preview](./images/guide/sentence-generator.png)
+<!-- ![Generator Preview](./images/guide/sentence-generator.png) -->
 
 ## 项目概述
 
@@ -260,7 +260,7 @@ export function Generator() {
             { label: '励志', value: '励志' },
             { label: '伤感', value: '伤感' },
             { label: '幽默', value: '幽默' },
-            { label: '文艺', value: '文艺' }
+            { label: '文艺', value: '���艺' }
           ]}
         />
       </div>
@@ -385,7 +385,7 @@ export async function optimizeSentence(sentence: string) {
     messages: [
       {
         role: "system",
-        content: `优化以下金句，使其更加简洁有力：\n${sentence}`
+        content: `优化以下��句，使其更加简洁有力：\n${sentence}`
       }
     ],
     model: "gpt-4",

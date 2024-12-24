@@ -13,13 +13,13 @@ description: 通过一个实际的例子，展示如何使用 Cursor AI 的自�
 
 首先我们打开 Cursor，在文件夹空白处，点击【新建文件】，并把文件命名为 "snake.py"。snake 就是贪吃蛇的意思，.py 代表这是一个 Python 的代码文件。
 
-![创建文件](./images/guide/create-file.png)
+<!-- ![创建文件](./images/guide/create-file.png) -->
 
 ### 2. 打开对话框
 
 我们点击右上角的按钮，打开侧边栏。
 
-![打开对话框](./images/guide/open-chat.png)
+<!-- ![打开对话框](./images/guide/open-chat.png) -->
 
 ### 3. 开始对话
 
@@ -57,7 +57,7 @@ pip3 install pygame
 
 看，贪吃蛇已经运行了🚀
 
-![运行游戏](./images/guide/game-running.png)
+<!-- ![运行游戏](./images/guide/game-running.png) -->
 
 ## 代码解析
 

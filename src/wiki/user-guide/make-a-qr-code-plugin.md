@@ -5,7 +5,7 @@ description: 使用 Cursor AI 开发一个浏览器扩展，可以快速生成�
 
 # 制作网页二维码插件
 
-![Plugin Preview](./images/guide/qr-plugin.png)
+<!-- ![Plugin Preview](./images/guide/qr-plugin.png) -->
 
 ## 项目概述
 

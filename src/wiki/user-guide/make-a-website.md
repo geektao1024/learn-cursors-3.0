@@ -5,7 +5,7 @@ description: 使用 Cursor AI 快速构建一个现代化的个人介绍网站�
 
 # 制作个人介绍网页
 
-![Website Preview](./images/guide/website-preview.png)
+<!-- ![Website Preview](./images/guide/website-preview.png) -->
 
 ## 2.1 前期准备
 
@@ -255,7 +255,7 @@ vercel
 ::: tip 提示
 - 使用 Cursor AI 加速开发
 - 保持代码整洁
-- 定期更新依赖
+- 定���更新依赖
 :::
 
 ::: warning 注意

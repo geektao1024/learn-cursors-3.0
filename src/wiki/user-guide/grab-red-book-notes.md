@@ -5,7 +5,7 @@ description: 使用 Cursor AI 开发一个小红书笔记抓取工具，帮助�
 
 # 爆款小红书笔记抓取
 
-![Scraper Preview](./images/guide/redbook-scraper.png)
+<!-- ![Scraper Preview](./images/guide/redbook-scraper.png) -->
 
 ## 项目概述
 

@@ -14,6 +14,7 @@ import BlogList from './components/BlogList.vue'
 import BlogPost from './components/BlogPost.vue'
 import DocFooter from './components/DocFooter.vue'
 import GoogleAdsense from './components/GoogleAdsense.vue'
+import HomeContent from './components/HomeContent.vue'
 
 // Styles
 import 'element-plus/dist/index.css'
@@ -33,6 +34,7 @@ export default {
     app.component('BlogPost', BlogPost)
     app.component('DocFooter', DocFooter)
     app.component('GoogleAdsense', GoogleAdsense)
+    app.component('HomeContent', HomeContent)
   },
   Layout: () => {
     return h(DefaultTheme.Layout, null, {

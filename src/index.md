@@ -61,22 +61,14 @@ features:
     link: https://nf.video/Up9Xa
 ---
 
-<div class="content-container">
-
-::: tip 关于本站
-本站是一个由个人开发者维护的非官方 Cursor AI 中文教程网站，内容来自互联网公开资源的整理与优化。我们致力于为中文开发者提供高质量的 Cursor AI 学习资源。
-:::
-
-<div class="block-spacer"></div>
-
-::: warning 免责声明
-
-- Cursor AI 为 Cursor, Inc. 的商标
-- 本站为非官方社区网站，与 Cursor, Inc. 没有任何关联
-- 如有内容侵权，请通过 GitHub Issues 联系我们
-  :::
-
-</div>
+<HomeContent
+  tip="本站是一个由个人开发者维护的非官方 Cursor AI 中文教程网站，内容来自互联网公开资源的整理与优化。我们致力于为中文开发者提供高质量的 Cursor AI 学习资源。"
+  :warning="[
+    'Cursor AI 为 Cursor, Inc. 的商标',
+    '本站为非官方社区网站，与 Cursor, Inc. 没有任何关联',
+    '如有内容侵权，请通过 GitHub Issues 联系我们'
+  ]"
+/>
 
 <div class="footer-container">
   <div class="footer">
@@ -89,48 +81,9 @@ features:
 </div>
 
 <style>
-.content-container {
-  margin: 48px auto 0;
-  max-width: var(--vp-layout-max-width);
-  padding: 0 24px;
-}
-
-.content-container :deep(.vp-doc) {
-  max-width: 100%;
-}
-
-/* 基础提示框样式 */
-.content-container :deep(.custom-block) {
-  margin: 0;
-  max-width: 100%;
-}
-
-/* 提示框之间的间距 */
-.content-container :deep(.custom-block.tip) + :deep(.custom-block.warning) {
-  margin-top: 24px;
-}
-
-@media (min-width: 640px) {
-  .content-container {
-    padding: 0 48px;
-  }
-  .content-container :deep(.custom-block.tip) + :deep(.custom-block.warning) {
-    margin-top: 32px;
-  }
-}
-
-@media (min-width: 960px) {
-  .content-container {
-    padding: 0 64px;
-  }
-  .content-container :deep(.custom-block.tip) + :deep(.custom-block.warning) {
-    margin-top: 48px;
-  }
-}
-
 .footer-container {
   margin: 0 auto;
-  max-width: 1152px;
+  max-width: var(--vp-layout-max-width);
   padding: 0 24px;
 }
 
@@ -157,21 +110,5 @@ features:
 
 .footer a:hover {
   color: #42b883;
-}
-
-.block-spacer {
-  height: 16px;
-}
-
-@media (min-width: 640px) {
-  .block-spacer {
-    height: 20px;
-  }
-}
-
-@media (min-width: 960px) {
-  .block-spacer {
-    height: 24px;
-  }
 }
 </style>

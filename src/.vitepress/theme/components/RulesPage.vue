@@ -142,29 +142,81 @@ const faqs: FAQ[] = [
 <template>
   <div class="rules-page">
     <div class="rules-hero">
-      <h1>Cursor Rules</h1>
-      <p>智能编码规则，提升开发效率</p>
+      <div class="hero-content">
+        <h1>Cursor Rules</h1>
+        <p class="hero-subtitle">
+          智能编码规则，提升开发效率
+        </p>
+        <p class="hero-description">
+          使用 Cursor Rules 智能规则系统，让您的团队编写更优质、更一致的代码。
+          通过自动化建议和实时反馈，提高开发效率，减少常见错误。
+        </p>
+        <div class="hero-features">
+          <div class="feature-item">
+            <div class="feature-icon">
+              ⚡️
+            </div>
+            <div class="feature-text">
+              <h3>智能提示</h3>
+              <p>实时代码建议和自动补全</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              🔄
+            </div>
+            <div class="feature-text">
+              <h3>自动格式化</h3>
+              <p>保持代码风格统一</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              🛡️
+            </div>
+            <div class="feature-text">
+              <h3>代码质量</h3>
+              <p>自动检测潜在问题</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              🤝
+            </div>
+            <div class="feature-text">
+              <h3>团队协作</h3>
+              <p>统一的开发标准</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="rules-content">
       <div class="rules-categories">
-        <h2>规则类别</h2>
-        <div class="categories-grid">
-          <div v-for="category in ruleCategories" :key="category.id" class="category-card">
-            <h3>{{ category.title }}</h3>
-            <p>{{ category.description }}</p>
-
-            <template v-if="category.benefits">
-              <h4>优势</h4>
+        <!-- 了解 Cursor Rules -->
+        <div class="intro-section">
+          <div v-if="ruleCategories[0]" class="category-card">
+            <h3>{{ ruleCategories[0].title }}</h3>
+            <p>{{ ruleCategories[0].description }}</p>
+            <template v-if="ruleCategories[0].benefits">
               <ul>
-                <li v-for="benefit in category.benefits" :key="benefit">
+                <li v-for="benefit in ruleCategories[0].benefits" :key="benefit">
                   {{ benefit }}
                 </li>
               </ul>
             </template>
+          </div>
+        </div>
 
-            <template v-if="category.types">
-              <div v-for="type in category.types" :key="type.title" class="rule-type">
+        <!-- 规则类型和使用示例 -->
+        <div class="two-column-grid">
+          <!-- 规则类型 -->
+          <div v-if="ruleCategories[1]" class="category-card">
+            <h3>{{ ruleCategories[1].title }}</h3>
+            <p>{{ ruleCategories[1].description }}</p>
+            <template v-if="ruleCategories[1].types">
+              <div v-for="type in ruleCategories[1].types" :key="type.title" class="rule-type">
                 <h4>{{ type.title }}</h4>
                 <p>{{ type.description }}</p>
                 <ul>
@@ -174,9 +226,14 @@ const faqs: FAQ[] = [
                 </ul>
               </div>
             </template>
+          </div>
 
-            <template v-if="category.examples">
-              <div v-for="example in category.examples" :key="example.title" class="rule-example">
+          <!-- 使用示例 -->
+          <div v-if="ruleCategories[2]" class="category-card">
+            <h3>{{ ruleCategories[2].title }}</h3>
+            <p>{{ ruleCategories[2].description }}</p>
+            <template v-if="ruleCategories[2].examples">
+              <div v-for="example in ruleCategories[2].examples" :key="example.title" class="rule-example">
                 <h4>{{ example.title }}</h4>
                 <pre><code>{{ example.content }}</code></pre>
               </div>
@@ -213,19 +270,20 @@ const faqs: FAQ[] = [
 
 <style>
 :root {
-  --primary-color: #3eaf7c;
-  --primary-dark: #2c855f;
-  --primary-light: #4fc08c;
+  --primary-color: #00dc82;
+  --primary-dark: #00b368;
+  --primary-light: #33e39c;
+  --primary-gradient: linear-gradient(120deg, #818cf8, #7c3aed);
 
   --surface-1: #ffffff;
   --surface-2: #f8fafc;
   --surface-3: #f1f5f9;
 
-  --text-1: #1e293b;
-  --text-2: #475569;
-  --text-3: #64748b;
+  --text-1: #18181b;
+  --text-2: #3f3f46;
+  --text-3: #71717a;
 
-  --border-color: #e2e8f0;
+  --border-color: #e4e4e7;
 
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -244,702 +302,392 @@ const faqs: FAQ[] = [
 }
 
 .dark {
-  --surface-1: #0f172a;
-  --surface-2: #1e293b;
-  --surface-3: #334155;
+  --surface-1: #18181b;
+  --surface-2: #27272a;
+  --surface-3: #3f3f46;
 
-  --text-1: #f8fafc;
-  --text-2: #e2e8f0;
-  --text-3: #cbd5e1;
+  --text-1: #fafafa;
+  --text-2: #e4e4e7;
+  --text-3: #a1a1aa;
 
-  --border-color: #334155;
+  --border-color: #3f3f46;
 }
 </style>
 
 <style scoped>
-/* Base Styles */
-.rules-container {
+.rules-page {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  font-family: var(--font-sans);
-  color: var(--text-1);
-  background: var(--surface-1);
+  padding: 0;
+  overflow: hidden;
 }
 
-/* Hero Section - More Compact */
-.hero {
-  padding: 2rem 1rem;
+.rules-hero {
   text-align: center;
+  margin-bottom: 4rem;
+  padding: 6rem 1rem 4rem;
   background: var(--surface-2);
   border-bottom: 1px solid var(--border-color);
+  position: relative;
+  overflow: visible;
 }
 
-.hero__content {
+.hero-content {
   max-width: var(--content-width);
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
-.hero__title {
-  font-size: 2rem;
-  font-weight: 700;
+.rules-hero h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
   line-height: 1.2;
-  margin-bottom: 0.5rem;
-  color: var(--text-1);
+  position: relative;
 }
 
-.hero__description {
-  font-size: 1rem;
-  line-height: 1.5;
+.hero-subtitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.hero-description {
+  font-size: 1.25rem;
   color: var(--text-2);
-  max-width: 42rem;
+  max-width: 48rem;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+.hero-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 64rem;
   margin: 0 auto;
 }
 
-/* Main Content */
-.main {
-  padding: 1.5rem 1rem;
-}
-
-/* Section Common */
-.section {
-  margin-bottom: 2.5rem;
-  max-width: var(--content-width);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.section__title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: var(--text-1);
-}
-
-/* Horizontal Categories */
-.categories-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.feature-item {
+  display: flex;
+  align-items: flex-start;
   gap: 1rem;
+  text-align: left;
+  padding: 1.5rem;
+  background: var(--surface-1);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.feature-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0.75rem;
+  background: var(--surface-2);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.feature-text h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-1);
+  margin: 0 0 0.5rem;
+}
+
+.feature-text p {
+  font-size: 0.875rem;
+  color: var(--text-2);
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+  .hero-features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .rules-hero {
+    padding: 5rem 1rem 3rem;
+  }
+
+  .rules-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .hero-features {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .feature-item {
+    padding: 1.25rem;
+  }
+}
+
+.rules-content {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.rules-categories {
+  margin-bottom: 4rem;
+}
+
+.rules-categories h2,
+.rules-steps h2,
+.rules-faq h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-1);
   margin-bottom: 2rem;
+  text-align: center;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 }
 
 .category-card {
   background: var(--surface-2);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
   border: 1px solid var(--border-color);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
-.category-card__header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem;
-  color: white;
+.category-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 1rem;
 }
 
-.category-card__icon :deep(svg) {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.category-card__title {
+.category-card p {
   font-size: 1rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-.category-card__content {
-  padding: 1rem;
-  flex: 1;
-}
-
-.category-card__description {
-  font-size: 0.875rem;
-  line-height: 1.4;
   color: var(--text-2);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
 }
 
-.category-card__list {
+.category-card h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 1rem;
+}
+
+.category-card ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 1.5rem;
 }
 
-.category-card__list li {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.4;
-  margin-bottom: 0.375rem;
+.category-card li {
+  font-size: 1rem;
   color: var(--text-2);
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
 }
 
-.check-icon {
+.category-card li::before {
+  content: '•';
   color: var(--primary-color);
-  font-weight: 700;
+  position: absolute;
+  left: 0.5rem;
 }
 
-/* Types */
-.category-card__types {
-  margin-top: 0.75rem;
+.rule-type {
+  margin-bottom: 2rem;
 }
 
-.type-item {
+.rule-example {
+  margin-top: 1.5rem;
+}
+
+.rule-example pre {
   background: var(--surface-1);
-  padding: 0.75rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-color);
-  margin-bottom: 0.75rem;
-}
-
-.type-item__header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.type-item__icon :deep(svg) {
-  width: 1rem;
-  height: 1rem;
-  color: var(--primary-color);
-}
-
-.type-item h3 {
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin: 0;
-  color: var(--text-1);
-}
-
-.type-item p {
-  font-size: 0.8125rem;
-  line-height: 1.4;
-  color: var(--text-2);
-  margin-bottom: 0.5rem;
-}
-
-.type-item__examples {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.type-item__examples li {
-  font-size: 0.8125rem;
-  line-height: 1.4;
-  color: var(--text-2);
-  padding-left: 0.5rem;
-  border-left: 2px solid var(--primary-color);
-  margin-bottom: 0.25rem;
-}
-
-/* Examples */
-.category-card__examples {
-  margin-top: 0.75rem;
-}
-
-.category-card__examples h3 {
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: var(--text-1);
-}
-
-.category-card__examples pre {
-  background: var(--surface-1);
-  padding: 0.75rem;
-  border-radius: var(--radius-sm);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
   overflow-x: auto;
-  border: 1px solid var(--border-color);
-  font-size: 0.75rem;
-  line-height: 1.4;
-  margin: 0;
-}
-
-/* Advantages Grid */
-.advantages__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.advantage-card {
-  background: var(--surface-2);
-  padding: 1rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-color);
-  text-align: center;
-}
-
-.advantage-card__icon :deep(svg) {
-  width: 1.5rem;
-  height: 1.5rem;
-  color: var(--primary-color);
-  margin-bottom: 0.75rem;
-}
-
-.advantage-card h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: var(--text-1);
-}
-
-.advantage-card p {
+  font-family: var(--font-mono);
   font-size: 0.875rem;
-  line-height: 1.4;
-  color: var(--text-2);
+  line-height: 1.6;
+  color: var(--text-1);
+  border: 1px solid var(--border-color);
 }
 
-/* Steps Grid */
-.steps__grid {
+.steps-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
 }
 
 .step-card {
   background: var(--surface-2);
-  padding: 1rem;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
   border: 1px solid var(--border-color);
   text-align: center;
 }
 
-.step-card__number {
-  width: 2rem;
-  height: 2rem;
-  background: var(--primary-color);
+.step-number {
+  width: 3rem;
+  height: 3rem;
+  background: var(--primary-gradient);
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 0.75rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  font-size: 1rem;
+  margin: 0 auto 1.5rem;
 }
 
 .step-card h3 {
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
   color: var(--text-1);
+  margin-bottom: 1rem;
 }
 
 .step-card p {
-  font-size: 0.875rem;
-  line-height: 1.4;
+  font-size: 1rem;
   color: var(--text-2);
+  line-height: 1.6;
 }
 
-/* FAQ Grid */
-.faq__grid {
+.faq-list {
   display: grid;
-  gap: 1rem;
-}
-
-.faq-card {
-  background: var(--surface-2);
-  padding: 1rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-color);
-}
-
-.faq-card h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: var(--primary-color);
-}
-
-.faq-card p {
-  font-size: 0.875rem;
-  line-height: 1.4;
-  color: var(--text-2);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .categories-row {
-    grid-template-columns: 1fr;
-  }
-
-  .hero {
-    padding: 1.5rem 1rem;
-  }
-
-  .hero__title {
-    font-size: 1.5rem;
-  }
-
-  .main {
-    padding: 1rem;
-  }
-
-  .section__title {
-    font-size: 1.25rem;
-  }
-}
-
-/* Print Styles */
-@media print {
-  .rules-container {
-    max-width: none;
-  }
-
-  .hero {
-    padding: 1rem 0;
-  }
-
-  .categories-row {
-    gap: 0.5rem;
-  }
-
-  .category-card,
-  .advantage-card,
-  .step-card,
-  .faq-card {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-}
-
-/* New Introduction Section Styles */
-.intro-section {
-  margin: 2rem auto;
-  position: relative;
-  z-index: 1;
-}
-
-.intro-wrapper {
-  background: var(--surface-1);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-  max-width: 64rem;
-  margin: 0 auto;
-}
-
-.intro-header {
-  padding: 2.5rem 2rem;
-  color: white;
-  position: relative;
-  overflow: hidden;
-  background: var(--primary-color);
-}
-
-.intro-header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
-  z-index: 1;
-}
-
-.intro-header__content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  max-width: 48rem;
-  margin: 0 auto;
-}
-
-.intro-header__icon {
-  margin-bottom: 1.25rem;
-}
-
-.intro-header__icon :deep(svg) {
-  width: 2.5rem;
-  height: 2.5rem;
-  stroke-width: 1.5;
-}
-
-.intro-header__title {
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin: 0 0 0.75rem;
-  line-height: 1.2;
-}
-
-.intro-header__description {
-  font-size: 1rem;
-  line-height: 1.5;
-  max-width: 36rem;
-  margin: 0 auto;
-  opacity: 0.9;
-}
-
-.intro-benefits {
-  padding: 1.75rem;
-  background: var(--surface-1);
-}
-
-.benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.25rem;
-  max-width: 56rem;
-  margin: 0 auto;
-}
-
-.benefit-card {
-  position: relative;
-  background: var(--surface-2);
-  border-radius: var(--radius-md);
-  padding: 1.25rem;
-  transition: transform 0.2s ease;
-}
-
-.benefit-card:hover {
-  transform: translateY(-2px);
-}
-
-.benefit-card__number {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-3);
-  opacity: 0.5;
-}
-
-.benefit-card__content {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-}
-
-.benefit-card__check {
-  flex-shrink: 0;
-  width: 1.5rem;
-  height: 1.5rem;
-  background: var(--primary-color);
-  color: white;
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.875rem;
-  font-weight: 700;
-}
-
-.benefit-card__text {
-  font-size: 0.9375rem;
-  line-height: 1.5;
-  color: var(--text-1);
-  margin: 0;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .intro-section {
-    margin: 1.5rem auto;
-  }
-
-  .intro-header {
-    padding: 2rem 1.5rem;
-  }
-
-  .intro-header__icon :deep(svg) {
-    width: 2rem;
-    height: 2rem;
-  }
-
-  .intro-header__title {
-    font-size: 1.5rem;
-  }
-
-  .intro-benefits {
-    padding: 1.25rem;
-  }
-
-  .benefits-grid {
-    gap: 1rem;
-  }
-
-  .benefit-card {
-    padding: 1rem;
-  }
-}
-
-/* Dark mode adjustments */
-.dark .benefit-card {
-  background: var(--surface-3);
-}
-
-.dark .benefit-card:hover {
-  background: var(--surface-2);
-}
-
-/* Introduction Card */
-.intro-card {
-  background: var(--surface-2);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-}
-
-.intro-card__header {
-  background: var(--primary-color);
-  padding: 2rem;
-  color: white;
-  text-align: center;
-}
-
-.intro-card__title {
-  font-size: 1.75rem;
-  font-weight: 600;
-  margin: 0 0 1rem;
-}
-
-.intro-card__description {
-  font-size: 1.125rem;
-  opacity: 0.9;
-  margin: 0;
-  max-width: 36rem;
-  margin: 0 auto;
-}
-
-.intro-card__content {
-  padding: 2rem;
-}
-
-.benefits-list {
-  display: grid;
-  gap: 1rem;
-  max-width: 48rem;
-  margin: 0 auto;
-}
-
-.benefit-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: var(--surface-1);
-  padding: 1rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-color);
-}
-
-.benefit-item__number {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--primary-color);
-  background: var(--surface-2);
-  padding: 0.5rem;
-  border-radius: var(--radius-sm);
-  min-width: 2.5rem;
-  text-align: center;
-}
-
-.benefit-item__text {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: var(--text-1);
-}
-
-/* Content Cards */
-.content-card {
-  background: var(--surface-2);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-  height: 100%;
-}
-
-.content-card__header {
-  background: var(--primary-color);
-  padding: 1.5rem;
-  color: white;
-}
-
-.content-card__title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin: 0 0 0.5rem;
-}
-
-.content-card__description {
-  font-size: 1rem;
-  opacity: 0.9;
-  margin: 0;
-}
-
-.content-card__content {
-  padding: 1.5rem;
-}
-
-/* Two Column Grid */
-.two-column-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin: 2rem 0;
-}
-
-/* Advantages Grid */
-.advantages-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
 }
 
-.advantage-card {
+.faq-item {
   background: var(--surface-2);
-  padding: 1.5rem;
   border-radius: var(--radius-lg);
+  padding: 2rem;
   border: 1px solid var(--border-color);
 }
 
-.advantage-card__title {
+.faq-item h3 {
   font-size: 1.25rem;
   font-weight: 600;
-  margin: 0 0 1rem;
-  color: var(--primary-color);
+  color: var(--text-1);
+  margin-bottom: 1rem;
 }
 
-.advantage-card__description {
+.faq-item p {
   font-size: 1rem;
-  line-height: 1.5;
   color: var(--text-2);
-  margin: 0;
+  line-height: 1.6;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
+  .rules-page {
+    padding: 1rem;
+  }
+
+  .rules-hero h1 {
+    font-size: 2rem;
+  }
+
+  .rules-hero p {
+    font-size: 1.125rem;
+  }
+
+  .rules-categories h2,
+  .rules-steps h2,
+  .rules-faq h2 {
+    font-size: 1.75rem;
+  }
+
+  .category-card,
+  .step-card,
+  .faq-item {
+    padding: 1.5rem;
+  }
+}
+
+.intro-section {
+  margin-bottom: 3rem;
+  max-width: 100%;
+}
+
+.intro-section .category-card {
+  max-width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+}
+
+.two-column-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .rules-page {
+    padding: 1rem;
+  }
+
+  .rules-hero h1 {
+    font-size: 2rem;
+  }
+
+  .rules-hero p {
+    font-size: 1.125rem;
+  }
+
   .two-column-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
 
-  .intro-card__header {
+  .intro-section {
+    margin-bottom: 2rem;
+  }
+
+  .rules-categories h2,
+  .rules-steps h2,
+  .rules-faq h2 {
+    font-size: 1.75rem;
+  }
+
+  .category-card,
+  .step-card,
+  .faq-item {
     padding: 1.5rem;
-  }
-
-  .intro-card__title {
-    font-size: 1.5rem;
-  }
-
-  .intro-card__content {
-    padding: 1.5rem;
-  }
-
-  .benefit-item {
-    padding: 0.875rem;
   }
 }
 </style>

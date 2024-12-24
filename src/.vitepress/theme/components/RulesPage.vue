@@ -49,7 +49,7 @@ const ruleCategories: RuleCategory[] = [
       '提供智能代码建议和自动补全',
       '确保团队代码风格统一',
       '自动执行最佳实践',
-      '提高代码��量和可维护性',
+      '提高代码量和可维护性',
     ],
   },
   {
@@ -204,208 +204,187 @@ const faqs: FAQ[] = [
 </script>
 
 <template>
-  <div class="container">
-    <div class="hero-section">
+  <article class="rules-page">
+    <!-- Hero Section -->
+    <header class="rules-header">
       <h1>Cursor Rules 规则指南</h1>
-      <p class="hero-description">
-        了解如何使用 Cursor Rules 提升您的开发效率，规范团队协作，编写更好的代码。
-      </p>
-    </div>
+      <p>了解如何使用 Cursor Rules 提升您的开发效率，规范团队协作，编写更好的代码。</p>
+    </header>
 
-    <div class="content-section">
-      <div class="steps-container">
-        <div v-for="category in ruleCategories" :key="category.id" class="step-block">
-          <div class="step-header" :style="{ '--step-color': category.color }">
-            <div class="step-icon" v-html="category.icon" />
-            <div class="step-number">
-              {{ category.id }}
-            </div>
-            <h2>{{ category.title }}</h2>
-          </div>
+    <!-- Rule Categories -->
+    <section class="rules-categories">
+      <div
+        v-for="category in ruleCategories"
+        :key="category.id"
+        class="category-card"
+      >
+        <div class="category-header" :style="{ backgroundColor: category.color }">
+          <span class="category-icon" v-html="category.icon" />
+          <span class="category-number">{{ category.id }}</span>
+          <h2>{{ category.title }}</h2>
+        </div>
 
-          <div class="step-content">
-            <p class="step-description">
-              {{ category.description }}
-            </p>
+        <div class="category-content">
+          <p>{{ category.description }}</p>
 
-            <!-- 显示好处列表 -->
-            <ul v-if="category.benefits" class="benefits-list">
-              <li v-for="benefit in category.benefits" :key="benefit">
-                <span class="check-icon">✓</span>
-                {{ benefit }}
-              </li>
-            </ul>
+          <!-- Benefits List -->
+          <ul v-if="category.benefits" class="benefits-list">
+            <li v-for="benefit in category.benefits" :key="benefit">
+              <span class="benefit-check">✓</span>
+              {{ benefit }}
+            </li>
+          </ul>
 
-            <!-- 显示规则类型 -->
-            <div v-if="category.types" class="rule-types">
-              <div v-for="type in category.types" :key="type.title" class="rule-type">
-                <div class="type-header">
-                  <div class="type-icon" v-html="type.icon" />
-                  <h3>{{ type.title }}</h3>
-                </div>
-                <p>{{ type.description }}</p>
-                <ul class="type-examples">
-                  <li v-for="example in type.examples" :key="example">
-                    {{ example }}
-                  </li>
-                </ul>
+          <!-- Rule Types -->
+          <div v-if="category.types" class="rule-types">
+            <div v-for="type in category.types" :key="type.title" class="rule-type">
+              <div class="type-title">
+                <span v-html="type.icon" />
+                <h3>{{ type.title }}</h3>
               </div>
-            </div>
-
-            <!-- 显示示例代码 -->
-            <div v-if="category.examples" class="examples">
-              <div v-for="example in category.examples" :key="example.title" class="example">
-                <h3>{{ example.title }}</h3>
-                <pre class="example-code"><code>{{ example.content }}</code></pre>
-              </div>
+              <p>{{ type.description }}</p>
+              <ul>
+                <li v-for="example in type.examples" :key="example">
+                  {{ example }}
+                </li>
+              </ul>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- 优势部分 -->
-      <div class="advantages-section">
-        <h2>为什么选择 Cursor Rules?</h2>
-        <div class="advantages-grid">
-          <div v-for="advantage in advantages" :key="advantage.title" class="advantage-card">
-            <div class="advantage-icon" v-html="advantage.icon" />
-            <h3>{{ advantage.title }}</h3>
-            <p>{{ advantage.description }}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 开始使用步骤 -->
-      <div class="getting-started-section">
-        <h2>开始使用</h2>
-        <div class="steps-grid">
-          <div v-for="step in steps" :key="step.number" class="step-card">
-            <div class="step-number">
-              {{ step.number }}
+          <!-- Examples -->
+          <div v-if="category.examples" class="examples">
+            <div v-for="example in category.examples" :key="example.title">
+              <h3>{{ example.title }}</h3>
+              <pre><code>{{ example.content }}</code></pre>
             </div>
-            <h3>{{ step.title }}</h3>
-            <p>{{ step.description }}</p>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- FAQ 部分 -->
-      <div class="faq-section">
-        <h2>常见问题</h2>
-        <div class="faq-list">
-          <div v-for="faq in faqs" :key="faq.question" class="faq-item">
-            <h3>{{ faq.question }}</h3>
-            <p>{{ faq.answer }}</p>
-          </div>
+    <!-- Advantages -->
+    <section class="advantages">
+      <h2>为什么选择 Cursor Rules?</h2>
+      <div class="advantages-grid">
+        <div v-for="advantage in advantages" :key="advantage.title" class="advantage-card">
+          <span class="advantage-icon" v-html="advantage.icon" />
+          <h3>{{ advantage.title }}</h3>
+          <p>{{ advantage.description }}</p>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
+
+    <!-- Getting Started -->
+    <section class="getting-started">
+      <h2>开始使用</h2>
+      <div class="steps-grid">
+        <div v-for="step in steps" :key="step.number" class="step-card">
+          <div class="step-number">
+            {{ step.number }}
+          </div>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <h2>常见问题</h2>
+      <div class="faq-list">
+        <div v-for="faq in faqs" :key="faq.question" class="faq-item">
+          <h3>{{ faq.question }}</h3>
+          <p>{{ faq.answer }}</p>
+        </div>
+      </div>
+    </section>
+  </article>
 </template>
 
-<style scoped>
-.container {
+<style>
+.rules-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 1rem;
+  color: var(--vp-c-text-1);
 }
 
-/* 修复 SVG 图标大小控制 */
-:deep(svg) {
-  width: 24px !important;
-  height: 24px !important;
-  stroke: currentColor;
-  flex-shrink: 0;
+.rules-page svg {
+  width: 24px;
+  height: 24px;
   display: inline-block;
   vertical-align: middle;
 }
 
-.hero-section {
+/* Header */
+.rules-header {
   text-align: center;
   margin-bottom: 4rem;
 }
 
-.hero-section h1 {
+.rules-header h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: var(--vp-c-text-1);
 }
 
-.hero-description {
+.rules-header p {
   font-size: 1.2rem;
-  color: var(--vp-c-text-2);
   max-width: 800px;
   margin: 0 auto;
+  color: var(--vp-c-text-2);
 }
 
-.content-section {
-  margin-top: 2rem;
-}
-
-.steps-container {
+/* Categories */
+.rules-categories {
   display: grid;
   gap: 2rem;
   margin-bottom: 4rem;
 }
 
-.step-block {
+.category-card {
   background: var(--vp-c-bg-soft);
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--vp-c-divider);
 }
 
-.step-header {
+.category-header {
   display: flex;
   align-items: center;
   padding: 1.5rem;
-  background: var(--step-color, var(--vp-c-brand));
   color: white;
+  gap: 1rem;
 }
 
-.step-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.step-number {
+.category-header h2 {
+  margin: 0;
   font-size: 1.5rem;
-  font-weight: bold;
-  margin-right: 1rem;
 }
 
-.step-content {
+.category-content {
   padding: 1.5rem;
 }
 
-.step-description {
-  margin-bottom: 1.5rem;
-  color: var(--vp-c-text-1);
-}
-
+/* Benefits */
 .benefits-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 1rem 0;
 }
 
 .benefits-list li {
   display: flex;
   align-items: center;
-  margin-bottom: 0.75rem;
-  color: var(--vp-c-text-1);
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.check-icon {
+.benefit-check {
   color: var(--vp-c-brand);
-  margin-right: 0.5rem;
   font-weight: bold;
 }
 
+/* Rule Types */
 .rule-types {
   display: grid;
   gap: 1.5rem;
@@ -419,130 +398,87 @@ const faqs: FAQ[] = [
   border: 1px solid var(--vp-c-divider);
 }
 
-.type-header {
+.type-title {
   display: flex;
   align-items: center;
+  gap: 1rem;
   margin-bottom: 1rem;
 }
 
-.type-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.type-icon :deep(svg) {
-  stroke: var(--vp-c-brand);
-}
-
-.type-examples {
+.rule-type ul {
   list-style: none;
   padding: 0;
-  margin: 1rem 0 0 0;
+  margin: 1rem 0;
 }
 
-.type-examples li {
+.rule-type li {
   margin-bottom: 0.5rem;
   padding-left: 1rem;
   border-left: 2px solid var(--vp-c-brand);
-  color: var(--vp-c-text-1);
 }
 
-.examples {
-  margin-top: 1.5rem;
-}
-
-.example {
-  margin-bottom: 1.5rem;
-}
-
-.example-code {
+/* Examples */
+.examples pre {
   background: var(--vp-c-bg);
   padding: 1rem;
   border-radius: 8px;
   overflow-x: auto;
-  white-space: pre-wrap;
   border: 1px solid var(--vp-c-divider);
-  color: var(--vp-c-text-1);
-  font-family: var(--vp-font-family-mono);
+  margin: 1rem 0;
 }
 
-.advantages-section {
+/* Advantages */
+.advantages {
   margin: 4rem 0;
-}
-
-.advantages-section h2 {
   text-align: center;
-  margin-bottom: 2rem;
-  color: var(--vp-c-text-1);
 }
 
 .advantages-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
+  margin-top: 2rem;
 }
 
 .advantage-card {
   background: var(--vp-c-bg-soft);
   padding: 1.5rem;
-  border-radius: 12px;
-  text-align: center;
+  border-radius: 8px;
   border: 1px solid var(--vp-c-divider);
 }
 
 .advantage-icon {
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-flex;
+  margin-bottom: 1rem;
 }
 
-.advantage-icon :deep(svg) {
-  width: 32px !important;
-  height: 32px !important;
+.advantage-icon svg {
+  width: 32px;
+  height: 32px;
   stroke: var(--vp-c-brand);
 }
 
-.advantage-card h3 {
-  color: var(--vp-c-text-1);
-  margin-bottom: 0.5rem;
-}
-
-.advantage-card p {
-  color: var(--vp-c-text-2);
-}
-
-.getting-started-section {
+/* Getting Started */
+.getting-started {
   margin: 4rem 0;
-}
-
-.getting-started-section h2 {
   text-align: center;
-  margin-bottom: 2rem;
-  color: var(--vp-c-text-1);
 }
 
 .steps-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
+  margin-top: 2rem;
 }
 
 .step-card {
   background: var(--vp-c-bg-soft);
   padding: 1.5rem;
-  border-radius: 12px;
-  text-align: center;
+  border-radius: 8px;
   border: 1px solid var(--vp-c-divider);
 }
 
-.step-card .step-number {
+.step-number {
   width: 40px;
   height: 40px;
   background: var(--vp-c-brand);
@@ -555,68 +491,53 @@ const faqs: FAQ[] = [
   font-weight: bold;
 }
 
-.step-card h3 {
-  color: var(--vp-c-text-1);
-  margin-bottom: 0.5rem;
-}
-
-.step-card p {
-  color: var(--vp-c-text-2);
-}
-
-.faq-section {
+/* FAQ */
+.faq {
   margin: 4rem 0;
-}
-
-.faq-section h2 {
   text-align: center;
-  margin-bottom: 2rem;
-  color: var(--vp-c-text-1);
 }
 
 .faq-list {
   display: grid;
   gap: 1.5rem;
+  margin-top: 2rem;
+  text-align: left;
 }
 
 .faq-item {
   background: var(--vp-c-bg-soft);
   padding: 1.5rem;
-  border-radius: 12px;
+  border-radius: 8px;
   border: 1px solid var(--vp-c-divider);
 }
 
 .faq-item h3 {
-  margin-bottom: 0.5rem;
   color: var(--vp-c-brand);
+  margin-bottom: 0.5rem;
 }
 
-.faq-item p {
-  color: var(--vp-c-text-2);
-}
-
+/* Responsive */
 @media (max-width: 768px) {
-  .container {
-    padding: 1rem;
-  }
-
-  .hero-section h1 {
+  .rules-header h1 {
     font-size: 2rem;
   }
 
-  .advantages-grid,
-  .steps-grid {
-    grid-template-columns: 1fr;
+  .rules-page {
+    padding: 1rem;
   }
 
-  :deep(svg) {
-    width: 20px !important;
-    height: 20px !important;
+  .category-header {
+    padding: 1rem;
   }
 
-  .advantage-icon :deep(svg) {
-    width: 28px !important;
-    height: 28px !important;
+  .category-content {
+    padding: 1rem;
+  }
+
+  .advantage-icon svg,
+  .category-icon svg {
+    width: 20px;
+    height: 20px;
   }
 }
 </style>

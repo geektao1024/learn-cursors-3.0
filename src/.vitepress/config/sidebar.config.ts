@@ -39,11 +39,20 @@ export const sidebar: DefaultTheme.Sidebar = {
     },
     {
       text: '使用小技巧',
-      collapsed: true,
+      collapsed: false,
       items: [
         { text: '用AI编程的心态', link: '/wiki/user-guide/ai-programming-guide' },
         { text: '操作的小技巧', link: '/wiki/user-guide/cursor-tips' },
-        { text: '实战的方法', link: '/wiki/user-guide/cursor-workflow' },
+      ],
+    },
+    {
+      text: '实战案例分享',
+      collapsed: false,
+      items: [
+        { text: '做一个自己的介绍网页', link: '/wiki/user-guide/make-a-website' },
+        { text: '爆款小红书笔记抓取', link: '/wiki/user-guide/grab-red-book-notes' },
+        { text: '做一个网页二维码插件', link: '/wiki/user-guide/make-a-qr-code-plugin' },
+        { text: '做一个网页金句生成器', link: '/wiki/user-guide/make-a-sentence-generator' },
       ],
     },
   ],
@@ -101,7 +110,7 @@ export const sidebar: DefaultTheme.Sidebar = {
       items: [
         { text: '代码库索引', link: '/docs-zh/context/codebase-indexing' },
         { text: 'AI 规则', link: '/docs-zh/context/rules-for-ai' },
-        { text: '忽略���件', link: '/docs-zh/context/ignore-files' },
+        { text: '忽略文件', link: '/docs-zh/context/ignore-files' },
       ],
     },
     {

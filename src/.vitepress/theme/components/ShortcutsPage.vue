@@ -193,7 +193,7 @@ const shortcutGroups = [
       },
       {
         action: '选择所有匹配',
-        shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Shift + L' : '⌘ + Shift + L'),
+        shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Shift + L' : '��� + Shift + L'),
         description: '选择所有匹配的文本',
       },
       {
@@ -302,7 +302,7 @@ const shortcutGroups = [
       {
         action: '切换全屏',
         shortcut: computed(() => selectedOS.value === 'windows' ? 'F11' : '⌃ + ⌘ + F'),
-        description: '切换编��器全屏模式',
+        description: '切换编辑器全屏模式',
       },
     ],
   },
@@ -528,6 +528,7 @@ const filteredGroups = computed(() => {
   line-height: 1.2;
   background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.8));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

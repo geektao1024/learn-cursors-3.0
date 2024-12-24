@@ -2,13 +2,10 @@
 interface RuleCategory {
   id: number
   title: string
-  icon: string
-  color: string
   description: string
   benefits?: string[]
   types?: {
     title: string
-    icon: string
     description: string
     examples: string[]
   }[]
@@ -16,12 +13,6 @@ interface RuleCategory {
     title: string
     content: string
   }[]
-}
-
-interface Advantage {
-  icon: string
-  title: string
-  description: string
 }
 
 interface Step {
@@ -39,34 +30,21 @@ const ruleCategories: RuleCategory[] = [
   {
     id: 1,
     title: '了解 Cursor Rules',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <circle cx="12" cy="12" r="10"/>
-      <path d="M12 8v4M12 16h.01"/>
-    </svg>`,
-    color: 'var(--vp-c-brand)',
     description: 'Cursor Rules 是一套智能编码规则系统，它能帮助您：',
     benefits: [
       '提供智能代码建议和自动补全',
       '确保团队代码风格统一',
       '自动执行最佳实践',
-      '提高代码量和可维护性',
+      '提高代码可维护性',
     ],
   },
   {
     id: 2,
     title: '规则类型',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M4 6h16M4 12h16M4 18h16"/>
-    </svg>`,
-    color: '#10B981',
     description: 'Cursor Rules 分为两种类型：',
     types: [
       {
         title: '全局规则',
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-        </svg>`,
         description: '在 Cursor 设置中配置，适用于所有项目',
         examples: [
           '代码风格统一',
@@ -76,10 +54,6 @@ const ruleCategories: RuleCategory[] = [
       },
       {
         title: '项目规则',
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
-          <polyline points="13 2 13 9 20 9"/>
-        </svg>`,
         description: '在项目的 .cursorrules 文件中定义，仅适用于特定项目',
         examples: [
           '项目特定的编码标准',
@@ -92,10 +66,6 @@ const ruleCategories: RuleCategory[] = [
   {
     id: 3,
     title: '使用示例',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
-    </svg>`,
-    color: '#8B5CF6',
     description: '以下是一个典型的 Cursor Rules 配置示例：',
     examples: [
       {
@@ -131,40 +101,6 @@ const ruleCategories: RuleCategory[] = [
   },
 ]
 
-const advantages: Advantage[] = [
-  {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-    </svg>`,
-    title: '提升生产力',
-    description: 'Cursor Rules 自动化重复性任务，让您专注于编写高质量代码。',
-  },
-  {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
-    </svg>`,
-    title: '统一代码风格',
-    description: '在团队中执行编码标准，确保代码库的一致性和可读性。',
-  },
-  {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/>
-    </svg>`,
-    title: '减少错误',
-    description: '在开发过程早期发现常见错误，节省调试时间。',
-  },
-  {
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <circle cx="12" cy="12" r="10"/>
-      <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-      <line x1="9" y1="9" x2="9.01" y2="9"/>
-      <line x1="15" y1="9" x2="15.01" y2="9"/>
-    </svg>`,
-    title: '加快入职流程',
-    description: '新团队成员可以快速适应项目的编码风格和最佳实践。',
-  },
-]
-
 const steps: Step[] = [
   {
     number: 1,
@@ -194,7 +130,7 @@ const faqs: FAQ[] = [
   },
   {
     question: '我可以与团队共享 Cursor Rules 吗?',
-    answer: '是的，您可以通过版本控制系统（如 Git）与团队成员共享 .cursorrules 文件。这样可以确保团队中的每个成员都使用相同的编码规范和最佳实践。',
+    answer: '是的，您可以通过版本控制系统（如 Git）与团队成员共享 .cursorrules 文件。这样可以确保团队中的每个成员都使用相同的编码规则和最佳实践。',
   },
   {
     question: 'Cursor Rules 是否特定于某种编程语言?',
@@ -204,340 +140,806 @@ const faqs: FAQ[] = [
 </script>
 
 <template>
-  <article class="rules-page">
-    <!-- Hero Section -->
-    <header class="rules-header">
-      <h1>Cursor Rules 规则指南</h1>
-      <p>了解如何使用 Cursor Rules 提升您的开发效率，规范团队协作，编写更好的代码。</p>
-    </header>
+  <div class="rules-page">
+    <div class="rules-hero">
+      <h1>Cursor Rules</h1>
+      <p>智能编码规则，提升开发效率</p>
+    </div>
 
-    <!-- Rule Categories -->
-    <section class="rules-categories">
-      <div
-        v-for="category in ruleCategories"
-        :key="category.id"
-        class="category-card"
-      >
-        <div class="category-header" :style="{ backgroundColor: category.color }">
-          <span class="category-icon" v-html="category.icon" />
-          <span class="category-number">{{ category.id }}</span>
-          <h2>{{ category.title }}</h2>
-        </div>
+    <div class="rules-content">
+      <div class="rules-categories">
+        <h2>规则类别</h2>
+        <div class="categories-grid">
+          <div v-for="category in ruleCategories" :key="category.id" class="category-card">
+            <h3>{{ category.title }}</h3>
+            <p>{{ category.description }}</p>
 
-        <div class="category-content">
-          <p>{{ category.description }}</p>
-
-          <!-- Benefits List -->
-          <ul v-if="category.benefits" class="benefits-list">
-            <li v-for="benefit in category.benefits" :key="benefit">
-              <span class="benefit-check">✓</span>
-              {{ benefit }}
-            </li>
-          </ul>
-
-          <!-- Rule Types -->
-          <div v-if="category.types" class="rule-types">
-            <div v-for="type in category.types" :key="type.title" class="rule-type">
-              <div class="type-title">
-                <span v-html="type.icon" />
-                <h3>{{ type.title }}</h3>
-              </div>
-              <p>{{ type.description }}</p>
+            <template v-if="category.benefits">
+              <h4>优势</h4>
               <ul>
-                <li v-for="example in type.examples" :key="example">
-                  {{ example }}
+                <li v-for="benefit in category.benefits" :key="benefit">
+                  {{ benefit }}
                 </li>
               </ul>
+            </template>
+
+            <template v-if="category.types">
+              <div v-for="type in category.types" :key="type.title" class="rule-type">
+                <h4>{{ type.title }}</h4>
+                <p>{{ type.description }}</p>
+                <ul>
+                  <li v-for="example in type.examples" :key="example">
+                    {{ example }}
+                  </li>
+                </ul>
+              </div>
+            </template>
+
+            <template v-if="category.examples">
+              <div v-for="example in category.examples" :key="example.title" class="rule-example">
+                <h4>{{ example.title }}</h4>
+                <pre><code>{{ example.content }}</code></pre>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+
+      <div class="rules-steps">
+        <h2>开始使用</h2>
+        <div class="steps-list">
+          <div v-for="step in steps" :key="step.number" class="step-card">
+            <div class="step-number">
+              {{ step.number }}
             </div>
-          </div>
-
-          <!-- Examples -->
-          <div v-if="category.examples" class="examples">
-            <div v-for="example in category.examples" :key="example.title">
-              <h3>{{ example.title }}</h3>
-              <pre><code>{{ example.content }}</code></pre>
-            </div>
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.description }}</p>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Advantages -->
-    <section class="advantages">
-      <h2>为什么选择 Cursor Rules?</h2>
-      <div class="advantages-grid">
-        <div v-for="advantage in advantages" :key="advantage.title" class="advantage-card">
-          <span class="advantage-icon" v-html="advantage.icon" />
-          <h3>{{ advantage.title }}</h3>
-          <p>{{ advantage.description }}</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Getting Started -->
-    <section class="getting-started">
-      <h2>开始使用</h2>
-      <div class="steps-grid">
-        <div v-for="step in steps" :key="step.number" class="step-card">
-          <div class="step-number">
-            {{ step.number }}
+      <div class="rules-faq">
+        <h2>常见问题</h2>
+        <div class="faq-list">
+          <div v-for="faq in faqs" :key="faq.question" class="faq-item">
+            <h3>{{ faq.question }}</h3>
+            <p>{{ faq.answer }}</p>
           </div>
-          <h3>{{ step.title }}</h3>
-          <p>{{ step.description }}</p>
         </div>
       </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq">
-      <h2>常见问题</h2>
-      <div class="faq-list">
-        <div v-for="faq in faqs" :key="faq.question" class="faq-item">
-          <h3>{{ faq.question }}</h3>
-          <p>{{ faq.answer }}</p>
-        </div>
-      </div>
-    </section>
-  </article>
+    </div>
+  </div>
 </template>
 
 <style>
-.rules-page {
-  max-width: 1200px;
+:root {
+  --primary-color: #3eaf7c;
+  --primary-dark: #2c855f;
+  --primary-light: #4fc08c;
+
+  --surface-1: #ffffff;
+  --surface-2: #f8fafc;
+  --surface-3: #f1f5f9;
+
+  --text-1: #1e293b;
+  --text-2: #475569;
+  --text-3: #64748b;
+
+  --border-color: #e2e8f0;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+  --max-width: 80rem;
+  --content-width: 64rem;
+}
+
+.dark {
+  --surface-1: #0f172a;
+  --surface-2: #1e293b;
+  --surface-3: #334155;
+
+  --text-1: #f8fafc;
+  --text-2: #e2e8f0;
+  --text-3: #cbd5e1;
+
+  --border-color: #334155;
+}
+</style>
+
+<style scoped>
+/* Base Styles */
+.rules-container {
+  width: 100%;
+  max-width: var(--max-width);
   margin: 0 auto;
+  font-family: var(--font-sans);
+  color: var(--text-1);
+  background: var(--surface-1);
+}
+
+/* Hero Section - More Compact */
+.hero {
   padding: 2rem 1rem;
-  color: var(--vp-c-text-1);
-}
-
-.rules-page svg {
-  width: 24px;
-  height: 24px;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-/* Header */
-.rules-header {
   text-align: center;
-  margin-bottom: 4rem;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border-color);
 }
 
-.rules-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.rules-header p {
-  font-size: 1.2rem;
-  max-width: 800px;
+.hero__content {
+  max-width: var(--content-width);
   margin: 0 auto;
-  color: var(--vp-c-text-2);
 }
 
-/* Categories */
-.rules-categories {
+.hero__title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  color: var(--text-1);
+}
+
+.hero__description {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-2);
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+/* Main Content */
+.main {
+  padding: 1.5rem 1rem;
+}
+
+/* Section Common */
+.section {
+  margin-bottom: 2.5rem;
+  max-width: var(--content-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--text-1);
+}
+
+/* Horizontal Categories */
+.categories-row {
   display: grid;
-  gap: 2rem;
-  margin-bottom: 4rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .category-card {
-  background: var(--vp-c-bg-soft);
-  border-radius: 8px;
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
   overflow: hidden;
-  border: 1px solid var(--vp-c-divider);
+  border: 1px solid var(--border-color);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.category-header {
+.category-card__header {
   display: flex;
   align-items: center;
-  padding: 1.5rem;
+  gap: 0.75rem;
+  padding: 0.75rem;
   color: white;
-  gap: 1rem;
 }
 
-.category-header h2 {
+.category-card__icon :deep(svg) {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.category-card__title {
+  font-size: 1rem;
+  font-weight: 600;
   margin: 0;
-  font-size: 1.5rem;
 }
 
-.category-content {
-  padding: 1.5rem;
+.category-card__content {
+  padding: 1rem;
+  flex: 1;
 }
 
-/* Benefits */
-.benefits-list {
+.category-card__description {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--text-2);
+  margin-bottom: 0.75rem;
+}
+
+.category-card__list {
   list-style: none;
   padding: 0;
-  margin: 1rem 0;
+  margin: 0;
 }
 
-.benefits-list li {
+.category-card__list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  margin-bottom: 0.375rem;
+  color: var(--text-2);
+}
+
+.check-icon {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+/* Types */
+.category-card__types {
+  margin-top: 0.75rem;
+}
+
+.type-item {
+  background: var(--surface-1);
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  margin-bottom: 0.75rem;
+}
+
+.type-item__header {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
 }
 
-.benefit-check {
-  color: var(--vp-c-brand);
-  font-weight: bold;
+.type-item__icon :deep(svg) {
+  width: 1rem;
+  height: 1rem;
+  color: var(--primary-color);
 }
 
-/* Rule Types */
-.rule-types {
-  display: grid;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+.type-item h3 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-1);
 }
 
-.rule-type {
-  background: var(--vp-c-bg);
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid var(--vp-c-divider);
+.type-item p {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--text-2);
+  margin-bottom: 0.5rem;
 }
 
-.type-title {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.rule-type ul {
+.type-item__examples {
   list-style: none;
   padding: 0;
-  margin: 1rem 0;
+  margin: 0;
 }
 
-.rule-type li {
-  margin-bottom: 0.5rem;
-  padding-left: 1rem;
-  border-left: 2px solid var(--vp-c-brand);
+.type-item__examples li {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--text-2);
+  padding-left: 0.5rem;
+  border-left: 2px solid var(--primary-color);
+  margin-bottom: 0.25rem;
 }
 
 /* Examples */
-.examples pre {
-  background: var(--vp-c-bg);
-  padding: 1rem;
-  border-radius: 8px;
+.category-card__examples {
+  margin-top: 0.75rem;
+}
+
+.category-card__examples h3 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-1);
+}
+
+.category-card__examples pre {
+  background: var(--surface-1);
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
   overflow-x: auto;
-  border: 1px solid var(--vp-c-divider);
-  margin: 1rem 0;
+  border: 1px solid var(--border-color);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  margin: 0;
 }
 
-/* Advantages */
-.advantages {
-  margin: 4rem 0;
-  text-align: center;
-}
-
-.advantages-grid {
+/* Advantages Grid */
+.advantages__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
 .advantage-card {
-  background: var(--vp-c-bg-soft);
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid var(--vp-c-divider);
-}
-
-.advantage-icon {
-  display: inline-flex;
-  margin-bottom: 1rem;
-}
-
-.advantage-icon svg {
-  width: 32px;
-  height: 32px;
-  stroke: var(--vp-c-brand);
-}
-
-/* Getting Started */
-.getting-started {
-  margin: 4rem 0;
+  background: var(--surface-2);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
   text-align: center;
 }
 
-.steps-grid {
+.advantage-card__icon :deep(svg) {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+}
+
+.advantage-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-1);
+}
+
+.advantage-card p {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--text-2);
+}
+
+/* Steps Grid */
+.steps__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
 .step-card {
-  background: var(--vp-c-bg-soft);
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid var(--vp-c-divider);
+  background: var(--surface-2);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  text-align: center;
 }
 
-.step-number {
-  width: 40px;
-  height: 40px;
-  background: var(--vp-c-brand);
+.step-card__number {
+  width: 2rem;
+  height: 2rem;
+  background: var(--primary-color);
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1rem;
-  font-weight: bold;
+  margin: 0 auto 0.75rem;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
-/* FAQ */
-.faq {
-  margin: 4rem 0;
+.step-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-1);
+}
+
+.step-card p {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--text-2);
+}
+
+/* FAQ Grid */
+.faq__grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.faq-card {
+  background: var(--surface-2);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.faq-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.faq-card p {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--text-2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .categories-row {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    padding: 1.5rem 1rem;
+  }
+
+  .hero__title {
+    font-size: 1.5rem;
+  }
+
+  .main {
+    padding: 1rem;
+  }
+
+  .section__title {
+    font-size: 1.25rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .rules-container {
+    max-width: none;
+  }
+
+  .hero {
+    padding: 1rem 0;
+  }
+
+  .categories-row {
+    gap: 0.5rem;
+  }
+
+  .category-card,
+  .advantage-card,
+  .step-card,
+  .faq-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+/* New Introduction Section Styles */
+.intro-section {
+  margin: 2rem auto;
+  position: relative;
+  z-index: 1;
+}
+
+.intro-wrapper {
+  background: var(--surface-1);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.intro-header {
+  padding: 2.5rem 2rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  background: var(--primary-color);
+}
+
+.intro-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+  z-index: 1;
+}
+
+.intro-header__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.intro-header__icon {
+  margin-bottom: 1.25rem;
+}
+
+.intro-header__icon :deep(svg) {
+  width: 2.5rem;
+  height: 2.5rem;
+  stroke-width: 1.5;
+}
+
+.intro-header__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  line-height: 1.2;
+}
+
+.intro-header__description {
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 36rem;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+.intro-benefits {
+  padding: 1.75rem;
+  background: var(--surface-1);
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.benefit-card {
+  position: relative;
+  background: var(--surface-2);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  transition: transform 0.2s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-2px);
+}
+
+.benefit-card__number {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-3);
+  opacity: 0.5;
+}
+
+.benefit-card__content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.benefit-card__check {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--primary-color);
+  color: white;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.benefit-card__text {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-1);
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .intro-section {
+    margin: 1.5rem auto;
+  }
+
+  .intro-header {
+    padding: 2rem 1.5rem;
+  }
+
+  .intro-header__icon :deep(svg) {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .intro-header__title {
+    font-size: 1.5rem;
+  }
+
+  .intro-benefits {
+    padding: 1.25rem;
+  }
+
+  .benefits-grid {
+    gap: 1rem;
+  }
+
+  .benefit-card {
+    padding: 1rem;
+  }
+}
+
+/* Dark mode adjustments */
+.dark .benefit-card {
+  background: var(--surface-3);
+}
+
+.dark .benefit-card:hover {
+  background: var(--surface-2);
+}
+
+/* Introduction Card */
+.intro-card {
+  background: var(--surface-2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.intro-card__header {
+  background: var(--primary-color);
+  padding: 2rem;
+  color: white;
   text-align: center;
 }
 
-.faq-list {
+.intro-card__title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+}
+
+.intro-card__description {
+  font-size: 1.125rem;
+  opacity: 0.9;
+  margin: 0;
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.intro-card__content {
+  padding: 2rem;
+}
+
+.benefits-list {
   display: grid;
-  gap: 1.5rem;
-  margin-top: 2rem;
-  text-align: left;
+  gap: 1rem;
+  max-width: 48rem;
+  margin: 0 auto;
 }
 
-.faq-item {
-  background: var(--vp-c-bg-soft);
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--surface-1);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.benefit-item__number {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  background: var(--surface-2);
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  min-width: 2.5rem;
+  text-align: center;
+}
+
+.benefit-item__text {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-1);
+}
+
+/* Content Cards */
+.content-card {
+  background: var(--surface-2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  height: 100%;
+}
+
+.content-card__header {
+  background: var(--primary-color);
   padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid var(--vp-c-divider);
+  color: white;
 }
 
-.faq-item h3 {
-  color: var(--vp-c-brand);
-  margin-bottom: 0.5rem;
+.content-card__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
 }
 
-/* Responsive */
+.content-card__description {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.content-card__content {
+  padding: 1.5rem;
+}
+
+/* Two Column Grid */
+.two-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+/* Advantages Grid */
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.advantage-card {
+  background: var(--surface-2);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.advantage-card__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  color: var(--primary-color);
+}
+
+.advantage-card__description {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-2);
+  margin: 0;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  .rules-header h1 {
-    font-size: 2rem;
+  .two-column-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
-  .rules-page {
-    padding: 1rem;
+  .intro-card__header {
+    padding: 1.5rem;
   }
 
-  .category-header {
-    padding: 1rem;
+  .intro-card__title {
+    font-size: 1.5rem;
   }
 
-  .category-content {
-    padding: 1rem;
+  .intro-card__content {
+    padding: 1.5rem;
   }
 
-  .advantage-icon svg,
-  .category-icon svg {
-    width: 20px;
-    height: 20px;
+  .benefit-item {
+    padding: 0.875rem;
   }
 }
 </style>

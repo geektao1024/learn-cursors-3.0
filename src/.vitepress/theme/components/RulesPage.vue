@@ -49,7 +49,7 @@ const ruleCategories: RuleCategory[] = [
       '提供智能代码建议和自动补全',
       '确保团队代码风格统一',
       '自动执行最佳实践',
-      '提高代码质量和可维护性',
+      '提高代码��量和可维护性',
     ],
   },
   {
@@ -310,14 +310,14 @@ const faqs: FAQ[] = [
   padding: 2rem;
 }
 
-/* Add strict SVG controls */
+/* 修复 SVG 图标大小控制 */
 :deep(svg) {
-  width: 100%;
-  height: 100%;
-  max-width: 24px;
-  max-height: 24px;
+  width: 24px !important;
+  height: 24px !important;
   stroke: currentColor;
   flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .hero-section {
@@ -328,6 +328,7 @@ const faqs: FAQ[] = [
 .hero-section h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  color: var(--vp-c-text-1);
 }
 
 .hero-description {
@@ -351,13 +352,14 @@ const faqs: FAQ[] = [
   background: var(--vp-c-bg-soft);
   border-radius: 12px;
   overflow: hidden;
+  border: 1px solid var(--vp-c-divider);
 }
 
 .step-header {
   display: flex;
   align-items: center;
   padding: 1.5rem;
-  background: var(--step-color);
+  background: var(--step-color, var(--vp-c-brand));
   color: white;
 }
 
@@ -368,12 +370,6 @@ const faqs: FAQ[] = [
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-}
-
-.step-icon :deep(svg) {
-  max-width: 20px;
-  max-height: 20px;
 }
 
 .step-number {
@@ -388,22 +384,26 @@ const faqs: FAQ[] = [
 
 .step-description {
   margin-bottom: 1.5rem;
+  color: var(--vp-c-text-1);
 }
 
 .benefits-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .benefits-list li {
   display: flex;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--vp-c-text-1);
 }
 
 .check-icon {
   color: var(--vp-c-brand);
   margin-right: 0.5rem;
+  font-weight: bold;
 }
 
 .rule-types {
@@ -416,6 +416,7 @@ const faqs: FAQ[] = [
   background: var(--vp-c-bg);
   padding: 1.5rem;
   border-radius: 8px;
+  border: 1px solid var(--vp-c-divider);
 }
 
 .type-header {
@@ -431,25 +432,23 @@ const faqs: FAQ[] = [
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
 .type-icon :deep(svg) {
-  max-width: 20px;
-  max-height: 20px;
   stroke: var(--vp-c-brand);
 }
 
 .type-examples {
   list-style: none;
   padding: 0;
-  margin-top: 1rem;
+  margin: 1rem 0 0 0;
 }
 
 .type-examples li {
   margin-bottom: 0.5rem;
   padding-left: 1rem;
   border-left: 2px solid var(--vp-c-brand);
+  color: var(--vp-c-text-1);
 }
 
 .examples {
@@ -466,6 +465,9 @@ const faqs: FAQ[] = [
   border-radius: 8px;
   overflow-x: auto;
   white-space: pre-wrap;
+  border: 1px solid var(--vp-c-divider);
+  color: var(--vp-c-text-1);
+  font-family: var(--vp-font-family-mono);
 }
 
 .advantages-section {
@@ -475,11 +477,12 @@ const faqs: FAQ[] = [
 .advantages-section h2 {
   text-align: center;
   margin-bottom: 2rem;
+  color: var(--vp-c-text-1);
 }
 
 .advantages-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
 
@@ -488,6 +491,7 @@ const faqs: FAQ[] = [
   padding: 1.5rem;
   border-radius: 12px;
   text-align: center;
+  border: 1px solid var(--vp-c-divider);
 }
 
 .advantage-icon {
@@ -497,13 +501,21 @@ const faqs: FAQ[] = [
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
 .advantage-icon :deep(svg) {
-  max-width: 32px;
-  max-height: 32px;
+  width: 32px !important;
+  height: 32px !important;
   stroke: var(--vp-c-brand);
+}
+
+.advantage-card h3 {
+  color: var(--vp-c-text-1);
+  margin-bottom: 0.5rem;
+}
+
+.advantage-card p {
+  color: var(--vp-c-text-2);
 }
 
 .getting-started-section {
@@ -513,11 +525,12 @@ const faqs: FAQ[] = [
 .getting-started-section h2 {
   text-align: center;
   margin-bottom: 2rem;
+  color: var(--vp-c-text-1);
 }
 
 .steps-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
 
@@ -526,6 +539,7 @@ const faqs: FAQ[] = [
   padding: 1.5rem;
   border-radius: 12px;
   text-align: center;
+  border: 1px solid var(--vp-c-divider);
 }
 
 .step-card .step-number {
@@ -538,6 +552,16 @@ const faqs: FAQ[] = [
   align-items: center;
   justify-content: center;
   margin: 0 auto 1rem;
+  font-weight: bold;
+}
+
+.step-card h3 {
+  color: var(--vp-c-text-1);
+  margin-bottom: 0.5rem;
+}
+
+.step-card p {
+  color: var(--vp-c-text-2);
 }
 
 .faq-section {
@@ -547,6 +571,7 @@ const faqs: FAQ[] = [
 .faq-section h2 {
   text-align: center;
   margin-bottom: 2rem;
+  color: var(--vp-c-text-1);
 }
 
 .faq-list {
@@ -558,11 +583,16 @@ const faqs: FAQ[] = [
   background: var(--vp-c-bg-soft);
   padding: 1.5rem;
   border-radius: 12px;
+  border: 1px solid var(--vp-c-divider);
 }
 
 .faq-item h3 {
   margin-bottom: 0.5rem;
   color: var(--vp-c-brand);
+}
+
+.faq-item p {
+  color: var(--vp-c-text-2);
 }
 
 @media (max-width: 768px) {
@@ -577,6 +607,16 @@ const faqs: FAQ[] = [
   .advantages-grid,
   .steps-grid {
     grid-template-columns: 1fr;
+  }
+
+  :deep(svg) {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .advantage-icon :deep(svg) {
+    width: 28px !important;
+    height: 28px !important;
   }
 }
 </style>

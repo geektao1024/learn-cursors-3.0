@@ -256,7 +256,7 @@ const faqs: FAQ[] = [
       </div>
 
       <div class="rules-faq">
-        <h2>常见问���</h2>
+        <h2>常见问题</h2>
         <div class="faq-list">
           <div v-for="faq in faqs" :key="faq.question" class="faq-item">
             <h3>{{ faq.question }}</h3>

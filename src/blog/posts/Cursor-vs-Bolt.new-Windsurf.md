@@ -1,11 +1,11 @@
 ---
-title: "2024最新对比：Cursor vs Windsurf vs Bolt.new - 如何选择最适合你的AI编程助手？"
+title: "Cursor vs Windsurf vs Bolt.new-最适合你的AI编程助手？"
 date: "2024-01-01"
 excerpt: "深度对比Cursor、Windsurf和Bolt.new三款顶级AI编程工具的特点、优势和适用场景，助你做出最佳选择。"
 coverImage: "/images/posts/ide-comparison.jpg"
 category: "AI开发工具"
 author: "Cursor中文社区"
-tags: ["Cursor", "Windsurf", "Bolt.new", "AI IDE", "代码编辑器", "开发工具", "VS Code", "AI编程", "代码生成", "智能编程"]
+tags: ["Cursor", "Windsurf", "Bolt.new", "AI IDE", "代码编辑器",  "AI编程", "代码生成", "智能编程"]
 layout: doc
 ---
 

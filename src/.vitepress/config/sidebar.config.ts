@@ -58,12 +58,17 @@ export const sidebar: DefaultTheme.Sidebar = {
   ],
   '/blog/': [
     {
-      text: '博客文章',
+      text: '全部文章',
       items: [
-        { text: '入门指南', link: '/blog/posts/cursor' },
-        { text: 'AI IDE 对比', link: '/blog/posts/10ai-ide' },
+        { text: 'Cursor 快速入门：10 分钟掌握 AI 编程助手', link: '/blog/posts/cursor-quick-start' },
+        { text: '为什么选择 Cursor？探索 AI 编程的未来', link: '/blog/posts/why-choose-cursor' },
+        { text: 'Cursor Rules：打造个性化的 AI 编程助手', link: '/blog/posts/cursor-rules-guide' },
+        { text: 'Cursor Rules 进阶指南', link: '/blog/posts/cursor-rules-advanced' },
+        { text: 'Cursor + V0 + Reweb：全栈开发新范式', link: '/blog/posts/cursor-v0-reweb-guide' },
+        { text: 'Cursor：引领 AI 编辑器新时代的革命性工具', link: '/blog/posts/cursor-next-gen-editor' },
+        { text: 'Cursor AI 快捷键完全指南', link: '/blog/posts/cursor-shortcuts' },
+        { text: 'Cursor 实战：一键生成专业的 Git Commit Message', link: '/blog/posts/cursor-git-commit' },
         { text: 'Cursor vs Bolt', link: '/blog/posts/Cursor-vs-Bolt.new-Windsurf' },
-        { text: 'Cursor 规则', link: '/blog/posts/cursor-rules' },
         { text: 'Cursor Composer', link: '/blog/posts/cursorcomposer' },
       ],
     },

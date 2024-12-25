@@ -22,7 +22,7 @@ head:
 hero:
   name: Cursor AI
   text: 非官方教程社区
-  tagline: 为开发者和产品经理提供全面、实用的 Cursor AI 学习教程，助力提升编程效率，做出属于自己的产品。
+  tagline: 提供全面、实用的 Cursor AI 学习教程，助力想做自己产品的你，做出属于自己的产品。
   image:
     src: /logo.png
     alt: Cursor AI 社区 LOGO

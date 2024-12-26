@@ -31,4 +31,16 @@ export const head: UserConfig['head'] = [
       gtag('js', new Date());
       gtag('config', 'G-XHJEPSKT4G');`,
   ],
+  // 百度统计代码
+  [
+    'script',
+    {},
+    `var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?15f47d5cafd63c84ff842289217863a5";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();`,
+  ],
 ]

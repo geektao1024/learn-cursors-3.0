@@ -49,23 +49,79 @@ description: Cursor是一款现代化的编程工具，它能帮助开发者更�
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
+
+.custom-block.tip {
+  border-color: #409eff;
+  background-color: rgba(64,158,255,0.1);
+}
+
+.custom-block.warning {
+  border-color: #e6a23c;
+  background-color: rgba(230,162,60,0.1);
+}
+
+.custom-block.tip .custom-block-title,
+.custom-block.warning .custom-block-title {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.custom-block.tip .custom-block-title {
+  color: #409eff;
+}
+
+.custom-block.warning .custom-block-title {
+  color: #e6a23c;
+}
+
+.custom-block h3 {
+  margin-top: 0.5rem;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.custom-block.details {
+  border: 1px solid #eee;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.custom-block.details .custom-block-title {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 1rem;
+}
 </style>
 
-# Cursor 使用指南
+# Cursor 使用前的介绍
 
-欢迎来到 Cursor AI使用指南。这个入门教程将带你全面了解 Cursor 这款现代编程工具，从基础的安装配置，到核心功能的使用，再到实战案例的分享。包括介绍 Cursor 的基本概念和环境配置，深入讲解智能代码补全、AI 代码生成、对话助手等核心功能，分享实用的编程技巧，通过实战案例帮助你更好地应用 Cursor 来提升开发效率。
-无论你是刚开始使用 Cursor 的新手，还是想要提升使用技巧的老手，都能在这里找到有价值的内容。
+::: details 🤔 思考一下
+想象一下，如果编程可以像使用 Word 一样简单：你说"我要制作一个统计表格"，它就能帮你把工具做出来。这不是科幻，这就是 Cursor 带来的改变。
 
-::: info 开启你的 AI 编程之旅
-**让每个人都能轻松掌握 AI 编程** 💡
+Cursor 正在重新定义编程的学习方式：
+- 不再被复杂的语法规则困扰
+- 把注意力集中在解决问题上
+- 让每个人都能参与软件创造
+:::
 
-本教程特别为 AI 编程初学者设计了循序渐进的学习路径：
+::: tip 🎯 为什么选择 Cursor
+### 🌟 三大革新性突破
 
-1. 首先，带你认识 Cursor 这个强大的 AI 编程工具，了解它如何改变传统的编程方式
-2. 接着，通过实践掌握基础功能，学会使用智能代码补全、AI 代码生成等核心特性
-3. 最后，我们会用一个实战项目，教你如何仅通过自然语言对话，就能搭建出一个完整的互联网产品
+1. **💡 通过对话写代码**  
+   传统编程充满了陌生的语法规则和逻辑障碍，而 Cursor 把这个过程变成了类似写作的体验。你只需用自然语言描述你的想法，它就能立即翻译成完整的代码。
 
-**我们的目标是**：让每个人都能通过 AI 编程创造自己的作品，不再受限于传统编程的门槛。无论你是否有编程基础，都可以通过 Cursor 轻松实现自己的想法。
+2. **🚀 让想法快速变成产品**  
+   Cursor 最大的革新在于，它让你把注意力从"如何写代码"转移到"解决什么问题"。对初学者来说，这意味着更快的学习曲线；对专业开发者来说，这意味着更高的工作效率。
+
+3. **🌈 让开发变得"民主化"**  
+   通过生成规范、专业的代码，Cursor 让新手也能快速参与到实际项目中。它模糊了初学者和专业开发者之间的界限，让协作变得更加顺畅。这不仅提升了开发效率，更重要的是，它正在让更多人有机会参与到软件创造中。
+
+### 🎓 这不仅是一个工具，而是编程教育的新范式
+更直观、更高效、更平民化。让我们开始这段 AI 编程之旅，探索如何用全新的方式来创造软件。
 :::
 
 
@@ -96,7 +152,7 @@ Cursor 提供了一系列基础但强大的功能：
 - 版本控制：集成 Git 功能，方便代码管理
 - 调试工具：支持断点调试、变量监控等
 - 性能分析：帮助优化代码性能
-- 队协作：便于多人协作开发
+- 队协作便于多人协作开发
 
 ## 💡 使用场景
 
@@ -109,7 +165,7 @@ Cursor 适用于多种开发场景：
 代码评审、知识分享、项目协作等团队开发活动。
 
 **技术探索** <span class="difficulty-advanced">高级</span>
-学习新技术、验证方案、原型开发等探索性工作。
+学习新技术、验证方案原型开发等探索性工作。
 
 ::: tip 使用建议
 - 循序渐进，从基础功能开始熟悉

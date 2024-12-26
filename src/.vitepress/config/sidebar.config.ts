@@ -78,8 +78,9 @@ export const sidebar: DefaultTheme.Sidebar = {
       text: '快速开始',
       collapsed: false,
       items: [
-        { text: '介绍', link: '/docs-zh/' },
+        { text: '非官方介绍', link: '/docs-zh/' },
         { text: '从 VS Code 迁移', link: '/docs-zh/migrate-from-vs-code' },
+        { text: '套餐选择', link: '/docs-zh/pricing' },
       ],
     },
     {
@@ -87,8 +88,15 @@ export const sidebar: DefaultTheme.Sidebar = {
       collapsed: false,
       items: [
         { text: '概览', link: '/docs-zh/tags/overview' },
-        { text: '迁移', link: '/docs-zh/tags/migrate' },
+        { text: '从 GitHub Copilot 迁移', link: '/docs-zh/tags/migrate' },
         { text: '高级选项', link: '/docs-zh/tags/advanced' },
+      ],
+    },
+    {
+      text: 'Composer',
+      collapsed: false,
+      items: [
+        { text: '概述', link: '/docs-zh/composer' },
       ],
     },
     {

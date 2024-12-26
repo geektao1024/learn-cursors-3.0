@@ -23,5 +23,3 @@ Cursor 可以在光标位置插入文本，而且功能更强大：
 由于 Cursor 默认带有 GitHub Copilot，你可能同时安装了 GitHub Copilot 和 Cursor。我们建议你在想要使用 Cursor 时关闭 GitHub Copilot。
 
 默认情况下，Cursor 优先于 GitHub Copilot。如果你想要使用 GitHub Copilot，你可以在设置中禁用 Cursor。
-
-![Cursor Logo](https://mintlify.s3-us-west-1.amazonaws.com/cursor/images/logo/app-logo.svg)

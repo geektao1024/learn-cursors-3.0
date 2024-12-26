@@ -7,6 +7,18 @@
   --vp-c-brand-darker: #454ce1;
 }
 
+/* 文档图片样式 */
+.vp-doc img {
+  border-radius: 10px;
+  border: 1px solid var(--vp-c-divider);
+  transition: all 0.2s ease;
+}
+
+.vp-doc img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 /* 响应式布局调整 */
 @media (min-width: 640px) {
   :root {

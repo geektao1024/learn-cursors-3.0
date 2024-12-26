@@ -55,7 +55,7 @@ Cursor 作为新一代智能开发环境，具有以下核心特性：
 
 - [Cursor 官网](https://cursor.sh)
 - [GitHub 仓库](https://github.com/getcursor/cursor)
-- [官方文档](https://cursor.so/docs)
+- [官方英文文档](https://cursor.so/docs)
 - [更新日志](https://cursor.so/changelog)
 
 ::: tip 使用建议

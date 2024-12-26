@@ -1,80 +1,43 @@
-# 从 VS Code 迁移到 Cursor
+# 从 VS Code 迁移
 
-::: info 为什么选择 Cursor
-如果你是一位 VS Code 用户，迁移到 Cursor 将是一个平滑的过程。Cursor 保留了 VS Code 的大部分优秀特性，同时增加了强大的 AI 功能，让你的编程体验更上一层楼。
-:::
+<style>
+.screenshot {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+</style>
 
-## 快速上手
+Cursor 是 VS Code 的一个分支。这使我们能够专注于打造最佳的 AI 编程体验，同时保持熟悉的文本编辑体验。
 
-### 1. 熟悉的操作方式
+### 导入扩展、主题、设置和快捷键
 
-Cursor 继承了 VS Code 的大部分快捷键和操作习惯：
+你可以一键将 VS Code 的配置导入到 Cursor 中。导航到 `Cursor 设置` > `通用` > `账户` 即可操作。
 
-- **命令面板**: `Cmd/Ctrl + Shift + P`
-- **快速打开**: `Cmd/Ctrl + P`
-- **集成终端**: `` Cmd/Ctrl + ` ``
-- **文件树视图**: `Cmd/Ctrl + B`
-- **多光标编辑**: `Cmd/Ctrl + D`
-- **代码格式化**: `Shift + Alt + F`
+<img src="https://mintlify.s3.us-west-1.amazonaws.com/cursor/images/get-started/vscode-import.png" alt="vscode-import" class="screenshot" />
 
-### 2. 扩展和设置迁移
+### 保持更新
 
-- Cursor 支持导入 VS Code 的用户设置
-- 大部分常用的 VS Code 扩展都可以在 Cursor 中使用
-- 主题和图标包可以直接复用
+我们会定期将 Cursor 与最新版本的 VS Code 进行同步更新。
 
-## 主要区别
+### 为什么不做成扩展？
 
-### 1. AI 增强功能
+作为一个独立的应用程序，Cursor 可以更好地控制编辑器的界面，实现更深度的 AI 集成。我们的一些功能，比如 Cursor Tab 和 CMD-K，在现有的编码环境中作为插件是无法实现的。
 
-Cursor 在 VS Code 基础上增加了以下 AI 特性：
+### 设置
 
-- **智能代码补全**: 更强大的代码建议和自动完成
-- **自然语言编程**: 直接用文字描述来生成代码
-- **实时代码分析**: AI 辅助的代码审查和优化建议
-- **上下文感知**: 更智能的代码理解和导航
+你可以通过以下方式打开 Cursor 专属设置面板：
 
-### 2. 界面优化
+- 点击右上角的齿轮按钮
+- 按下 `Ctrl/⌘ + Shift + J`
+- 使用 `Ctrl/⌘ + Shift + P` 并输入 `Cursor Settings`
 
-- 更现代化的 UI 设计
-- 集成的 AI 聊天窗口
-- 优化的代码编辑器布局
-- 更直观的设置界面
+要打开 VS Code 相关设置，可以：
 
-## 迁移步骤
+- 使用 `Ctrl/⌘ + Shift + P`，然后输入 `VS Code Settings`
 
-1. **备份 VS Code 设置**
+### 为什么 Cursor 的活动栏是水平的？
 
-   - 导出用户设置 (settings.json)
-   - 保存快捷键配置
-   - 记录已安装的扩展列表
+<img src="https://mintlify.s3.us-west-1.amazonaws.com/cursor/images/get-started/activity-bar.png" alt="activity-bar" class="screenshot" />
 
-2. **安装 Cursor**
-
-   - 从[官网](https://cursor.sh)下载最新版本
-   - 按照安装向导完成安装
-
-3. **导入设置**
-
-   - 导入 VS Code 配置文件
-   - 重新安装必要的扩展
-   - 调整个性化设置
-
-4. **熟悉新功能**
-   - 完成内置教程
-   - 尝试 AI 辅助功能
-   - 探索新的快捷键
-
-::: tip 建议
-
-- 建议先保留 VS Code，逐步过渡到 Cursor
-- 优先使用 Cursor 的 AI 功能来提升效率
-- 遇到问题时可以参考官方文档或使用内置 AI 助手
-  :::
-
-::: warning 注意事项
-
-- 部分 VS Code 扩展可能在 Cursor 中不可用
-- AI 功能需要稳定的网络连接
-- 某些高级功能可能需要订阅付费版本
-  :::
+活动栏默认设置为水平是为了给聊天窗口留出空间。如果你更喜欢传统的垂直活动栏，可以在 VS Code 设置中将 `workbench.activityBar.orientation` 设置为 `vertical`，然后重启 Cursor。

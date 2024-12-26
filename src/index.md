@@ -31,7 +31,7 @@ hero:
       text: 开始阅读教程
       link: /wiki/user-guide/cursor-introduction
     - theme: alt
-      text: 核心功能
+      text: 官方文档
       link: /docs-zh/
 
 features:

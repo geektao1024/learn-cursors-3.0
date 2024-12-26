@@ -37,6 +37,15 @@ export default {
     app.component('GoogleAdsense', GoogleAdsense)
     app.component('HomeContent', HomeContent)
     app.component('RulesPage', RulesPage)
+
+    // 添加Adsterra广告脚本
+    if (typeof window !== 'undefined') {
+      const script = document.createElement('script')
+      script.src = '//pl25383702.profitablecpmrate.com/b8386c573e08182e1305476b04b5e74e/invoke.js'
+      script.async = true
+      script.setAttribute('data-cfasync', 'false')
+      document.head.appendChild(script)
+    }
   },
   Layout: () => {
     return h(DefaultTheme.Layout, null, {

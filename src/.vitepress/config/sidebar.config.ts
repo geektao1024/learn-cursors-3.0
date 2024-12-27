@@ -78,7 +78,7 @@ export const sidebar: DefaultTheme.Sidebar = {
       text: '快速开始',
       collapsed: false,
       items: [
-        { text: '非官方介绍', link: '/docs-zh/' },
+        { text: '官方介绍', link: '/docs-zh/' },
         { text: '从 VS Code 迁移', link: '/docs-zh/migrate-from-vs-code' },
         { text: '套餐选择', link: '/docs-zh/pricing' },
       ],

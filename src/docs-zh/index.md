@@ -44,6 +44,8 @@ Cursor 作为新一代智能开发环境，具有以下核心特性：
 1. 访问 [Cursor 官网](https://cursor.sh)
 2. 点击下载按钮，选择对应系统版本
 3. 运行安装程序，按提示完成安装
+4. 安装完成后，打开 Cursor，按照提示完成初始设置
+5. 登录 Cursor，开始使用- [查看入门教程](../wiki/user-guide/cursor-introduction)
 
 ### 系统要求
 
@@ -51,12 +53,30 @@ Cursor 作为新一代智能开发环境，具有以下核心特性：
 - **macOS**: macOS 10.15 或更高版本
 - **Linux**: Ubuntu 20.04 或其他主流发行版
 
-## 🔗 官方资源
+## 📚 相关文档资源
 
-- [Cursor 官网](https://cursor.sh)
-- [GitHub 仓库](https://github.com/getcursor/cursor)
-- [官方英文文档](https://cursor.so/docs)
-- [更新日志](https://cursor.so/changelog)
+### 基础配置与使用
+
+- [快速入门指南](../wiki/user-guide/quick-start)
+- [安装配置](../wiki/user-guide/install)
+- [Cursor 基础介绍](../wiki/user-guide/cursor-introduction)
+- [实用技巧与提示](../wiki/user-guide/cursor-tips)
+
+### AI 编程功能
+
+- [AI 聊天功能](../wiki/user-guide/ai-chat)
+- [代码生成指南](../wiki/user-guide/code-generation)
+- [代码补全功能](../wiki/user-guide/code-completion)
+- [AI 编程指南](../wiki/user-guide/ai-programming-guide)
+- [Composer 使用指南](../wiki/user-guide/composer)
+- [Agent 功能介绍](../wiki/user-guide/agent)
+
+### 实战教程
+
+- [制作个人介绍网页](../wiki/user-guide/make-a-website)
+- [构建句子生成器](../wiki/user-guide/make-a-sentence-generator)
+- [开发二维码插件](../wiki/user-guide/make-a-qr-code-plugin)
+- [抓取小红书笔记](../wiki/user-guide/grab-red-book-notes)
 
 ::: tip 使用建议
 

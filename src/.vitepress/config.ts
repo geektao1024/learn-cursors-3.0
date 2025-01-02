@@ -149,5 +149,13 @@ export default defineConfig({
 
   sitemap: {
     hostname: 'https://learn-cursor.com',
+    transformItems: (items) => {
+      return items.map(item => ({
+        ...item,
+        lastmod: new Date().toISOString(),
+        priority: 0.7,
+        changefreq: 'weekly',
+      }))
+    },
   },
 })

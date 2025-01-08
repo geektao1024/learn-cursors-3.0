@@ -9,6 +9,7 @@ import ElementPlus from 'element-plus'
 import DefaultTheme from 'vitepress/theme'
 import { h } from 'vue'
 
+import AmpAds from './components/AmpAds.vue'
 // Components
 import BlogList from './components/BlogList.vue'
 import BlogPost from './components/BlogPost.vue'
@@ -37,6 +38,7 @@ export default {
     app.component('GoogleAdsense', GoogleAdsense)
     app.component('HomeContent', HomeContent)
     app.component('RulesPage', RulesPage)
+    app.component('AmpAds', AmpAds)
 
     // 添加Adsterra广告脚本
     if (typeof window !== 'undefined') {
@@ -50,7 +52,7 @@ export default {
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       'doc-after': () => h(DocFooter),
-      'layout-top': () => h(GoogleAdsense),
+      'layout-top': () => [h(GoogleAdsense), h(AmpAds)],
     })
   },
 } satisfies Theme

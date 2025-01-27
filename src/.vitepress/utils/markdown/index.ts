@@ -1,6 +1,7 @@
 import type { Plugin } from 'vite'
 import type { MarkdownRenderer } from 'vitepress'
 
+// Markdown 转换插件
 export function MarkdownTransform(): Plugin {
   return {
     name: 'cursor-markdown-transform',
@@ -26,7 +27,8 @@ export function MarkdownTransform(): Plugin {
   }
 }
 
-export function configureMarkdown(md: MarkdownRenderer) {
+// Markdown 配置函数
+export function configureMarkdown(md: MarkdownRenderer): void {
   // Add custom markdown extensions here if needed
   md.use((md) => {
     const defaultRender = md.renderer.rules.link_open || ((tokens, idx, options, env, self) => {

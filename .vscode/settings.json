@@ -103,5 +103,8 @@
     "scss",
     "pcss",
     "postcss"
+  ],
+  "markdown.validate.ignoredLinks": [
+    "/blog/assets/cline-rules-guide.png"
   ]
 }

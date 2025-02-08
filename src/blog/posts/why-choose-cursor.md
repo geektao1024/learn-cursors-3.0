@@ -451,19 +451,19 @@ Cursor 正在让这个愿景成为现实。它不仅能帮你写代码，还能�
 
 准备好提升你的编程效率了吗？
 
-1. [下载安装](/zh-CN/wiki/user-guide/install)
-2. 查看[快速入门指南](/zh-CN/wiki/user-guide/quick-start)
+1. [下载安装](/wiki/user-guide/install)
+2. 查看[快速入门指南](/wiki/user-guide/quick-start)
 3. 加入[开发者社区](https://discord.gg/cursor)
 
 ## 📚 延伸阅读
 
 - [Cursor 快速入门：10 分钟掌握 AI 编程助手](./cursor-quick-start)
-- [AI 编程最佳实践](/zh-CN/wiki/user-guide/ai-programming-guide)
-- [Cursor 高级技巧](/zh-CN/wiki/user-guide/cursor-tips)
+- [AI 编程最佳实践](/wiki/user-guide/ai-programming-guide)
+- [Cursor 高级技巧](/wiki/user-guide/cursor-tips)
 
 ---
 
-> 💡 **编程的未来就是现在** - 开始使用 Cursor，让 AI 为你的编程之旅助力！遇到问题？欢迎查看[使用技巧](/zh-CN/wiki/user-guide/cursor-tips)或加入我们的[开发者社区](https://discord.gg/cursor)。
+> 💡 **编程的未来就是现在** - 开始使用 Cursor，让 AI 为你的编程之旅助力！遇到问题？欢迎查看[使用技巧](/wiki/user-guide/cursor-tips)或加入我们的[开发者社区](https://discord.gg/cursor)。
 
 ## 相关文章
 

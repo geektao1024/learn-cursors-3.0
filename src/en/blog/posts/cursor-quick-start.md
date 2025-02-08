@@ -97,18 +97,18 @@ For example, you can ask:
 
 If you want to further improve your Cursor usage skills, we've prepared these tutorials:
 
-1. [Beginner Programming Basics](/zh-CN/wiki/user-guide/programming-basics-for-beginners) - Zero-based programming learning
-2. [Complete AI Programming Guide](/zh-CN/wiki/user-guide/ai-programming-guide) - Let AI understand your needs better
-3. [Cursor Usage Tips](/zh-CN/wiki/user-guide/cursor-tips) - Unlock all powerful features
-4. [Practical Project Cases](/zh-CN/example/) - See how others use it
+1. [Beginner Programming Basics](/wiki/user-guide/programming-basics-for-beginners) - Zero-based programming learning
+2. [Complete AI Programming Guide](/wiki/user-guide/ai-programming-guide) - Let AI understand your needs better
+3. [Cursor Usage Tips](/wiki/user-guide/cursor-tips) - Unlock all powerful features
+4. [Practical Project Cases](/example/) - See how others use it
 
 ## Getting Started
 
 Ready to boost your programming efficiency?
 
-1. [Installation Tutorial](/zh-CN/wiki/user-guide/install)
-2. [Quick Start](/zh-CN/wiki/user-guide/quick-start)
-3. [AI Chat Guide](/zh-CN/wiki/user-guide/ai-chat)
+1. [Installation Tutorial](/wiki/user-guide/install)
+2. [Quick Start](/wiki/user-guide/quick-start)
+3. [AI Chat Guide](/wiki/user-guide/ai-chat)
 
 ## Common Links
 
@@ -118,4 +118,4 @@ Ready to boost your programming efficiency?
 
 ---
 
-Start using Cursor to help AI add bricks to your programming journey! If you encounter problems, check out [Usage Tips](/zh-CN/wiki/user-guide/cursor-tips) or [Installation Guide](/zh-CN/wiki/user-guide/install).
+Start using Cursor to help AI add bricks to your programming journey! If you encounter problems, check out [Usage Tips](/wiki/user-guide/cursor-tips) or [Installation Guide](/wiki/user-guide/install).

@@ -402,19 +402,19 @@ Cursorはこの未来を実現しています。コードを書くだけでな�
 
 プログラミング効率を向上させる準備はできましたか？
 
-1. [ダウンロードとインストール](/zh-CN/wiki/user-guide/install)
-2. [クイックスタートガイド](/zh-CN/wiki/user-guide/quick-start)を確認
+1. [ダウンロードとインストール](/wiki/user-guide/install)
+2. [クイックスタートガイド](/wiki/user-guide/quick-start)を確認
 3. [開発者コミュニティ](https://discord.gg/cursor)に参加
 
 ## 📚 追加読み物
 
 - [Cursorクイックスタート：10分でAIプログラミングアシスタントを習得](./cursor-quick-start)
-- [AIプログラミングのベストプラクティス](/zh-CN/wiki/user-guide/ai-programming-guide)
-- [Cursorの高度なテクニック](/zh-CN/wiki/user-guide/cursor-tips)
+- [AIプログラミングのベストプラクティス](/wiki/user-guide/ai-programming-guide)
+- [Cursorの高度なテクニック](/wiki/user-guide/cursor-tips)
 
 ---
 
-> 💡 **プログラミングの未来は今すぐ始まる** - Cursorを使用して、AIがあなたのプログラミング体験を支援しましょう！問題があれば、[使用ヒント](/zh-CN/wiki/user-guide/cursor-tips)を確認するか、[開発者コミュニティ](https://discord.gg/cursor)に参加してください。
+> 💡 **プログラミングの未来は今すぐ始まる** - Cursorを使用して、AIがあなたのプログラミング体験を支援しましょう！問題があれば、[使用ヒント](/wiki/user-guide/cursor-tips)を確認するか、[開発者コミュニティ](https://discord.gg/cursor)に参加してください。
 
 ## 関連記事
 

@@ -95,18 +95,18 @@ function greetUser(name: string) {
 
 如果你想进一步提升 Cursor 使用技巧，我们准备了这些教程：
 
-1. [新手编程基础知识](/zh-CN/wiki/user-guide/programming-basics-for-beginners) - 零基础也能学会编程
-2. [AI 编程完全指南](/zh-CN/wiki/user-guide/ai-programming-guide) - 让 AI 更懂你的需求
-3. [Cursor 使用技巧](/zh-CN/wiki/user-guide/cursor-tips) - 解锁所有强大功能
-4. [实战项目案例](/zh-CN/example/) - 看看别人是怎么用的
+1. [新手编程基础知识](/wiki/user-guide/programming-basics-for-beginners) - 零基础也能学会编程
+2. [AI 编程完全指南](/wiki/user-guide/ai-programming-guide) - 让 AI 更懂你的需求
+3. [Cursor 使用技巧](/wiki/user-guide/cursor-tips) - 解锁所有强大功能
+4. [实战项目案例](/example/) - 看看别人是怎么用的
 
 ## 开始使用
 
 准备好提升编程效率了吗？
 
-1. [安装教程](/zh-CN/wiki/user-guide/install)
-2. [快速入门](/zh-CN/wiki/user-guide/quick-start)
-3. [AI 聊天指南](/zh-CN/wiki/user-guide/ai-chat)
+1. [安装教程](/wiki/user-guide/install)
+2. [快速入门](/wiki/user-guide/quick-start)
+3. [AI 聊天指南](/wiki/user-guide/ai-chat)
 
 ## 常用链接
 
@@ -116,4 +116,4 @@ function greetUser(name: string) {
 
 ---
 
-开始使用 Cursor，让 AI 为你的编程之旅添砖加瓦！遇到问题？查看[使用技巧](/zh-CN/wiki/user-guide/cursor-tips)或[安装指南](/zh-CN/wiki/user-guide/install)。
+开始使用 Cursor，让 AI 为你的编程之旅添砖加瓦！遇到问题？查看[使用技巧](/wiki/user-guide/cursor-tips)或[安装指南](/wiki/user-guide/install)。

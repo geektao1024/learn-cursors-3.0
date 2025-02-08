@@ -1,212 +1,182 @@
 ---
-title: 用"说"来做个小产品
-description: 通过一个实际的例子，展示如何使用 Cursor AI 的自然语言功能快速开发一个贪吃蛇游戏。
+title: 实战教程：用对话打造一个图片合并工具 | Cursor AI 入门实践
+description: 通过一个实际的图片处理工具开发案例，展示如何使用 Cursor AI 的自然语言功能，从需求到实现快速完成产品开发。
 ---
 
-# 用"说"来做个小产品
+# 实战教程：用对话打造一个图片合并工具
 
-为了帮助你快速上手这款革命性的 AI 产品，我来手把手教会你怎么写一个贪吃蛇游戏。
+::: tip 💡 学习目标
+本教程将通过一个实际案例，教你如何：
 
-::: warning 🎨 立即开始创作
-### 三步打造你的第一个小产品
+- 将生活中的需求转化为具体的产品
+- 使用 Cursor AI 快速开发功能
+- 通过对话调试和优化代码
+  :::
 
-还在为不懂编程而困扰吗？Cursor 让编程变得前所未有的简单：
+## 一、项目起源
 
-1. 🎯 **描述你的想法**  
-   "我想做一个个人博客" - 就像和朋友聊天一样简单
+### 1. 需求背景
 
-2. 💬 **对话交流**  
-   Cursor 会理解你的需求，并指导你一步步实现
+在日常生活中，学校经常会要求家长提供一些反馈信息，比如报名表或其他表格。这些信息通常包含多张图片，需要：
 
-3. ✨ **完成作品**  
-   看着你的想法变成真实的应用，享受创造的乐趣
+- 将多张图片拼接在一起
+- 添加孩子的姓名
+- 整理成一张完整的图片发给老师
 
-准备好了吗？让我们开始创造属于你的第一个作品！
-:::
+### 2. 现有痛点
 
-## 开始开发
+目前的处理方式比较繁琐：
 
-### 1. 创建项目文件
+- 需要打开 Word 文档
+- 手动一张张插入图片
+- 调整位置和大小
+- 添加文字说明
+- 最后再截图保存
 
-首先我们打开 Cursor，在文件夹空白处，点击【新建文件】，并把文件命名为 "snake.py"。snake 就是贪吃蛇的意思，.py 代表这是一个 Python 的代码文件。
+### 3. 解决方案
 
-<!-- ![创建文件](./images/guide/create-file.png) -->
+开发一个简单的网页工具，实现：
 
-### 2. 打开对话框
+- 批量上传图片
+- 拖拽调整位置
+- 添加文字说明
+- 一键合并下载
 
-我们点击右上角的按钮，打开侧边栏。
+## 二、开发过程
 
-<!-- ![打开对话框](./images/guide/open-chat.png) -->
+### 1. 环境准备
 
-### 3. 开始对话
+::: warning 前期准备
 
-在对话框中，我们可以这样描述我们的需求：
+- 创建新的项目文件夹
+- 使用 Cursor 打开文件夹
+- 熟悉基本的操作界面
+  :::
+
+![示例](./images/pictures/image-11.png)
+
+### 2. 需求描述
+
+打开 AI 对话框（快捷键 `Ctrl+i`），清晰地描述产品需求：
 
 ```
-用 Python 帮我写一个贪吃蛇游戏，但我没有任何相关的编程经验，我的 windows 电脑上除了安装了 Cursor 代码编辑器外，也没有任何相关环境，请详细的一步一步的告诉我应该怎么做，我做完一步告诉你下一步应该干什么。
+帮我创建一个PC网站，功能如下：
+1. 有一个上传图片的入口，可以上传多个图片
+2. 有一个合并的按钮，点击合并按钮可以将上传的图片合并在一起显示，合并的图片可以下载
 ```
 
-如果你是 mac 用户，请把提示词中的 windows 电脑换成 mac 电脑。
+![示例](./images/pictures/image-10.png)
 
-### 4. 安装 Python 环境
+代码生成完后，出现如下信息
 
-这时 Cursor 会先帮我们按照 Python 环境。我们按照它的指示安装即可。
+![示例](./images/pictures/image-8.png)
 
-### 5. 保存代码
+第一个红框代表改动或者生成的文件
 
-如果文件上有白点表示未保存状态，可以手动【Ctrl/cmd + S】，保存一下内容。
+第二个红框
 
-::: warning 注意
-这里一定要完成一次保存，生成一个代码，保存一次，不然之后可能会出现报错。
-:::
+Reject all 表示 拒绝接收这个代码，点了之后这些新增的代码会被撤销
 
-### 6. 安装游戏依赖
+Accept all 表示 接受代码，代码会生效
 
-点击右上角的【运行 Python 文件】，即可开始运行。
+大胆的点 Accept all
 
-根据提示，我们需要在终端里输入：
+打开网页后，是这样子的，每个人的界面可能不一样，没关系，接下来都可以用AI对话的方式去调整。
 
-```bash
-pip3 install pygame
-```
+![示例](./images/pictures/image-9.png)
 
-### 7. 运行游戏
+## 三、功能迭代
 
-看，贪吃蛇已经运行了🚀
+### 1. 基础功能实现
 
-<!-- ![运行游戏](./images/guide/game-running.png) -->
+你现在要做的是开始调试功能，看下有什么问题没有
 
-## 代码解析
+![示例](./images/pictures/image.png)
 
-让我们来看看生成的代码：
+一次到位，可以点击下载。
 
-```python
-import pygame
-import random
+### 2. 拖拽功能优化
 
-# 初始化 Pygame
-pygame.init()
+目前的图片合并只能左右横排，我希望他能随意的调整位置，比如图1在第一个位置，图2在第二排的。所以你告诉AI你要做的优化
 
-# 设置游戏窗口
-WINDOW_WIDTH = 800
-WINDOW_HEIGHT = 600
-BLOCK_SIZE = 20
+> 合并图片的区域要实现如下功能：
+>
+> 1、图片可以随便拖拽改变顺序，比如图1在图2的右边，图三在图1的下面
+>
+> 2、你可以做一个类似画板一样的功能
 
-# 创建游戏窗口
-screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-pygame.display.set_caption("贪吃蛇")
+第一句话是说具体的功能，第二句话是一个引导式的让AI朝这方向设计。你也可以不写这一句，一步一步来。
 
-# 定义颜色
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
-GREEN = (0, 255, 0)
-RED = (255, 0, 0)
+更新完代码之后，出现了这样的问题
 
-# 初始化蛇
-snake_pos = [[100, 50], [90, 50], [80, 50]]
-snake_direction = "RIGHT"
+![示例](./images/pictures/image-1.png)
 
-# 初始化食物
-food_pos = [random.randrange(1, (WINDOW_WIDTH//BLOCK_SIZE)) * BLOCK_SIZE,
-            random.randrange(1, (WINDOW_HEIGHT//BLOCK_SIZE)) * BLOCK_SIZE]
+图片重叠在一起了，没关系，告诉AI你的问题
 
-# 游戏主循环
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        
-        # 处理按键事件
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP and snake_direction != "DOWN":
-                snake_direction = "UP"
-            if event.key == pygame.K_DOWN and snake_direction != "UP":
-                snake_direction = "DOWN"
-            if event.key == pygame.K_LEFT and snake_direction != "RIGHT":
-                snake_direction = "LEFT"
-            if event.key == pygame.K_RIGHT and snake_direction != "LEFT":
-                snake_direction = "RIGHT"
-    
-    # 清空屏幕
-    screen.fill(BLACK)
-    
-    # 绘制蛇和食物
-    for pos in snake_pos:
-        pygame.draw.rect(screen, GREEN, pygame.Rect(
-            pos[0], pos[1], BLOCK_SIZE, BLOCK_SIZE))
-    
-    pygame.draw.rect(screen, RED, pygame.Rect(
-        food_pos[0], food_pos[1], BLOCK_SIZE, BLOCK_SIZE))
-    
-    # 更新显示
-    pygame.display.flip()
+> 现在出现了问题，请修复，问题如下：
+>
+> 拖拽的图片重叠在一起了，我的要求是图片不能重叠，一个图片占用一个位置。
 
-# 退出游戏
-pygame.quit()
-```
+提交之后，问题重叠的问题已经解决，但无法将图片拖拽到图片的下方
 
-### 关键部分解释
+![示例](./images/pictures/image-2.png)
 
-1. **导入必要的库**
-   ```python
-   import pygame
-   import random
-   ```
-   这里导入了 pygame 游戏库和随机数生成库。
+> 重叠的问题解决了，但是 图片还是无法拖拽到另一张图片的下面，再次明确需求
+>
+> 1、图片可以可以拖拽到其他图片的左边或者右边，拖拽完成后会占用位置
+>
+> 2、图片可以拖拽到其他图片的上面或者下面，拖拽完成后也会占用位置。
+>
+> 比如 刚开始 图1，图2 ，图3，我将图3拖拽到图1下面，那么合并完的图片，图3就在图1的下面。
 
-2. **初始化游戏窗口**
-   ```python
-   WINDOW_WIDTH = 800
-   WINDOW_HEIGHT = 600
-   BLOCK_SIZE = 20
-   ```
-   设置游戏窗口的大小和蛇身方块的尺寸。
+![示例](./images/pictures/image-3.png)
 
-3. **初始化蛇和食物**
-   ```python
-   snake_pos = [[100, 50], [90, 50], [80, 50]]
-   food_pos = [random.randrange(1, (WINDOW_WIDTH//BLOCK_SIZE)) * BLOCK_SIZE,
-               random.randrange(1, (WINDOW_HEIGHT//BLOCK_SIZE)) * BLOCK_SIZE]
-   ```
-   设置蛇的初始位置和随机生成食物位置。
+问题解决了，但是图片和图片之间有白色的空隙
 
-## 进阶优化
+> 合并完的图片与图片之间不要有留白的缝隙，图片跟图片紧挨在一起
 
-1. **添加分数系统**
-   ```python
-   score = 0
-   font = pygame.font.Font(None, 36)
-   score_text = font.render(f'分数: {score}', True, WHITE)
-   ```
+![示例](./images/pictures/image-4.png)
 
-2. **添加游戏结束检测**
-   ```python
-   def check_collision(snake_head):
-       # 检查是否撞墙
-       if (snake_head[0] >= WINDOW_WIDTH or snake_head[0] < 0 or
-           snake_head[1] >= WINDOW_HEIGHT or snake_head[1] < 0):
-           return True
-       # 检查是否撞到自己
-       if snake_head in snake_pos[1:]:
-           return True
-       return False
-   ```
+### 3. 文字添加功能
 
-3. **添加游戏音效**
-   ```python
-   pygame.mixer.init()
-   eat_sound = pygame.mixer.Sound('eat.wav')
-   ```
+将小孩的名字写上去
 
-::: tip 提示
-- 使用方向键控制蛇的移动
-- 吃到食物会增加长度和分数
-- 撞墙或撞到自己游戏结束
-:::
+> 添加一个新的功能。
+>
+> 新增一个输入框，可以输入一段文字，这段文字也可以拖拽到任意位置，文字是红色的，合并图片中要包含这段文字
 
-::: warning 注意
-- 保存代码后再运行
-- 确保 Python 环境正确配置
-- 检查 pygame 库是否安装成功
-::: 
+![示例](./images/pictures/image-5.png)
+
+![示例](./images/pictures/image-6.png)
+
+最后让AI把这个页面优化及功能说明写下
+
+![示例](./images/pictures/image-7.png)
+
+## 四、经验总结
+
+::: tip 💡 开发心得
+
+1. **AI 驱动开发**
+
+   - 无需手写代码
+   - 通过对话即可实现功能
+   - AI 能理解自然语言需求
+
+2. **迭代优化**
+
+   - 先实现基础功能
+   - 逐步添加新特性
+   - 持续优化用户体验
+
+3. **实用建议**
+   - 描述要清晰具体
+   - 问题可以分步解决
+   - 不要怕问AI问题
+     :::
+
+整个过程我没有自己写一个代码，全是AI自动完成，恐怖如斯。
+
+但是这个项目很简单，只有前端项目，在我们的第二个实战项目中会包含后端和数据库。
+
+最后的经验就是，大家要勇于去问AI，反正它都会回答你

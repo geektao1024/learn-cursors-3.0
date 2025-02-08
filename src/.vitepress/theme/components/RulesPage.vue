@@ -1,36 +1,33 @@
 <script setup lang="ts">
-interface RuleCategory {
-  id: number
-  title: string
-  description: string
-  benefits?: string[]
-  types?: {
-    title: string
-    description: string
-    examples: string[]
-  }[]
-  examples?: {
-    title: string
-    content: string
-  }[]
-}
+import { useData } from 'vitepress'
+import { computed } from 'vue'
 
-interface Step {
-  number: number
-  title: string
-  description: string
-}
+const { lang } = useData()
 
-interface FAQ {
-  question: string
-  answer: string
-}
-
-const ruleCategories: RuleCategory[] = [
-  {
-    id: 1,
-    title: '了解 Cursor Rules',
-    description: 'Cursor Rules 是一套智能编码规则系统，它能帮助您：',
+// 多语言文本配置
+const i18n = {
+  'zh-CN': {
+    title: 'Cursor Rules',
+    subtitle: '智能编码规则，提升开发效率',
+    description: '使用 Cursor Rules 智能规则系统，让您的团队编写更优质、更一致的代码。通过自动化建议和实时反馈，提高开发效率，减少常见错误。',
+    features: {
+      smartPrompt: {
+        title: '智能提示',
+        description: '实时代码建议和自动补全',
+      },
+      autoFormat: {
+        title: '自动格式化',
+        description: '保持代码风格统一',
+      },
+      codeQuality: {
+        title: '代码质量',
+        description: '自动检测潜在问题',
+      },
+      teamwork: {
+        title: '团队协作',
+        description: '统一的开发标准',
+      },
+    },
     benefits: [
       '提供智能代码建议和自动补全',
       '确保团队代码风格统一',
@@ -38,33 +35,246 @@ const ruleCategories: RuleCategory[] = [
       '提高代码可维护性',
     ],
   },
-  {
-    id: 2,
-    title: '规则类型',
-    description: 'Cursor Rules 分为两种类型：',
-    types: [
-      {
-        title: '全局规则',
-        description: '在 Cursor 设置中配置，适用于所有项目',
-        examples: [
-          '代码风格统一',
-          '命名规范',
-          '文件组织结构',
-        ],
+  'en': {
+    title: 'Cursor Rules',
+    subtitle: 'Smart Coding Rules for Enhanced Development',
+    description: 'Use Cursor Rules intelligent system to help your team write better, more consistent code. Improve development efficiency and reduce common errors through automated suggestions and real-time feedback.',
+    features: {
+      smartPrompt: {
+        title: 'Smart Prompts',
+        description: 'Real-time code suggestions and auto-completion',
       },
-      {
-        title: '项目规则',
-        description: '在项目的 .cursorrules 文件中定义，仅适用于特定项目',
-        examples: [
-          '项目特定的编码标准',
-          '依赖管理规则',
-          '测试覆盖率要求',
-        ],
+      autoFormat: {
+        title: 'Auto Formatting',
+        description: 'Maintain consistent code style',
       },
+      codeQuality: {
+        title: 'Code Quality',
+        description: 'Automatic detection of potential issues',
+      },
+      teamwork: {
+        title: 'Team Collaboration',
+        description: 'Unified development standards',
+      },
+    },
+    benefits: [
+      'Provide intelligent code suggestions and auto-completion',
+      'Ensure team code style consistency',
+      'Automatically enforce best practices',
+      'Improve code maintainability',
     ],
   },
-  {
-    id: 3,
+  'ja': {
+    title: 'Cursor Rules',
+    subtitle: 'スマートコーディングルールで開発効率を向上',
+    description: 'Cursor Rules インテリジェントシステムを使用して、チームがより良い、より一貫性のあるコードを書けるようにします。自動化された提案とリアルタイムフィードバックにより、開発効率を向上させ、一般的なエラーを削減します。',
+    features: {
+      smartPrompt: {
+        title: 'スマートプロンプト',
+        description: 'リアルタイムのコード提案と自動補完',
+      },
+      autoFormat: {
+        title: '自動フォーマット',
+        description: '一貫したコードスタイルを維持',
+      },
+      codeQuality: {
+        title: 'コード品質',
+        description: '潜在的な問題の自動検出',
+      },
+      teamwork: {
+        title: 'チーム協業',
+        description: '統一された開発基準',
+      },
+    },
+    benefits: [
+      'インテリジェントなコード提案と自動補完を提供',
+      'チームのコードスタイルの一貫性を確保',
+      'ベストプラクティスを自動的に実施',
+      'コードの保守性を向上',
+    ],
+  },
+}
+
+// 规则类型的多语言配置
+const ruleTypesI18n = {
+  'zh-CN': {
+    global: {
+      title: '全局规则',
+      description: '在 Cursor 设置中配置，适用于所有项目',
+      examples: [
+        '代码风格统一',
+        '命名规范',
+        '文件组织结构',
+      ],
+    },
+    project: {
+      title: '项目规则',
+      description: '在项目的 .cursorrules 文件中定义，仅适用于特定项目',
+      examples: [
+        '项目特定的编码标准',
+        '依赖管理规则',
+        '测试覆盖率要求',
+      ],
+    },
+  },
+  'en': {
+    global: {
+      title: 'Global Rules',
+      description: 'Configured in Cursor settings, applies to all projects',
+      examples: [
+        'Code style consistency',
+        'Naming conventions',
+        'File organization',
+      ],
+    },
+    project: {
+      title: 'Project Rules',
+      description: 'Defined in project\'s .cursorrules file, applies to specific projects',
+      examples: [
+        'Project-specific coding standards',
+        'Dependency management rules',
+        'Test coverage requirements',
+      ],
+    },
+  },
+  'ja': {
+    global: {
+      title: 'グローバルルール',
+      description: 'Cursor設定で構成され、すべてのプロジェクトに適用',
+      examples: [
+        'コードスタイルの一貫性',
+        '命名規則',
+        'ファイル構成',
+      ],
+    },
+    project: {
+      title: 'プロジェクトルール',
+      description: 'プロジェクトの.cursorrules ファイルで定義され、特定のプロジェクトに適用',
+      examples: [
+        'プロジェクト固有のコーディング標準',
+        '依存関係管理ルール',
+        'テストカバレッジ要件',
+      ],
+    },
+  },
+}
+
+// 步骤的多语言配置
+const stepsI18n = {
+  'zh-CN': [
+    {
+      number: 1,
+      title: '创建 .cursorrules 文件',
+      description: '在项目根目录中创建一个名为 .cursorrules 的文件。',
+    },
+    {
+      number: 2,
+      title: '定义您的规则',
+      description: '使用适当的语法编写您的 Cursor 规则。',
+    },
+    {
+      number: 3,
+      title: '开始编码',
+      description: 'Cursor 将在您编写代码时自动应用您的规则。',
+    },
+  ],
+  'en': [
+    {
+      number: 1,
+      title: 'Create .cursorrules File',
+      description: 'Create a file named .cursorrules in your project root directory.',
+    },
+    {
+      number: 2,
+      title: 'Define Your Rules',
+      description: 'Write your Cursor rules using the appropriate syntax.',
+    },
+    {
+      number: 3,
+      title: 'Start Coding',
+      description: 'Cursor will automatically apply your rules as you write code.',
+    },
+  ],
+  'ja': [
+    {
+      number: 1,
+      title: '.cursorrules ファイルの作成',
+      description: 'プロジェクトのルートディレクトリに .cursorrules という名前のファイルを作成します。',
+    },
+    {
+      number: 2,
+      title: 'ルールの定義',
+      description: '適切な構文を使用して Cursor ルールを記述します。',
+    },
+    {
+      number: 3,
+      title: 'コーディング開始',
+      description: 'コードを書くと、Cursor が自動的にルールを適用します。',
+    },
+  ],
+}
+
+// FAQ的多语言配置
+const faqsI18n = {
+  'zh-CN': [
+    {
+      question: '什么是 Cursor Rules?',
+      answer: 'Cursor Rules 是一套用于定制和规范化开发流程的规则系统。它可以帮助团队保持一致的代码风格，提高代码质量，并通过自动化建议提升开发效率。',
+    },
+    {
+      question: '如何创建和使用 Cursor Rules?',
+      answer: '创建和使用 Cursor Rules 非常简单：首先在项目根目录创建 .cursorrules 文件，然后使用特定语法定义您的规则。一旦设置完成，Cursor 将自动应用这些规则来辅助您的开发。',
+    },
+    {
+      question: '我可以与团队共享 Cursor Rules 吗?',
+      answer: '是的，您可以通过版本控制系统（如 Git）与团队成员共享 .cursorrules 文件。这样可以确保团队中的每个成员都使用相同的编码规则和最佳实践。',
+    },
+    {
+      question: 'Cursor Rules 是否特定于某种编程语言?',
+      answer: 'Cursor Rules 支持多种编程语言，并且可以根据不同语言的特点定制规则。您可以为每种语言设置特定的规则，以满足不同项目的需求。',
+    },
+  ],
+  'en': [
+    {
+      question: 'What are Cursor Rules?',
+      answer: 'Cursor Rules is a rule system for customizing and standardizing the development process. It helps teams maintain consistent code style, improve code quality, and enhance development efficiency through automated suggestions.',
+    },
+    {
+      question: 'How do I create and use Cursor Rules?',
+      answer: 'Creating and using Cursor Rules is simple: first create a .cursorrules file in your project root directory, then define your rules using specific syntax. Once set up, Cursor will automatically apply these rules to assist your development.',
+    },
+    {
+      question: 'Can I share Cursor Rules with my team?',
+      answer: 'Yes, you can share the .cursorrules file with team members through version control systems (like Git). This ensures everyone in the team uses the same coding rules and best practices.',
+    },
+    {
+      question: 'Are Cursor Rules specific to certain programming languages?',
+      answer: 'Cursor Rules supports multiple programming languages and can be customized based on different language characteristics. You can set specific rules for each language to meet different project needs.',
+    },
+  ],
+  'ja': [
+    {
+      question: 'Cursor Rules とは何ですか？',
+      answer: 'Cursor Rules は、開発プロセスをカスタマイズおよび標準化するためのルールシステムです。チームが一貫したコードスタイルを維持し、コード品質を向上させ、自動化された提案を通じて開発効率を高めるのに役立ちます。',
+    },
+    {
+      question: 'Cursor Rules の作成と使用方法は？',
+      answer: 'Cursor Rules の作成と使用は簡単です：まずプロジェクトのルートディレクトリに .cursorrules ファイルを作成し、特定の構文を使用してルールを定義します。設定が完了すると、Cursor は自動的にこれらのルールを適用して開発をサポートします。',
+    },
+    {
+      question: 'Cursor Rules をチームと共有できますか？',
+      answer: 'はい、バージョン管理システム（Git など）を通じて .cursorrules ファイルをチームメンバーと共有できます。これにより、チーム全員が同じコーディングルールとベストプラクティスを使用できます。',
+    },
+    {
+      question: 'Cursor Rules は特定のプログラミング言語に限定されていますか？',
+      answer: 'Cursor Rules は複数のプログラミング言語をサポートし、異なる言語の特性に基づいてカスタマイズできます。各言語に特有のルールを設定して、異なるプロジェクトのニーズに対応できます。',
+    },
+  ],
+}
+
+// 添加示例的多语言配置
+const examplesI18n = {
+  'zh-CN': {
     title: '使用示例',
     description: '以下是一个典型的 Cursor Rules 配置示例：',
     examples: [
@@ -99,57 +309,148 @@ const ruleCategories: RuleCategory[] = [
       },
     ],
   },
-]
+  'en': {
+    title: 'Usage Examples',
+    description: 'Here is a typical Cursor Rules configuration example:',
+    examples: [
+      {
+        title: 'TypeScript Project Rules',
+        content: `# TypeScript Project Rules
 
-const steps: Step[] = [
-  {
-    number: 1,
-    title: '创建 .cursorrules 文件',
-    description: '在项目根目录中创建一个名为 .cursorrules 的文件。',
-  },
-  {
-    number: 2,
-    title: '定义您的规则',
-    description: '使用适当的语法编写您的 Cursor 规则。',
-  },
-  {
-    number: 3,
-    title: '开始编码',
-    description: 'Cursor 将在您编写代码时自动应用您的规则。',
-  },
-]
+## Code Standards
+- Use TypeScript strict mode
+- Explicitly declare all types
+- Avoid using any type
 
-const faqs: FAQ[] = [
+## Component Development
+- Use functional components
+- Props must have type definitions
+- Use CSS Modules
+
+## State Management
+- Prefer React Context
+- Use Redux for large applications
+- Follow immutability principles
+
+## Performance Optimization
+- Implement code splitting
+- Use React.memo()
+- Optimize re-rendering logic
+
+## Testing Standards
+- Unit test coverage > 80%
+- Use React Testing Library
+- Write integration tests`,
+      },
+    ],
+  },
+  'ja': {
+    title: '使用例',
+    description: '以下は典型的な Cursor Rules の設定例です：',
+    examples: [
+      {
+        title: 'TypeScript プロジェクトルール',
+        content: `# TypeScript Project Rules
+
+## コード規約
+- TypeScript 厳格モードを使用
+- すべての型を明示的に宣言
+- any型の使用を避ける
+
+## コンポーネント開発
+- 関数コンポーネントを使用
+- Propsに型定義が必須
+- CSS Modulesを使用
+
+## 状態管理
+- React Contextを優先
+- 大規模アプリケーションではReduxを使用
+- 不変性の原則に従う
+
+## パフォーマンス最適化
+- コード分割の実装
+- React.memo()の使用
+- 再レンダリングの最適化
+
+## テスト規約
+- ユニットテストカバレッジ > 80%
+- React Testing Libraryを使用
+- 統合テストの作成`,
+      },
+    ],
+  },
+}
+
+// 添加标题的多语言配置
+const sectionTitlesI18n = {
+  'zh-CN': {
+    gettingStarted: '开始使用',
+    faq: '常见问题',
+  },
+  'en': {
+    gettingStarted: 'Getting Started',
+    faq: 'Frequently Asked Questions',
+  },
+  'ja': {
+    gettingStarted: '使い方',
+    faq: 'よくある質問',
+  },
+}
+
+// 计算属性
+const currentLang = computed(() => lang.value || 'en')
+const t = computed(() => i18n[currentLang.value])
+const currentRuleTypes = computed(() => ruleTypesI18n[currentLang.value])
+const currentSteps = computed(() => stepsI18n[currentLang.value])
+const currentFaqs = computed(() => faqsI18n[currentLang.value])
+const sectionTitles = computed(() => sectionTitlesI18n[currentLang.value])
+
+const ruleCategories = computed(() => [
   {
-    question: '什么是 Cursor Rules?',
-    answer: 'Cursor Rules 是一套用于定制和规范化开发流程的规则系统。它可以帮助团队保持一致的代码风格，提高代码质量，并通过自动化建议提升开发效率。',
+    id: 1,
+    title: t.value.title,
+    description: t.value.description,
+    benefits: t.value.benefits,
   },
   {
-    question: '如何创建和使用 Cursor Rules?',
-    answer: '创建和使用 Cursor Rules 非常简单：首先在项目根目录创建 .cursorrules 文件，然后使用特定语法定义您的规则。一旦设置完成，Cursor 将自动应用这些规则来辅助您的开发。',
+    id: 2,
+    title: currentRuleTypes.value.global.title,
+    description: currentRuleTypes.value.global.description,
+    types: [
+      {
+        title: currentRuleTypes.value.global.title,
+        description: currentRuleTypes.value.global.description,
+        examples: currentRuleTypes.value.global.examples,
+      },
+      {
+        title: currentRuleTypes.value.project.title,
+        description: currentRuleTypes.value.project.description,
+        examples: currentRuleTypes.value.project.examples,
+      },
+    ],
   },
   {
-    question: '我可以与团队共享 Cursor Rules 吗?',
-    answer: '是的，您可以通过版本控制系统（如 Git）与团队成员共享 .cursorrules 文件。这样可以确保团队中的每个成员都使用相同的编码规则和最佳实践。',
+    id: 3,
+    title: examplesI18n[currentLang.value].title,
+    description: examplesI18n[currentLang.value].description,
+    examples: examplesI18n[currentLang.value].examples,
   },
-  {
-    question: 'Cursor Rules 是否特定于某种编程语言?',
-    answer: 'Cursor Rules 支持多种编程语言，并且可以根据不同语言的特点定制规则。您可以为每种语言设置特定的规则，以满足不同项目的需求。',
-  },
-]
+])
+
+const steps = computed(() => currentSteps.value)
+const faqs = computed(() => currentFaqs.value)
 </script>
 
 <template>
   <div class="rules-page">
     <div class="rules-hero">
       <div class="hero-content">
-        <h1>Cursor Rules</h1>
+        <h1>{{ t.title }}</h1>
         <p class="hero-subtitle">
-          智能编码规则，提升开发效率
+          {{ t.subtitle }}
         </p>
         <p class="hero-description">
-          使用 Cursor Rules 智能规则系统，让您的团队编写更优质、更一致的代码。
-          通过自动化建议和实时反馈，提高开发效率，减少常见错误。
+          {{ t.description }}
         </p>
         <div class="hero-features">
           <div class="feature-item">
@@ -157,8 +458,8 @@ const faqs: FAQ[] = [
               ⚡️
             </div>
             <div class="feature-text">
-              <h3>智能提示</h3>
-              <p>实时代码建议和自动补全</p>
+              <h3>{{ t.features.smartPrompt.title }}</h3>
+              <p>{{ t.features.smartPrompt.description }}</p>
             </div>
           </div>
           <div class="feature-item">
@@ -166,8 +467,8 @@ const faqs: FAQ[] = [
               🔄
             </div>
             <div class="feature-text">
-              <h3>自动格式化</h3>
-              <p>保持代码风格统一</p>
+              <h3>{{ t.features.autoFormat.title }}</h3>
+              <p>{{ t.features.autoFormat.description }}</p>
             </div>
           </div>
           <div class="feature-item">
@@ -175,8 +476,8 @@ const faqs: FAQ[] = [
               🛡️
             </div>
             <div class="feature-text">
-              <h3>代码质量</h3>
-              <p>自动检测潜在问题</p>
+              <h3>{{ t.features.codeQuality.title }}</h3>
+              <p>{{ t.features.codeQuality.description }}</p>
             </div>
           </div>
           <div class="feature-item">
@@ -184,8 +485,8 @@ const faqs: FAQ[] = [
               🤝
             </div>
             <div class="feature-text">
-              <h3>团队协作</h3>
-              <p>统一的开发标准</p>
+              <h3>{{ t.features.teamwork.title }}</h3>
+              <p>{{ t.features.teamwork.description }}</p>
             </div>
           </div>
         </div>
@@ -243,7 +544,7 @@ const faqs: FAQ[] = [
       </div>
 
       <div class="rules-steps">
-        <h2>开始使用</h2>
+        <h2>{{ sectionTitles.gettingStarted }}</h2>
         <div class="steps-list">
           <div v-for="step in steps" :key="step.number" class="step-card">
             <div class="step-number">
@@ -256,7 +557,7 @@ const faqs: FAQ[] = [
       </div>
 
       <div class="rules-faq">
-        <h2>常见问题</h2>
+        <h2>{{ sectionTitles.faq }}</h2>
         <div class="faq-list">
           <div v-for="faq in faqs" :key="faq.question" class="faq-item">
             <h3>{{ faq.question }}</h3>

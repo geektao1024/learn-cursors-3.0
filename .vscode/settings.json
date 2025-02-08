@@ -105,6 +105,11 @@
     "postcss"
   ],
   "markdown.validate.ignoredLinks": [
-    "/blog/assets/cline-rules-guide.png"
+    "/blog/assets/cline-rules-guide.png",
+    "/shortcuts/index",
+    "images-2/ad71df7c9ece65b93dafbd5c80666c4f5.png",
+    "{{image}}",
+    "/blog/assets/cursor-rules-seting.png",
+    "./images/guide/cursor-login10.png"
   ]
 }

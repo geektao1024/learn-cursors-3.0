@@ -4,7 +4,7 @@ const ogDescription
   = '提供最全面的Cursor AI中文教程，包括下载安装、使用教程、Rules规则配置等专业指南。全面指导你使用Cursor AI助手从0到1搭建互联网产品，涵盖项目实战、代码生成、Git集成等核心功能。无论你是想了解Cursor怎么用，还是寻求官方相关教程，都能在这里找到详细图文攻略和实战案例，让AI编程助力你的产品开发之旅。'
 const ogImage = '/logo.png'
 const ogTitle = 'Cursor中文教程 | AI编程助手入门与实战指南'
-const ogUrl = 'https://www.learn-cursor.com'
+const ogUrl = 'https://learn-cursor.com'
 
 export const head: UserConfig['head'] = [
   ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.png' }],

@@ -15,7 +15,10 @@
     "git:update": "git submodule update --remote --recursive",
     "fetch-data": "node .github/scripts/fetch-data.mjs",
     "deps:update": "pnpx taze minor --write --force --include-locked",
-    "prepare": "husky"
+    "prepare": "husky",
+    "check:translations": "tsx scripts/check-translations.ts",
+    "sync:translations": "tsx scripts/check-translations.ts",
+    "validate:translations": "tsx scripts/validate-translations.ts"
   },
   "dependencies": {
     "vue-router": "4"
@@ -48,6 +51,7 @@
     "lint-staged": "15.2.10",
     "nprogress": "^0.2.0",
     "radash": "12.1.0",
+    "tsx": "^4.19.2",
     "typescript": "5.7.2",
     "unplugin-auto-import": "0.18.6",
     "unplugin-icons": "^0.20.0",

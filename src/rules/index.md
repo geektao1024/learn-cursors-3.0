@@ -8,7 +8,7 @@ outline: false
 ---
 
 <script setup>
-import RulesPage from '../.vitepress/theme/components/RulesPage.vue'
+import RulesPage from '@/.vitepress/theme/components/RulesPage.vue'
 </script>
 
 <RulesPage />

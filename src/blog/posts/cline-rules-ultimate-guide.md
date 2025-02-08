@@ -7,12 +7,11 @@ tags: ['Cline', 'Configuration', 'Development', 'Team Collaboration', 'Project M
 image: /blog/assets/cline-rules-guide.png
 ---
 
-
 ## 开篇：Cline v3.0 带来的改变
 
 作为一名开发者，你是否经常为项目配置管理而烦恼？在团队协作中，统一的开发规范往往比技术本身更具挑战性。好消息是，Cline v3.0 为我们带来了一个改变游戏规则的新特性 —— `.clinerules` 配置系统。
 
-![Cline Rules Guide](/blog/assets/cline-rules-guide.png)
+![Cline Rules Guide](../assets/cline-rules-guide.png)
 
 ## 初识 .clinerules
 

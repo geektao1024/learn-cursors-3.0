@@ -7,17 +7,22 @@ import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vitepress'
 import { buildEnd } from './config/buildEnd.config'
 import { head } from './config/head.config'
+import { i18nConfig } from './config/i18n'
 import { markdown } from './config/markdown.config'
-import { nav } from './config/navbar.config'
+import { redirectRules } from './config/redirects'
 import { sidebar } from './config/sidebar.config'
+import { sitemap } from './config/sitemap.config'
 import { MarkdownTransform } from './utils/markdown/index'
 
 const RssIcon = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 448 512"><title>RSS</title><path d="M400 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM112 416c-26.51 0-48-21.49-48-48s21.49-48 48-48s48 21.49 48 48s-21.49 48-48 48zm157.533 0h-34.335c-6.011 0-11.051-4.636-11.442-10.634c-5.214-80.05-69.243-143.92-149.123-149.123c-5.997-.39-10.633-5.431-10.633-11.441v-34.335c0-6.535 5.468-11.777 11.994-11.425c110.546 5.974 198.997 94.536 204.964 204.964c.352 6.526-4.89 11.994-11.425 11.994zm103.027 0h-34.334c-6.161 0-11.175-4.882-11.427-11.038c-5.598-136.535-115.204-246.161-251.76-251.76C68.882 152.949 64 147.935 64 141.774V107.44c0-6.454 5.338-11.664 11.787-11.432c167.83 6.025 302.21 141.191 308.205 308.205c.232 6.449-4.978 11.787-11.432 11.787z" fill="currentColor"></path></svg>`
 
 export default defineConfig({
-  title: 'Cursor中文教程',
-  description: '提供最全面的Cursor AI中文教程，包括下载安装、使用教程、Rules规则配置等专业指南。全面指导你使用Cursor AI助手从0到1搭建互联网产品，涵盖项目实战、代码生成、Git集成等核心功能。无论你是想了解Cursor怎么用，还是寻求官方相关教程，都能在这里找到详细图文攻略和实战案例，让AI编程助力你的产品开发之旅。',
+  title: 'Learn Cursor',
+  description: 'The most comprehensive Cursor AI tutorial, including installation, usage guides, and Rules configuration.',
+  locales: i18nConfig,
   lang: 'zh-CN',
+  base: '/',
+  cleanUrls: true,
 
   srcExclude: ['wiki/index.md', '**/README.md', '**/_template.md'],
   outDir: '../dist',
@@ -25,27 +30,105 @@ export default defineConfig({
   appearance: true,
   lastUpdated: true,
 
+  rewrites: {
+    ...redirectRules,
+  },
+
   head: [
     ...(head || []),
-    ['link', { rel: 'canonical', href: 'https://www.learn-cursor.com' }],
+    ['link', { rel: 'canonical', href: 'https://learn-cursor.com' }],
     ['meta', { name: 'author', content: 'Learn Cursor Team' }],
-    ['meta', { name: 'keywords', content: 'Cursor,AI编程,Cursor教程,Cursor中文,Cursor下载,Cursor使用教程,AI编程助手,Rules规则' }],
+    ['meta', { name: 'keywords', content: 'Cursor,AI Programming,Cursor Tutorial,Cursor Guide,Cursor Download,AI Programming Assistant,Rules Configuration' }],
     [
       'script',
       { type: 'application/ld+json' },
       JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': 'WebSite',
-        'name': 'Cursor中文教程',
-        'description': '提供最全面的Cursor AI中文教程，包括下载安装、使用教程等专业指南。',
-        'url': 'https://www.learn-cursor.com',
+        '@graph': [
+          {
+            '@type': 'WebSite',
+            '@id': 'https://learn-cursor.com/#website',
+            'name': 'Cursor Tutorial',
+            'description': 'The most comprehensive Cursor AI tutorial, including installation, usage guides, and more.',
+            'url': 'https://learn-cursor.com',
+            'inLanguage': ['zh-CN', 'en', 'ja'],
+            'potentialAction': {
+              '@type': 'SearchAction',
+              'target': {
+                '@type': 'EntryPoint',
+                'urlTemplate': 'https://learn-cursor.com/search?q={search_term_string}',
+              },
+              'query-input': 'required name=search_term_string',
+            },
+            'dateModified': new Date().toISOString(),
+            'datePublished': '2024-01-01T00:00:00.000Z',
+          },
+          {
+            '@type': 'Organization',
+            '@id': 'https://learn-cursor.com/#organization',
+            'name': 'Learn Cursor Team',
+            'url': 'https://learn-cursor.com',
+            'logo': {
+              '@type': 'ImageObject',
+              'url': 'https://learn-cursor.com/logo.png',
+              'width': '512',
+              'height': '512',
+            },
+            'sameAs': [
+              'https://github.com/wanghuihua',
+            ],
+          },
+          {
+            '@type': 'Course',
+            '@id': 'https://learn-cursor.com/#course',
+            'name': 'Cursor AI Tutorial',
+            'description': 'Learn how to use Cursor AI for programming',
+            'provider': {
+              '@id': 'https://learn-cursor.com/#organization',
+            },
+            'educationalLevel': 'Beginner to Advanced',
+            'inLanguage': ['zh-CN', 'en', 'ja'],
+            'hasCourseInstance': {
+              '@type': 'CourseInstance',
+              'courseMode': 'online',
+              'url': 'https://learn-cursor.com/wiki/user-guide/programming-basics-for-beginners',
+            },
+          },
+          {
+            '@type': 'Blog',
+            '@id': 'https://learn-cursor.com/blog/#blog',
+            'name': 'Cursor AI Blog',
+            'url': 'https://learn-cursor.com/blog/',
+            'publisher': {
+              '@id': 'https://learn-cursor.com/#organization',
+            },
+          },
+          {
+            '@type': 'BreadcrumbList',
+            '@id': 'https://learn-cursor.com/#breadcrumb',
+            'itemListElement': [
+              {
+                '@type': 'ListItem',
+                'position': 1,
+                'name': 'Home',
+                'item': 'https://learn-cursor.com',
+              },
+              {
+                '@type': 'ListItem',
+                'position': 2,
+                'name': 'Tutorial',
+                'item': 'https://learn-cursor.com/wiki/user-guide/',
+              },
+            ],
+          },
+        ],
       }),
     ],
   ],
 
   themeConfig: {
     logo: '/logo.png',
-    nav,
+    nav: i18nConfig.root?.themeConfig?.nav || [],
     sidebar,
 
     externalLinkIcon: true,
@@ -79,6 +162,38 @@ export default defineConfig({
                 footer: {
                   selectText: '选择',
                   navigateText: '切换',
+                },
+              },
+            },
+          },
+          en: {
+            translations: {
+              button: {
+                buttonText: 'Search',
+                buttonAriaLabel: 'Search documentation',
+              },
+              modal: {
+                noResultsText: 'No results found',
+                resetButtonTitle: 'Clear query',
+                footer: {
+                  selectText: 'Select',
+                  navigateText: 'Navigate',
+                },
+              },
+            },
+          },
+          ja: {
+            translations: {
+              button: {
+                buttonText: '検索',
+                buttonAriaLabel: 'ドキュメントを検索',
+              },
+              modal: {
+                noResultsText: '結果が見つかりません',
+                resetButtonTitle: 'クエリをクリア',
+                footer: {
+                  selectText: '選択',
+                  navigateText: '移動',
                 },
               },
             },
@@ -125,11 +240,38 @@ export default defineConfig({
       hmr: {
         overlay: false,
       },
+      fs: {
+        strict: true,
+        allow: ['..'],
+      },
+      // @ts-expect-error - Vite 的类型定义中没有包含 middlewares，但这是一个有效的配置选项
+      middlewares: [
+        (req: any, res: any, next: () => void) => {
+          // 处理markdown文件
+          if (req.url?.endsWith('.md') || req.url?.includes('.md?')) {
+            res.setHeader('Content-Type', 'application/javascript; charset=utf-8')
+          }
+          // 处理Vue文件
+          else if (req.url?.endsWith('.vue') || req.url?.includes('.vue?')) {
+            res.setHeader('Content-Type', 'application/javascript; charset=utf-8')
+          }
+          // 处理HTML文件
+          else if (req.url?.endsWith('.html')) {
+            res.setHeader('Content-Type', 'text/html; charset=utf-8')
+          }
+          next()
+        },
+      ],
     },
     resolve: {
       alias: {
+        '@': resolve('src/'),
         '@wiki': resolve('src/wiki/'),
-        '@data': resolve('src/.vitepress/data/'),
+        '@docs': resolve('src/docs-zh/'),
+        '@blog': resolve('src/blog/'),
+        '@example': resolve('src/example/'),
+        '@rules': resolve('src/rules/'),
+        '@shortcuts': resolve('src/shortcuts/'),
       },
     },
     plugins: [
@@ -152,6 +294,13 @@ export default defineConfig({
       noExternal: ['element-plus'],
     },
     build: {
+      rollupOptions: {
+        output: {
+          assetFileNames: 'assets/[name].[ext]',
+          chunkFileNames: 'assets/[name].[hash].js',
+          entryFileNames: 'assets/[name].[hash].js',
+        },
+      },
       cssCodeSplit: true,
       sourcemap: true,
       minify: 'terser',
@@ -167,29 +316,109 @@ export default defineConfig({
     },
   },
 
-  sitemap: {
-    hostname: 'https://www.learn-cursor.com',
-    transformItems: (items) => {
-      return items.map(item => ({
-        ...item,
-        lastmod: new Date().toISOString(),
-        changefreq: item.url === '/' ? 'daily' : 'weekly',
-        priority: item.url === '/' ? 1.0 : 0.8,
-      }))
-    },
-  },
+  sitemap,
 
-  base: '/',
+  async transformPageData(pageData) {
+    const path = pageData.relativePath || ''
+    const firstSegment = path.split('/')[0]
 
-  transformPageData(pageData) {
+    type SectionKey = 'docs-zh' | 'blog' | 'wiki' | 'example' | 'rules' | 'shortcuts'
+    type Lang = 'zh-CN' | 'en' | 'ja'
+
+    interface LangConfig {
+      titles: Record<SectionKey, string>
+      descriptions: Record<SectionKey, string>
+      defaultTitle: string
+      defaultDescription: string
+    }
+
+    const langConfigs: Record<Lang, LangConfig> = {
+      'zh-CN': {
+        titles: {
+          'docs-zh': '文档中心-API参考-开发指南-Cursor AI中文网',
+          'blog': '博客专栏-技术分享-使用技巧-Cursor AI中文网',
+          'wiki': '教程中心-入门指南-实战教程-Cursor AI中文网',
+          'example': '案例分享-最佳实践-项目示例-Cursor AI中文网',
+          'rules': '规则配置-自定义设置-配置指南-Cursor AI中文网',
+          'shortcuts': '快捷键-效率指南-操作技巧-Cursor AI中文网',
+        },
+        descriptions: {
+          'docs-zh': 'Cursor AI中文网文档中心提供全面的API参考文档、详细的开发指南、接口说明等技术资源，帮助开发者更好地使用Cursor AI编程助手。',
+          'blog': 'Cursor AI中文网博客专栏分享最新的AI编程技术、使用技巧、案例分析，助你掌握AI辅助编程的精髓。',
+          'wiki': 'Cursor AI中文网教程中心为你提供从入门到精通的AI编程指南，包括基础教程、进阶技巧、实战案例等全方位学习资源。',
+          'example': 'Cursor AI中文网案例分享板块展示真实的项目实践、最佳实践方案、成功案例，让你学习如何在实际项目中应用AI编程。',
+          'rules': 'Cursor AI中文网规则配置指南详细介绍如何自定义和优化AI编程助手，包括提示词配置、编程模板定制、个性化设置等。',
+          'shortcuts': 'Cursor AI中文网快捷键指南帮助你掌握所有效率操作技巧，提升编程速度，实现更高效的AI辅助开发。',
+        },
+        defaultTitle: 'Cursor AI教程 | AI编程助手使用指南与技巧教程 | AI驱动的智能编程工具',
+        defaultDescription: 'Learn Cursor提供最全面的Cursor AI编程助手教程，从安装设置到高级应用，深入讲解AI编程助手的所有功能与使用技巧。无论你是新手入门还是寻求进阶，都能在这里找到专业的AI编程指南。',
+      },
+      'en': {
+        titles: {
+          'docs-zh': 'Documentation-API Reference-Developer Guide-Cursor AI Tutorial',
+          'blog': 'Blog-Tech Insights-Tips & Tricks-Cursor AI Tutorial',
+          'wiki': 'Tutorials-Getting Started-Practical Guide-Cursor AI Tutorial',
+          'example': 'Case Studies-Best Practices-Project Examples-Cursor AI Tutorial',
+          'rules': 'Rules Config-Custom Settings-Configuration Guide-Cursor AI Tutorial',
+          'shortcuts': 'Shortcuts-Efficiency Guide-Operation Tips-Cursor AI Tutorial',
+        },
+        descriptions: {
+          'docs-zh': 'Cursor AI Tutorial Documentation provides comprehensive API references, detailed development guides, and technical resources to help developers better use the Cursor AI programming assistant.',
+          'blog': 'Cursor AI Tutorial Blog shares the latest AI programming technology, usage tips, and case analysis to help you master AI-assisted programming.',
+          'wiki': 'Cursor AI Tutorial Center offers a complete AI programming guide from basics to advanced, including fundamental tutorials, advanced techniques, and practical cases.',
+          'example': 'Cursor AI Tutorial Case Studies showcase real project implementations, best practice solutions, and success stories to help you learn how to apply AI programming.',
+          'rules': 'Cursor AI Tutorial Rules Configuration Guide details how to customize and optimize your AI programming assistant, including prompt configuration and programming templates.',
+          'shortcuts': 'Cursor AI Tutorial Shortcuts Guide helps you master all efficiency operations to enhance programming speed and achieve more efficient AI-assisted development.',
+        },
+        defaultTitle: 'Cursor AI Tutorial | AI Programming Assistant Guide & Tips | AI-Powered Smart Coding Tool',
+        defaultDescription: 'Learn Cursor offers the most comprehensive Cursor AI programming assistant tutorials, covering everything from setup to advanced applications. Master AI-assisted programming with in-depth guides and professional tips for both beginners and advanced users.',
+      },
+      'ja': {
+        titles: {
+          'docs-zh': 'ドキュメント-API参照-開発ガイド-Cursor AIチュートリアル',
+          'blog': 'ブログ-技術洞察-使用技巧-Cursor AIチュートリアル',
+          'wiki': 'チュートリアル-入門ガイド-実践ガイド-Cursor AIチュートリアル',
+          'example': 'ケーススタディ-ベストプラクティス-プロジェクト例-Cursor AIチュートリアル',
+          'rules': 'ルール設定-カスタム設定-設定ガイド-Cursor AIチュートリアル',
+          'shortcuts': 'ショートカット-効率化ガイド-操作のコツ-Cursor AIチュートリアル',
+        },
+        descriptions: {
+          'docs-zh': 'Cursor AIチュートリアルのドキュメントセンターでは、包括的なAPI参照、詳細な開発ガイド、技術リソースを提供し、開発者がCursor AIプログラミングアシスタントをより効果的に使用できるようサポートします。',
+          'blog': 'Cursor AIチュートリアルのブログでは、最新のAIプログラミング技術、使用のヒント、ケース分析を共有し、AIアシストプログラミングの習得を支援します。',
+          'wiki': 'Cursor AIチュートリアルセンターでは、基礎から応用まで、AIプログラミングの完全なガイドを提供します。基本チュートリアル、高度なテクニック、実践的なケースを含みます。',
+          'example': 'Cursor AIチュートリアルのケーススタディでは、実際のプロジェクト実装、ベストプラクティスソリューション、成功事例を紹介し、AIプログラミングの実践的な適用方法を学べます。',
+          'rules': 'Cursor AIチュートリアルのルール設定ガイドでは、AIプログラミングアシスタントのカスタマイズと最適化方法を詳しく説明します。',
+          'shortcuts': 'Cursor AIチュートリアルのショートカットガイドは、すべての効率的な操作の習得を支援し、プログラミング速度を向上させ、より効率的なAI支援開発を実現します。',
+        },
+        defaultTitle: 'Cursor AIチュートリアル | AIプログラミングアシスタントの使い方とコツ | AI駆動型スマートコーディングツール',
+        defaultDescription: 'Learn Cursorは、最も包括的なCursor AIプログラミングアシスタントのチュートリアルを提供し、セットアップから高度な応用まで、すべての機能と使用テクニックを詳しく解説します。初心者から上級者まで、プロフェッショナルなAIプログラミングガイダンスを見つけることができます。',
+      },
+    }
+
+    const currentLang = (['en', 'ja'].includes(firstSegment) ? firstSegment : 'zh-CN') as Lang
+    const langConfig = langConfigs[currentLang]
+
+    if (!['en', 'ja'].includes(firstSegment)) {
+      const validPaths = ['docs-zh', 'blog', 'wiki', 'example', 'rules', 'shortcuts']
+      if (validPaths.includes(firstSegment)) {
+        return {
+          ...pageData,
+          frontmatter: {
+            ...pageData.frontmatter,
+            lang: 'zh-CN',
+          },
+        }
+      }
+    }
+
     if (!pageData.frontmatter.title) {
       pageData.frontmatter.title = pageData.title
-        ? `${pageData.title} | Cursor中文教程`
-        : 'Cursor中文教程 | AI编程助手入门与实战指南'
+        ? `${pageData.title} | ${langConfig.titles[firstSegment as SectionKey]}`
+        : langConfig.titles[firstSegment as SectionKey]
     }
 
     if (!pageData.frontmatter.description) {
-      pageData.frontmatter.description = '提供最全面的Cursor AI中文教程，帮助你快速掌握AI编程助手的使用方法。'
+      pageData.frontmatter.description = langConfig.descriptions[firstSegment as SectionKey]
     }
 
     pageData.frontmatter.head = [
@@ -200,5 +429,7 @@ export default defineConfig({
       ['meta', { property: 'og:image', content: 'https://www.learn-cursor.com/logo.png' }],
       ...(pageData.frontmatter.head || []),
     ]
+
+    return pageData
   },
 })

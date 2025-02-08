@@ -1,8 +1,20 @@
 <script setup>
+import { useData } from 'vitepress'
 import { computed, ref } from 'vue'
 
+const { lang } = useData()
 const selectedOS = ref('windows')
 const searchTerm = ref('')
+
+// 获取当前语言，根路径使用zh-CN
+const currentLang = computed(() => {
+  // 如果是根路径或者zh，使用zh-CN
+  if (!lang.value || lang.value === 'zh' || lang.value === 'root') {
+    return 'zh-CN'
+  }
+  // 其他情况返回实际的语言代码
+  return lang.value
+})
 
 const icons = {
   'Cursor Tab (AI 代码补全)': `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -46,289 +58,1007 @@ const icons = {
   </svg>`,
 }
 
+// 多语言文本配置
+const i18n = {
+  'zh-CN': {
+    osSwitch: '操作系统',
+    search: '搜索快捷键...',
+    windows: 'Windows',
+    mac: 'Mac',
+  },
+  'en': {
+    osSwitch: 'Operating System',
+    search: 'Search shortcuts...',
+    windows: 'Windows',
+    mac: 'Mac',
+  },
+  'ja': {
+    osSwitch: 'オペレーティングシステム',
+    search: 'ショートカットを検索...',
+    windows: 'Windows',
+    mac: 'Mac',
+  },
+}
+
+// 快捷键组的多语言配置
+const groupsI18n = {
+  'zh-CN': {
+    'Cursor Tab (AI 代码补全)': {
+      title: 'Cursor Tab (AI 代码补全)',
+      description: 'AI 驱动的智能代码补全功能，更快地编写',
+    },
+    'Cmd K (内联编辑)': {
+      title: 'Cmd K (内联编辑)',
+      description: '快速进行代码编辑和重构的内联工具',
+    },
+    '聊天界面': {
+      title: '聊天界面',
+      description: '与 AI 助手进行实时对话，获取编程帮助',
+    },
+    'Composer': {
+      title: 'Composer',
+      description: '强大的 AI 代码生成和编辑工具',
+    },
+    '编辑器导航': {
+      title: '编辑器导航',
+      description: '快速在代码中导航和跳转',
+    },
+    '编辑器操作': {
+      title: '编辑器操作',
+      description: '常用的编辑和选择操作',
+    },
+    '终端和调试': {
+      title: '终端和调试',
+      description: '终端操作和调试功能',
+    },
+    'Git 操作': {
+      title: 'Git 操作',
+      description: 'Git 版本控制操作',
+    },
+    '窗口管理': {
+      title: '窗口管理',
+      description: '管理编辑器窗口和面板',
+    },
+    '搜索和替换': {
+      title: '搜索和替换',
+      description: '在文件中搜索和替换内容',
+    },
+  },
+  'en': {
+    'Cursor Tab (AI 代码补全)': {
+      title: 'Cursor Tab (AI Code Completion)',
+      description: 'AI-powered intelligent code completion for faster coding',
+    },
+    'Cmd K (内联编辑)': {
+      title: 'Cmd K (Inline Edit)',
+      description: 'Quick code editing and refactoring inline tool',
+    },
+    '聊天界面': {
+      title: 'Chat Interface',
+      description: 'Real-time dialogue with AI assistant for programming help',
+    },
+    'Composer': {
+      title: 'Composer',
+      description: 'Powerful AI code generation and editing tool',
+    },
+    '编辑器导航': {
+      title: 'Editor Navigation',
+      description: 'Quick navigation and jumping in code',
+    },
+    '编辑器操作': {
+      title: 'Editor Operations',
+      description: 'Common editing and selection operations',
+    },
+    '终端和调试': {
+      title: 'Terminal and Debug',
+      description: 'Terminal operations and debugging features',
+    },
+    'Git 操作': {
+      title: 'Git Operations',
+      description: 'Git version control operations',
+    },
+    '窗口管理': {
+      title: 'Window Management',
+      description: 'Manage editor windows and panels',
+    },
+    '搜索和替换': {
+      title: 'Search and Replace',
+      description: 'Search and replace content in files',
+    },
+  },
+  'ja': {
+    'Cursor Tab (AI 代码补全)': {
+      title: 'Cursor Tab (AIコード補完)',
+      description: 'AIパワードインテリジェントコード補完で高速なコーディング',
+    },
+    'Cmd K (内联编辑)': {
+      title: 'Cmd K (インライン編集)',
+      description: '迅速なコード編集とリファクタリングのインラインツール',
+    },
+    '聊天界面': {
+      title: 'チャットインターフェース',
+      description: 'プログラミングヘルプのためのAIアシスタントとのリアルタイム対話',
+    },
+    'Composer': {
+      title: 'Composer',
+      description: '強力なAIコード生成と編集ツール',
+    },
+    '编辑器导航': {
+      title: 'エディタナビゲーション',
+      description: 'コード内の素早いナビゲーションとジャンプ',
+    },
+    '编辑器操作': {
+      title: 'エディタ操作',
+      description: '一般的な編集と選択操作',
+    },
+    '终端和调试': {
+      title: 'ターミナルとデバッグ',
+      description: 'ターミナル操作とデバッグ機能',
+    },
+    'Git 操作': {
+      title: 'Git操作',
+      description: 'Gitバージョン管理操作',
+    },
+    '窗口管理': {
+      title: 'ウィンドウ管理',
+      description: 'エディタウィンドウとパネルの管理',
+    },
+    '搜索和替换': {
+      title: '検索と置換',
+      description: 'ファイル内のコンテンツの検索と置換',
+    },
+  },
+}
+
+// 快捷键操作的多语言配置
+const shortcutActionsI18n = {
+  'zh-CN': {
+    '接受建议': {
+      action: '接受建议',
+      description: '接受 AI 提供的完整代码建议',
+    },
+    '拒绝建议': {
+      action: '拒绝建议',
+      description: '拒绝当前的 AI 代码建议',
+    },
+    '部分接受': {
+      action: '部分接受',
+      description: '只接受建议的一部分内容',
+    },
+    '触发建议': {
+      action: '触发建议',
+      description: '手动触发 AI 代码建议',
+    },
+    '打开 Cmd K': {
+      action: '打开 Cmd K',
+      description: '打开内联编辑工具',
+    },
+    '应用更改': {
+      action: '应用更改',
+      description: '确认并应用编辑更改',
+    },
+    '取消更改': {
+      action: '取消更改',
+      description: '取消当前的编辑更改',
+    },
+    '选择性应用': {
+      action: '选择性应用',
+      description: '选择性应用部分更改',
+    },
+    '打开聊天': {
+      action: '打开聊天',
+      description: '打开 AI 聊天窗口',
+    },
+    '将代码添加到聊天': {
+      action: '将代码添加到聊天',
+      description: '将选中的代码发送到聊天窗口',
+    },
+    '发送消息': {
+      action: '发送消息',
+      description: '发送聊天消息',
+    },
+    '新建聊天': {
+      action: '新建聊天',
+      description: '创建新的聊天会话',
+    },
+    '打开 Composer': {
+      action: '打开 Composer',
+      description: '打开 Composer 工具窗口',
+    },
+    '打开全屏 Composer': {
+      action: '打开全屏 Composer',
+      description: '以全屏模式打开 Composer',
+    },
+    '生成代码': {
+      action: '生成代码',
+      description: '生成或应用 AI 建议的代码',
+    },
+    '转到定义': {
+      action: '转到定义',
+      description: '跳转到符号定义处',
+    },
+    '查找所有引用': {
+      action: '查找所有引用',
+      description: '查找符号的所有引用',
+    },
+    '快速打开文件': {
+      action: '快速打开文件',
+      description: '快速搜索和打开文件',
+    },
+    '转到行': {
+      action: '转到行',
+      description: '跳转到指定行号',
+    },
+    '转到符号': {
+      action: '转到符号',
+      description: '在当前文件中查找符号',
+    },
+    '全局符号搜索': {
+      action: '全局符号搜索',
+      description: '在整个工作区搜索符号',
+    },
+    '多光标选择': {
+      action: '多光标选择',
+      description: '添加多个光标',
+    },
+    '选择所有匹配': {
+      action: '选择所有匹配',
+      description: '选择所有匹配的文本',
+    },
+    '复制行': {
+      action: '复制行',
+      description: '向上或向下复制当前行',
+    },
+    '移动行': {
+      action: '移动行',
+      description: '向上或向下移动当前行',
+    },
+    '格式化代码': {
+      action: '格式化代码',
+      description: '格式化当前文件或选中的代码',
+    },
+    '注释/取消注释': {
+      action: '注释/取消注释',
+      description: '切换行注释',
+    },
+    '打开/关闭终端': {
+      action: '打开/关闭终端',
+      description: '切换集成终端的显示',
+    },
+    '新建终端': {
+      action: '新建终端',
+      description: '创建新的终端实例',
+    },
+    '开始调试': {
+      action: '开始调试',
+      description: '启动调试会话',
+    },
+    '调试步进': {
+      action: '调试步进',
+      description: '调试时单步执行',
+    },
+    '调试步过': {
+      action: '调试步过',
+      description: '调试时跳过当前行',
+    },
+    '继续/暂停': {
+      action: '继续/暂停',
+      description: '继续执行或暂停调试',
+    },
+    '显示 Git 面板': {
+      action: '显示 Git 面板',
+      description: '打开源代码管理面板',
+    },
+    '提交更改': {
+      action: '提交更改',
+      description: '在源代码管理面板中提交更改',
+    },
+    '刷新 Git 状态': {
+      action: '刷新 Git 状态',
+      description: '刷新 Git 状态和更改',
+    },
+    '显示 Git 历史': {
+      action: '显示 Git 历史',
+      description: '查看文件或行的 Git 历史',
+    },
+    '新建窗口': {
+      action: '新建窗口',
+      description: '打开新的编辑器窗口',
+    },
+    '关闭窗口': {
+      action: '关闭窗口',
+      description: '关闭当前编辑器窗口',
+    },
+    '切换侧边栏': {
+      action: '切换侧边栏',
+      description: '显示/隐藏侧边栏',
+    },
+    '切换全屏': {
+      action: '切换全屏',
+      description: '切换编辑器全屏模式',
+    },
+    '查找': {
+      action: '查找',
+      description: '在当前文件中搜索',
+    },
+    '替换': {
+      action: '替换',
+      description: '在当前文件中替换',
+    },
+    '全局搜索': {
+      action: '全局搜索',
+      description: '在所有文件中搜索',
+    },
+    '全局替换': {
+      action: '全局替换',
+      description: '在所有文件中替换',
+    },
+  },
+  'en': {
+    '接受建议': {
+      action: 'Accept Suggestion',
+      description: 'Accept complete AI code suggestion',
+    },
+    '拒绝建议': {
+      action: 'Reject Suggestion',
+      description: 'Reject current AI code suggestion',
+    },
+    '部分接受': {
+      action: 'Partial Accept',
+      description: 'Accept only part of the suggestion',
+    },
+    '触发建议': {
+      action: 'Trigger Suggestion',
+      description: 'Manually trigger AI code suggestion',
+    },
+    '打开 Cmd K': {
+      action: 'Open Cmd K',
+      description: 'Open inline editing tool',
+    },
+    '应用更改': {
+      action: 'Apply Changes',
+      description: 'Confirm and apply edit changes',
+    },
+    '取消更改': {
+      action: 'Cancel Changes',
+      description: 'Cancel current edit changes',
+    },
+    '选择性应用': {
+      action: 'Selective Apply',
+      description: 'Selectively apply partial changes',
+    },
+    '打开聊天': {
+      action: 'Open Chat',
+      description: 'Open AI chat window',
+    },
+    '将代码添加到聊天': {
+      action: 'Add Code to Chat',
+      description: 'Send selected code to chat window',
+    },
+    '发送消息': {
+      action: 'Send Message',
+      description: 'Send chat message',
+    },
+    '新建聊天': {
+      action: 'New Chat',
+      description: 'Create new chat session',
+    },
+    '打开 Composer': {
+      action: 'Open Composer',
+      description: 'Open Composer tool window',
+    },
+    '打开全屏 Composer': {
+      action: 'Open Fullscreen Composer',
+      description: 'Open Composer in fullscreen mode',
+    },
+    '生成代码': {
+      action: 'Generate Code',
+      description: 'Generate or apply AI suggested code',
+    },
+    '转到定义': {
+      action: 'Go to Definition',
+      description: 'Jump to symbol definition',
+    },
+    '查找所有引用': {
+      action: 'Find All References',
+      description: 'Find all references of the symbol',
+    },
+    '快速打开文件': {
+      action: 'Quick Open File',
+      description: 'Quickly search and open files',
+    },
+    '转到行': {
+      action: 'Go to Line',
+      description: 'Jump to specified line number',
+    },
+    '转到符号': {
+      action: 'Go to Symbol',
+      description: 'Find symbol in current file',
+    },
+    '全局符号搜索': {
+      action: 'Global Symbol Search',
+      description: 'Search symbols in entire workspace',
+    },
+    '多光标选择': {
+      action: 'Multi-cursor Selection',
+      description: 'Add multiple cursors',
+    },
+    '选择所有匹配': {
+      action: 'Select All Matches',
+      description: 'Select all matching text',
+    },
+    '复制行': {
+      action: 'Duplicate Line',
+      description: 'Copy line up or down',
+    },
+    '移动行': {
+      action: 'Move Line',
+      description: 'Move line up or down',
+    },
+    '格式化代码': {
+      action: 'Format Code',
+      description: 'Format current file or selected code',
+    },
+    '注释/取消注释': {
+      action: 'Toggle Comment',
+      description: 'Toggle line comment',
+    },
+    '打开/关闭终端': {
+      action: 'Toggle Terminal',
+      description: 'Show/hide integrated terminal',
+    },
+    '新建终端': {
+      action: 'New Terminal',
+      description: 'Create new terminal instance',
+    },
+    '开始调试': {
+      action: 'Start Debugging',
+      description: 'Start debug session',
+    },
+    '调试步进': {
+      action: 'Step Into',
+      description: 'Step into during debugging',
+    },
+    '调试步过': {
+      action: 'Step Over',
+      description: 'Step over current line',
+    },
+    '继续/暂停': {
+      action: 'Continue/Pause',
+      description: 'Continue or pause debugging',
+    },
+    '显示 Git 面板': {
+      action: 'Show Git Panel',
+      description: 'Open source control panel',
+    },
+    '提交更改': {
+      action: 'Commit Changes',
+      description: 'Commit changes in source control panel',
+    },
+    '刷新 Git 状态': {
+      action: 'Refresh Git Status',
+      description: 'Refresh Git status and changes',
+    },
+    '显示 Git 历史': {
+      action: 'Show Git History',
+      description: 'View Git history of file or line',
+    },
+    '新建窗口': {
+      action: 'New Window',
+      description: 'Open new editor window',
+    },
+    '关闭窗口': {
+      action: 'Close Window',
+      description: 'Close current editor window',
+    },
+    '切换侧边栏': {
+      action: 'Toggle Sidebar',
+      description: 'Show/hide sidebar',
+    },
+    '切换全屏': {
+      action: 'Toggle Full Screen',
+      description: 'Toggle editor full screen mode',
+    },
+    '查找': {
+      action: 'Find',
+      description: 'Search in current file',
+    },
+    '替换': {
+      action: 'Replace',
+      description: 'Replace in current file',
+    },
+    '全局搜索': {
+      action: 'Global Search',
+      description: 'Search in all files',
+    },
+    '全局替换': {
+      action: 'Global Replace',
+      description: 'Replace in all files',
+    },
+  },
+  'ja': {
+    '接受建议': {
+      action: '提案を受け入れる',
+      description: 'AI コードの提案を完全に受け入れる',
+    },
+    '拒绝建议': {
+      action: '提案を拒否',
+      description: '現在の AI コードの提案を拒否',
+    },
+    '部分接受': {
+      action: '部分的に受け入れる',
+      description: '提案の一部のみを受け入れる',
+    },
+    '触发建议': {
+      action: '提案をトリガー',
+      description: 'AI コードの提案を手動でトリガー',
+    },
+    '打开 Cmd K': {
+      action: 'Cmd K を開く',
+      description: 'インライン編集ツールを開く',
+    },
+    '应用更改': {
+      action: '変更を適用',
+      description: '編集の変更を確認して適用',
+    },
+    '取消更改': {
+      action: '変更をキャンセル',
+      description: '現在の編集変更をキャンセル',
+    },
+    '选择性应用': {
+      action: '選択的に適用',
+      description: '部分的な変更を選択的に適用',
+    },
+    '打开聊天': {
+      action: 'チャットを開く',
+      description: 'AI チャットウィンドウを開く',
+    },
+    '将代码添加到聊天': {
+      action: 'コードをチャットに追加',
+      description: '選択したコードをチャットウィンドウに送信',
+    },
+    '发送消息': {
+      action: 'メッセージを送信',
+      description: 'チャットメッセージを送信',
+    },
+    '新建聊天': {
+      action: '新規チャット',
+      description: '新しいチャットセッションを作成',
+    },
+    '打开 Composer': {
+      action: 'Composer を開く',
+      description: 'Composer ツールウィンドウを開く',
+    },
+    '打开全屏 Composer': {
+      action: 'フルスクリーン Composer を開く',
+      description: 'フルスクリーンモードで Composer を開く',
+    },
+    '生成代码': {
+      action: 'コードを生成',
+      description: 'AI が提案するコードを生成または適用',
+    },
+    '转到定义': {
+      action: '定義へ移動',
+      description: 'シンボルの定義にジャンプ',
+    },
+    '查找所有引用': {
+      action: '参照をすべて検索',
+      description: 'シンボルのすべての参照を検索',
+    },
+    '快速打开文件': {
+      action: 'クイックファイルオープン',
+      description: 'ファイルをすばやく検索して開く',
+    },
+    '转到行': {
+      action: '行へ移動',
+      description: '指定した行番号へジャンプ',
+    },
+    '转到符号': {
+      action: 'シンボルへ移動',
+      description: '現在のファイル内でシンボルを検索',
+    },
+    '全局符号搜索': {
+      action: 'グローバルシンボル検索',
+      description: 'ワークスペース全体でシンボルを検索',
+    },
+    '多光标选择': {
+      action: 'マルチカーソル選択',
+      description: '複数のカーソルを追加',
+    },
+    '选择所有匹配': {
+      action: 'すべての一致を選択',
+      description: '一致するテキストをすべて選択',
+    },
+    '复制行': {
+      action: '行を複製',
+      description: '行を上下にコピー',
+    },
+    '移动行': {
+      action: '行を移動',
+      description: '行を上下に移動',
+    },
+    '格式化代码': {
+      action: 'コードをフォーマット',
+      description: '現在のファイルまたは選択したコードをフォーマット',
+    },
+    '注释/取消注释': {
+      action: 'コメントの切り替え',
+      description: '行コメントを切り替え',
+    },
+    '打开/关闭终端': {
+      action: 'ターミナルの切り替え',
+      description: '統合ターミナルの表示/非表示',
+    },
+    '新建终端': {
+      action: '新規ターミナル',
+      description: '新しいターミナルインスタンスを作成',
+    },
+    '开始调试': {
+      action: 'デバッグを開始',
+      description: 'デバッグセッションを開始',
+    },
+    '调试步进': {
+      action: 'ステップイン',
+      description: 'デバッグ中にステップイン',
+    },
+    '调试步过': {
+      action: 'ステップオーバー',
+      description: '現在の行をスキップ',
+    },
+    '继续/暂停': {
+      action: '続行/一時停止',
+      description: 'デバッグを続行または一時停止',
+    },
+    '显示 Git 面板': {
+      action: 'Git パネルを表示',
+      description: 'ソース管理パネルを開く',
+    },
+    '提交更改': {
+      action: '変更をコミット',
+      description: 'ソース管理パネルで変更をコミット',
+    },
+    '刷新 Git 状态': {
+      action: 'Git ステータスを更新',
+      description: 'Git のステータスと変更を更新',
+    },
+    '显示 Git 历史': {
+      action: 'Git 履歴を表示',
+      description: 'ファイルまたは行の Git 履歴を表示',
+    },
+    '新建窗口': {
+      action: '新規ウィンドウ',
+      description: '新しいエディタウィンドウを開く',
+    },
+    '关闭窗口': {
+      action: 'ウィンドウを閉じる',
+      description: '現在のエディタウィンドウを閉じる',
+    },
+    '切换侧边栏': {
+      action: 'サイドバーの切り替え',
+      description: 'サイドバーの表示/非表示',
+    },
+    '切换全屏': {
+      action: '全画面表示の切り替え',
+      description: 'エディタの全画面モードを切り替え',
+    },
+    '查找': {
+      action: '検索',
+      description: '現在のファイル内で検索',
+    },
+    '替换': {
+      action: '置換',
+      description: '現在のファイル内で置換',
+    },
+    '全局搜索': {
+      action: 'グローバル検索',
+      description: 'すべてのファイルで検索',
+    },
+    '全局替换': {
+      action: 'グローバル置換',
+      description: 'すべてのファイルで置換',
+    },
+  },
+}
+
+// 添加标题的多语言配置
+const titleI18n = {
+  'zh-CN': {
+    title: 'Cursor 快捷键速查表',
+    description: '掌握这些快捷键，显著提升您的编程效率。本速查表涵盖了 Cursor 的所有核心功能，包括 AI 代码补全、内联编辑、聊天功能等。',
+  },
+  'en': {
+    title: 'Cursor Keyboard Shortcuts Cheatsheet',
+    description: 'Master these shortcuts to significantly improve your programming efficiency. This cheatsheet covers all core features of Cursor, including AI code completion, inline editing, chat functionality, and more.',
+  },
+  'ja': {
+    title: 'Cursor キーボードショートカット チートシート',
+    description: 'これらのショートカットを習得して、プログラミング効率を大幅に向上させましょう。このチートシートは、AI コード補完、インライン編集、チャット機能など、Cursor のすべての主要機能をカバーしています。',
+  },
+}
+
 const shortcutGroups = [
   {
-    title: 'Cursor Tab (AI 代码补全)',
-    description: 'AI 驱动的智能代码补全功能，更快地编写',
+    title: groupsI18n[currentLang.value]['Cursor Tab (AI 代码补全)'].title,
+    description: groupsI18n[currentLang.value]['Cursor Tab (AI 代码补全)'].description,
     shortcuts: [
       {
-        action: '接受建议',
+        action: shortcutActionsI18n[currentLang.value]['接受建议'].action,
         shortcut: 'Tab',
-        description: '接受 AI 提供的完整代码建议',
+        description: shortcutActionsI18n[currentLang.value]['接受建议'].description,
       },
       {
-        action: '拒绝建议',
+        action: shortcutActionsI18n[currentLang.value]['拒绝建议'].action,
         shortcut: 'Esc',
-        description: '拒绝当前的 AI 代码建议',
+        description: shortcutActionsI18n[currentLang.value]['拒绝建议'].description,
       },
       {
-        action: '部分接受',
+        action: shortcutActionsI18n[currentLang.value]['部分接受'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + →' : '⌘ + →'),
-        description: '只接受建议的一部分内容',
+        description: shortcutActionsI18n[currentLang.value]['部分接受'].description,
       },
       {
-        action: '触发建议',
+        action: shortcutActionsI18n[currentLang.value]['触发建议'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Space' : '⌘ + Space'),
-        description: '手动触发 AI 代码建议',
+        description: shortcutActionsI18n[currentLang.value]['触发建议'].description,
       },
     ],
   },
   {
-    title: 'Cmd K (内联编辑)',
-    description: '快速进行代码编辑和重构的内联工具',
+    title: groupsI18n[currentLang.value]['Cmd K (内联编辑)'].title,
+    description: groupsI18n[currentLang.value]['Cmd K (内联编辑)'].description,
     shortcuts: [
       {
-        action: '打开 Cmd K',
+        action: shortcutActionsI18n[currentLang.value]['打开 Cmd K'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + K' : '⌘ + K'),
-        description: '打开内联编辑工具',
+        description: shortcutActionsI18n[currentLang.value]['打开 Cmd K'].description,
       },
       {
-        action: '应用更改',
+        action: shortcutActionsI18n[currentLang.value]['应用更改'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Enter' : '⌘ + Return'),
-        description: '确认并应用编辑更改',
+        description: shortcutActionsI18n[currentLang.value]['应用更改'].description,
       },
       {
-        action: '取消更改',
+        action: shortcutActionsI18n[currentLang.value]['取消更改'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Backspace' : '⌘ + Delete'),
-        description: '取消当前的编辑更改',
+        description: shortcutActionsI18n[currentLang.value]['取消更改'].description,
       },
       {
-        action: '选择性应用',
+        action: shortcutActionsI18n[currentLang.value]['选择性应用'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Shift + Enter' : '⌘ + Shift + Return'),
-        description: '选择性应用部分更改',
+        description: shortcutActionsI18n[currentLang.value]['选择性应用'].description,
       },
     ],
   },
   {
-    title: '聊天界面',
-    description: '与 AI 助手进行实时对话，获取编程帮助',
+    title: groupsI18n[currentLang.value]['聊天界面'].title,
+    description: groupsI18n[currentLang.value]['聊天界面'].description,
     shortcuts: [
       {
-        action: '打开聊天',
+        action: shortcutActionsI18n[currentLang.value]['打开聊天'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + L' : '⌘ + L'),
-        description: '打开 AI 聊天窗口',
+        description: shortcutActionsI18n[currentLang.value]['打开聊天'].description,
       },
       {
-        action: '将代码添加到聊天',
+        action: shortcutActionsI18n[currentLang.value]['将代码添加到聊天'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + L' : '⌘ + L'),
-        description: '将选中的代码发送到聊天窗口',
+        description: shortcutActionsI18n[currentLang.value]['将代码添加到聊天'].description,
       },
       {
-        action: '发送消息',
+        action: shortcutActionsI18n[currentLang.value]['发送消息'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Enter' : '⌘ + Return'),
-        description: '发送聊天消息',
+        description: shortcutActionsI18n[currentLang.value]['发送消息'].description,
       },
       {
-        action: '新建聊天',
+        action: shortcutActionsI18n[currentLang.value]['新建聊天'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Shift + L' : '⌘ + Shift + L'),
-        description: '创建新的聊天会话',
+        description: shortcutActionsI18n[currentLang.value]['新建聊天'].description,
       },
     ],
   },
   {
-    title: 'Composer',
-    description: '强大的 AI 代码生成和编辑工具',
+    title: groupsI18n[currentLang.value].Composer.title,
+    description: groupsI18n[currentLang.value].Composer.description,
     shortcuts: [
       {
-        action: '打开 Composer',
+        action: shortcutActionsI18n[currentLang.value]['打开 Composer'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + I' : '⌘ + I'),
-        description: '打开 Composer 工具窗口',
+        description: shortcutActionsI18n[currentLang.value]['打开 Composer'].description,
       },
       {
-        action: '打开全屏 Composer',
+        action: shortcutActionsI18n[currentLang.value]['打开全屏 Composer'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Shift + I' : '⌘ + Shift + I'),
-        description: '以全屏模式打开 Composer',
+        description: shortcutActionsI18n[currentLang.value]['打开全屏 Composer'].description,
       },
       {
-        action: '生成代码',
+        action: shortcutActionsI18n[currentLang.value]['生成代码'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Enter' : '⌘ + Return'),
-        description: '生成或应用 AI 建议的代码',
+        description: shortcutActionsI18n[currentLang.value]['生成代码'].description,
       },
     ],
   },
   {
-    title: '编辑器导航',
-    description: '快速在代码中导航和跳转',
+    title: groupsI18n[currentLang.value]['编辑器导航'].title,
+    description: groupsI18n[currentLang.value]['编辑器导航'].description,
     shortcuts: [
       {
-        action: '转到定义',
+        action: shortcutActionsI18n[currentLang.value]['转到定义'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'F12' : 'F12'),
-        description: '跳转到符号定义处',
+        description: shortcutActionsI18n[currentLang.value]['转到定义'].description,
       },
       {
-        action: '查找所有引用',
+        action: shortcutActionsI18n[currentLang.value]['查找所有引用'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Shift + F12' : 'Shift + F12'),
-        description: '查找符号的所有引用',
+        description: shortcutActionsI18n[currentLang.value]['查找所有引用'].description,
       },
       {
-        action: '快速打开文件',
+        action: shortcutActionsI18n[currentLang.value]['快速打开文件'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + P' : '⌘ + P'),
-        description: '快速搜索和打开文件',
+        description: shortcutActionsI18n[currentLang.value]['快速打开文件'].description,
       },
       {
-        action: '转到行',
+        action: shortcutActionsI18n[currentLang.value]['转到行'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + G' : '⌘ + G'),
-        description: '跳转到指定行号',
+        description: shortcutActionsI18n[currentLang.value]['转到行'].description,
       },
       {
-        action: '转到符号',
+        action: shortcutActionsI18n[currentLang.value]['转到符号'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Shift + O' : '⌘ + Shift + O'),
-        description: '在当前文件中查找符号',
+        description: shortcutActionsI18n[currentLang.value]['转到符号'].description,
       },
       {
-        action: '全局符号搜索',
+        action: shortcutActionsI18n[currentLang.value]['全局符号搜索'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + T' : '⌘ + T'),
-        description: '在整个工作区搜索符号',
+        description: shortcutActionsI18n[currentLang.value]['全局符号搜索'].description,
       },
     ],
   },
   {
-    title: '编辑器操作',
-    description: '常用的编辑和选择操作',
+    title: groupsI18n[currentLang.value]['编辑器操作'].title,
+    description: groupsI18n[currentLang.value]['编辑器操作'].description,
     shortcuts: [
       {
-        action: '多光标选择',
+        action: shortcutActionsI18n[currentLang.value]['多光标选择'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Alt + Click' : '⌥ + Click'),
-        description: '添加多个光标',
+        description: shortcutActionsI18n[currentLang.value]['多光标选择'].description,
       },
       {
-        action: '选择所有匹配',
-        shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Shift + L' : '��� + Shift + L'),
-        description: '选择所有匹配的文本',
+        action: shortcutActionsI18n[currentLang.value]['选择所有匹配'].action,
+        shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Shift + L' : '⌘ + Shift + L'),
+        description: shortcutActionsI18n[currentLang.value]['选择所有匹配'].description,
       },
       {
-        action: '复制行',
+        action: shortcutActionsI18n[currentLang.value]['复制行'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Shift + Alt + ↑/↓' : 'Shift + ⌥ + ↑/↓'),
-        description: '向上或向下复制当前行',
+        description: shortcutActionsI18n[currentLang.value]['复制行'].description,
       },
       {
-        action: '移动行',
+        action: shortcutActionsI18n[currentLang.value]['移动行'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Alt + ↑/↓' : '⌥ + ↑/↓'),
-        description: '向上或向下移动当前行',
+        description: shortcutActionsI18n[currentLang.value]['移动行'].description,
       },
       {
-        action: '格式化代码',
+        action: shortcutActionsI18n[currentLang.value]['格式化代码'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Shift + Alt + F' : 'Shift + ⌥ + F'),
-        description: '格式化当前文件或选中的代码',
+        description: shortcutActionsI18n[currentLang.value]['格式化代码'].description,
       },
       {
-        action: '注释/取消注释',
+        action: shortcutActionsI18n[currentLang.value]['注释/取消注释'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + /' : '⌘ + /'),
-        description: '切换行注释',
+        description: shortcutActionsI18n[currentLang.value]['注释/取消注释'].description,
       },
     ],
   },
   {
-    title: '终端和调试',
-    description: '终端操作和调试功能',
+    title: groupsI18n[currentLang.value]['终端和调试'].title,
+    description: groupsI18n[currentLang.value]['终端和调试'].description,
     shortcuts: [
       {
-        action: '打开/关闭终端',
+        action: shortcutActionsI18n[currentLang.value]['打开/关闭终端'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + `' : '⌘ + `'),
-        description: '切换集成终端的显示',
+        description: shortcutActionsI18n[currentLang.value]['打开/关闭终端'].description,
       },
       {
-        action: '新建终端',
+        action: shortcutActionsI18n[currentLang.value]['新建终端'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Shift + `' : '⌘ + Shift + `'),
-        description: '创建新的终端实例',
+        description: shortcutActionsI18n[currentLang.value]['新建终端'].description,
       },
       {
-        action: '开始调试',
+        action: shortcutActionsI18n[currentLang.value]['开始调试'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'F5' : 'F5'),
-        description: '启动调试会话',
+        description: shortcutActionsI18n[currentLang.value]['开始调试'].description,
       },
       {
-        action: '调试步进',
+        action: shortcutActionsI18n[currentLang.value]['调试步进'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'F11' : 'F11'),
-        description: '调试时单步执行',
+        description: shortcutActionsI18n[currentLang.value]['调试步进'].description,
       },
       {
-        action: '调试步过',
+        action: shortcutActionsI18n[currentLang.value]['调试步过'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'F10' : 'F10'),
-        description: '调试时跳过当前行',
+        description: shortcutActionsI18n[currentLang.value]['调试步过'].description,
       },
       {
-        action: '继续/暂停',
+        action: shortcutActionsI18n[currentLang.value]['继续/暂停'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'F5' : 'F5'),
-        description: '继续执行或暂停调试',
+        description: shortcutActionsI18n[currentLang.value]['继续/暂停'].description,
       },
     ],
   },
   {
-    title: 'Git 操作',
-    description: '版本控制相关操作',
+    title: groupsI18n[currentLang.value]['Git 操作'].title,
+    description: groupsI18n[currentLang.value]['Git 操作'].description,
     shortcuts: [
       {
-        action: '显示 Git 面板',
+        action: shortcutActionsI18n[currentLang.value]['显示 Git 面板'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Shift + G' : '⌘ + Shift + G'),
-        description: '打开源代码管理面板',
+        description: shortcutActionsI18n[currentLang.value]['显示 Git 面板'].description,
       },
       {
-        action: '提交更改',
+        action: shortcutActionsI18n[currentLang.value]['提交更改'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Enter' : '⌘ + Return'),
-        description: '在源代码管理面板中提交更改',
+        description: shortcutActionsI18n[currentLang.value]['提交更改'].description,
       },
       {
-        action: '刷新 Git 状态',
+        action: shortcutActionsI18n[currentLang.value]['刷新 Git 状态'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Shift + R' : '⌘ + Shift + R'),
-        description: '刷新 Git 状态和更改',
+        description: shortcutActionsI18n[currentLang.value]['刷新 Git 状态'].description,
       },
       {
-        action: '显示 Git 历史',
+        action: shortcutActionsI18n[currentLang.value]['显示 Git 历史'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Shift + H' : '⌘ + Shift + H'),
-        description: '查看文件或行的 Git 历史',
+        description: shortcutActionsI18n[currentLang.value]['显示 Git 历史'].description,
       },
     ],
   },
   {
-    title: '窗口管理',
-    description: '编辑器窗口和面板管理',
+    title: groupsI18n[currentLang.value]['窗口管理'].title,
+    description: groupsI18n[currentLang.value]['窗口管理'].description,
     shortcuts: [
       {
-        action: '新建窗口',
+        action: shortcutActionsI18n[currentLang.value]['新建窗口'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Shift + N' : '⌘ + Shift + N'),
-        description: '打开新的编辑器窗口',
+        description: shortcutActionsI18n[currentLang.value]['新建窗口'].description,
       },
       {
-        action: '关闭窗口',
+        action: shortcutActionsI18n[currentLang.value]['关闭窗口'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + W' : '⌘ + W'),
-        description: '关闭当前编辑器窗口',
+        description: shortcutActionsI18n[currentLang.value]['关闭窗口'].description,
       },
       {
-        action: '切换侧边栏',
+        action: shortcutActionsI18n[currentLang.value]['切换侧边栏'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + B' : '⌘ + B'),
-        description: '显示/隐藏侧边栏',
+        description: shortcutActionsI18n[currentLang.value]['切换侧边栏'].description,
       },
       {
-        action: '切换全屏',
+        action: shortcutActionsI18n[currentLang.value]['切换全屏'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'F11' : '⌃ + ⌘ + F'),
-        description: '切换编辑器全屏模式',
+        description: shortcutActionsI18n[currentLang.value]['切换全屏'].description,
       },
     ],
   },
   {
-    title: '搜索和替换',
-    description: '文本搜索和替换功能',
+    title: groupsI18n[currentLang.value]['搜索和替换'].title,
+    description: groupsI18n[currentLang.value]['搜索和替换'].description,
     shortcuts: [
       {
-        action: '查找',
+        action: shortcutActionsI18n[currentLang.value]['查找'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + F' : '⌘ + F'),
-        description: '在当前文件中搜索',
+        description: shortcutActionsI18n[currentLang.value]['查找'].description,
       },
       {
-        action: '替换',
+        action: shortcutActionsI18n[currentLang.value]['替换'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + H' : '⌘ + H'),
-        description: '在当前文件中替换',
+        description: shortcutActionsI18n[currentLang.value]['替换'].description,
       },
       {
-        action: '全局搜索',
+        action: shortcutActionsI18n[currentLang.value]['全局搜索'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Shift + F' : '⌘ + Shift + F'),
-        description: '在所有文件中搜索',
+        description: shortcutActionsI18n[currentLang.value]['全局搜索'].description,
       },
       {
-        action: '全局替换',
+        action: shortcutActionsI18n[currentLang.value]['全局替换'].action,
         shortcut: computed(() => selectedOS.value === 'windows' ? 'Ctrl + Shift + H' : '⌘ + Shift + H'),
-        description: '在所有文件中替换',
+        description: shortcutActionsI18n[currentLang.value]['全局替换'].description,
       },
     ],
   },
@@ -347,43 +1077,40 @@ const filteredGroups = computed(() => {
 </script>
 
 <template>
-  <div class="container">
+  <div class="shortcuts-container">
     <div class="hero-section">
-      <h1>Cursor 键盘快捷键速查表</h1>
+      <h1>{{ titleI18n[currentLang].title }}</h1>
       <p class="hero-description">
-        掌握这些快捷键，显著提升您的编程效率。本速查表涵盖了 Cursor 的所有核心功能，
-        包括 AI 代码补全、内联编辑、聊天功能等。
+        {{ titleI18n[currentLang].description }}
       </p>
-
-      <div class="os-selector">
-        <button
-          :class="{ active: selectedOS === 'windows' }"
-          @click="selectedOS = 'windows'"
-        >
-          Windows / Linux
-        </button>
-        <button
-          :class="{ active: selectedOS === 'mac' }"
-          @click="selectedOS = 'mac'"
-        >
-          macOS
-        </button>
-      </div>
     </div>
-
-    <div class="search-section">
-      <input
-        v-model="searchTerm"
-        type="text"
-        placeholder="搜索快捷键..."
-      >
-      <button
-        v-if="searchTerm"
-        class="clear-search"
-        @click="searchTerm = ''"
-      >
-        ✕
-      </button>
+    <div class="controls-wrapper">
+      <div class="controls">
+        <div class="os-switch">
+          <span class="os-label">{{ i18n[currentLang].osSwitch }}</span>
+          <div class="os-buttons">
+            <button
+              :class="{ active: selectedOS === 'windows' }"
+              @click="selectedOS = 'windows'"
+            >
+              {{ i18n[currentLang].windows }}
+            </button>
+            <button
+              :class="{ active: selectedOS === 'mac' }"
+              @click="selectedOS = 'mac'"
+            >
+              {{ i18n[currentLang].mac }}
+            </button>
+          </div>
+        </div>
+        <div class="search">
+          <input
+            v-model="searchTerm"
+            type="text"
+            :placeholder="i18n[currentLang].search"
+          >
+        </div>
+      </div>
     </div>
 
     <div class="shortcuts-grid">
@@ -478,7 +1205,7 @@ const filteredGroups = computed(() => {
 }
 
 /* Make our container full width */
-.container {
+.shortcuts-container {
   width: 100vw !important;
   max-width: 100vw !important;
   margin: 0 !important;
@@ -494,128 +1221,96 @@ const filteredGroups = computed(() => {
   margin-bottom: 0 !important;
 }
 
-.hero-section {
-  text-align: center;
-  margin: 0;
-  padding: 4rem 2rem;
+.controls-wrapper {
   background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
-  color: white;
-  position: relative;
-  overflow: hidden;
+  padding: 1.5rem 0;
+  margin-top: -2rem;
   border-radius: 0 0 2rem 2rem;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
 }
 
-.hero-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%),
-    linear-gradient(-45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%);
-  background-size: 60px 60px;
-  opacity: 0.1;
-}
-
-.hero-section h1 {
-  font-size: 2.75rem;
-  margin-bottom: 1rem;
-  border: none;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  line-height: 1.2;
-  background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.8));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hero-description {
-  max-width: 600px;
-  margin: 0 auto 2rem;
-  opacity: 0.9;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.os-selector {
+.controls {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: -2.5rem;
-  transform: translateY(1.25rem);
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
 }
 
-.os-selector button {
-  padding: 1rem 3rem;
-  border-radius: 1rem;
+.os-switch {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  min-width: 300px;
+}
+
+.os-label {
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.os-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.os-switch button {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
   border: 2px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.1);
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-weight: 600;
-  font-size: 1rem;
-  backdrop-filter: blur(10px);
+  font-weight: 500;
+  font-size: 0.9rem;
+  min-width: 100px;
 }
 
-.os-selector button:hover {
+.os-switch button:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
 }
 
-.os-selector button.active {
+.os-switch button.active {
   background: white;
   color: var(--vp-c-brand-1);
   border-color: white;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.search-section {
-  position: relative;
-  margin: 0 auto 4rem;
-  max-width: 700px;
-  padding: 0 2rem;
-  transform: translateY(2rem);
+.search {
+  flex: 1;
+  max-width: 500px;
 }
 
-.search-section input {
+.search input {
   width: 100%;
-  padding: 1.5rem 2rem;
-  border-radius: 1.25rem;
-  border: 2px solid var(--vp-c-divider);
-  font-size: 1.1rem;
-  background: var(--vp-c-bg);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 0.9rem;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
-.search-section input:focus {
-  border-color: var(--vp-c-brand-1);
-  box-shadow: 0 0 0 4px rgba(var(--vp-c-brand-1), 0.1);
+.search input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.search input:focus {
   outline: none;
-}
-
-.clear-search {
-  position: absolute;
-  right: 3rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--vp-c-text-2);
-  padding: 0.5rem;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-  font-size: 1.2rem;
-}
-
-.clear-search:hover {
-  background: var(--vp-c-bg-mute);
-  color: var(--vp-c-text-1);
+  border-color: white;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .shortcuts-grid {
@@ -758,7 +1453,7 @@ const filteredGroups = computed(() => {
     padding: 1.5rem;
   }
 
-  .hero-section h1 {
+  .controls h1 {
     font-size: 2.25rem;
   }
 }
@@ -770,33 +1465,22 @@ const filteredGroups = computed(() => {
     padding: 1rem;
   }
 
-  .hero-section {
-    padding: 3rem 1rem;
-    border-radius: 0 0 1.5rem 1.5rem;
+  .controls {
+    padding: 0 1rem;
   }
 
-  .hero-section h1 {
-    font-size: 2rem;
-  }
-
-  .hero-description {
-    font-size: 0.9rem;
-  }
-
-  .search-section {
-    padding: 0 1.5rem;
-    margin-bottom: 3rem;
-  }
-
-  .os-selector {
+  .os-buttons {
     flex-direction: column;
-    padding: 0 2rem;
-    margin-bottom: -2rem;
+    width: 100%;
   }
 
-  .os-selector button {
+  .os-switch button {
     width: 100%;
-    padding: 0.875rem 2rem;
+    min-width: 200px;
+  }
+
+  .search input {
+    font-size: 0.9rem;
   }
 
   .shortcut-item {
@@ -813,11 +1497,54 @@ const filteredGroups = computed(() => {
   .shortcut-info {
     margin-right: 0;
   }
+
+  .hero-section {
+    padding: 2rem 1rem 3rem;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .controls-wrapper {
+    margin-top: -1.5rem;
+    padding: 1rem 0;
+  }
+
+  .controls {
+    flex-direction: column;
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+
+  .os-switch {
+    flex-direction: column;
+    min-width: unset;
+    width: 100%;
+  }
+
+  .os-buttons {
+    width: 100%;
+  }
+
+  .os-switch button {
+    flex: 1;
+  }
+
+  .search {
+    width: 100%;
+    max-width: unset;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .shortcut-group,
-  .os-selector button,
+  .os-switch button,
   .shortcut-item {
     transition: none;
   }
@@ -884,5 +1611,62 @@ const filteredGroups = computed(() => {
 :deep(.VPContent) {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+}
+
+.hero-section {
+  text-align: center;
+  padding: 3rem 2rem 4rem;
+  background: linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 150%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% -50%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));
+  pointer-events: none;
+}
+
+.hero-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0.85));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero-description {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  opacity: 0.9;
+  position: relative;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 </style>

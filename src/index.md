@@ -20,7 +20,7 @@ head:
       content: Learn Cursor提供最全面的Cursor教程，从安装设置到高级应用，深入讲解AI编程助手的所有功能与使用技巧。无论你是新手入门还是寻求进阶，都能在这里找到专业指南。
 
 hero:
-  name: Cursor AI
+  name: Learn Cursor
   text: 非官方教程社区
   tagline: 提供全面、实用的 Cursor AI 学习教程，助力想做自己产品的你，做出属于自己的产品。
   image:
@@ -29,32 +29,32 @@ hero:
   actions:
     - theme: brand
       text: 开始阅读教程
-      link: /wiki/user-guide/cursor-introduction
+      link: /wiki/user-guide/programming-basics-for-beginners/
     - theme: alt
       text: 官方文档
       link: /docs-zh/
 
 features:
-  - icon: 📖
-    title: Cursor 教程
+  - icon: ⚡️
+    title: 认识 Cursor AI
     details: 全面的 Cursor 掌握指南，从入门到精通的系统学习路径
-    link: /wiki/user-guide/cursor-introduction
+    link: /wiki/user-guide/programming-basics-for-beginners/
+  - icon: ✨
+    title: Cursor AI案例分享
+    details: 跟着行业大佬的分享，学习Cursor AI 编程的乐趣,感受AI编程的魅力
+    link: /example/
+  - icon: 📖
+    title: 博客文章
+    details: 精心策划的文章内容，图文并茂的学习体验，快速上手 Cursor
+    link: /blog/
   - icon: ⌨️
     title: Cursor 快捷键
     details: 提升效率的键盘快捷键速查表，让你的编程更加高效流畅
     link: /shortcuts/
-  - icon: ✨
-    title: Cursor 核心功能
-    details: 探索 Cursor 的强大功能，掌握 AI 辅助编程的精髓
-    link: /docs-zh/
   - icon: 📋
     title: Cursor 规则
     details: 学习如何为您的工作流程自定义 Cursor，打造专属的编程体验
     link: /rules/
-  - icon: 🎥
-    title: 博客文章
-    details: 精心策划的文章内容，图文并茂的学习体验，快速上手 Cursor
-    link: /blog/
   - icon: 🧪
     title: ChatGPT 合租
     details: 优质的 ChatGPT 账号合租服务，低成本体验 AI 编程助手
@@ -62,7 +62,7 @@ features:
 ---
 
 <HomeContent
-  tip="本站是一个由个人开发者维护的非官方 Cursor AI 中文教程网站，内容来自互联网公开资源的整理与优化。我们致力于为中文开发者提供高质量的 Cursor AI 学习资源。"
+  tip="本站是一个由个人开发者维护的非官方 Cursor AI 教程网站，内容来自互联网公开资源的整理与优化。我们致力于为中文开发者提供高质量的 Cursor AI 学习资源。"
   :warning="[
     'Cursor AI 为 Cursor, Inc. 的商标',
     '本站为非官方社区网站，与 Cursor, Inc. 没有任何关联',

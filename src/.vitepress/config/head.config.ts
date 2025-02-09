@@ -20,7 +20,7 @@ export const head: UserConfig['head'] = [
     'script',
     {
       async: '',
-      src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7080386900939798',
+      src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6152848695010247',
       crossorigin: 'anonymous',
     },
   ],

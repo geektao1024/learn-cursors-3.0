@@ -25,8 +25,8 @@ export default defineConfig({
   cleanUrls: true,
 
   srcExclude: ['wiki/index.md', '**/README.md', '**/_template.md'],
-  outDir: '../dist',
-  cacheDir: '../cache',
+  outDir: 'dist',
+  cacheDir: '.vitepress/cache',
   appearance: true,
   lastUpdated: true,
 
@@ -294,16 +294,19 @@ export default defineConfig({
       noExternal: ['element-plus'],
     },
     build: {
+      target: 'esnext',
+      minify: 'terser',
+      cssCodeSplit: true,
       rollupOptions: {
         output: {
-          assetFileNames: 'assets/[name].[ext]',
-          chunkFileNames: 'assets/[name].[hash].js',
-          entryFileNames: 'assets/[name].[hash].js',
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              return 'vendor'
+            }
+          },
         },
       },
-      cssCodeSplit: true,
       sourcemap: true,
-      minify: 'terser',
       terserOptions: {
         compress: {
           drop_console: true,

@@ -60,8 +60,8 @@ export default defineConfig({
               },
               'query-input': 'required name=search_term_string',
             },
-            'dateModified': new Date().toISOString(),
-            'datePublished': '2024-01-01T00:00:00.000Z',
+            'dateModified': new Date().toISOString().split('T')[0],
+            'datePublished': '2024-01-01',
           },
           {
             '@type': 'Organization',

@@ -11,7 +11,7 @@ hero:
 features:
   - title: ""
     details: |
-      <img src="../example/images/Cursor-coze.webp" alt="Article Screenshot" />
+      <img src="/example/images/Cursor-coze.png" alt="Article Screenshot" />
       <h3>AI Programming Best Practices: Building a Web Content Extraction Plugin with Cursor + Coze Workflow</h3>
       <div class="meta-info">
         <span class="author">👤 Author: Yeadon</span>
@@ -27,7 +27,7 @@ features:
     link: ./cursor-coze-web-content-extractor
   - title: ""
     details: |
-      <img src="../example/images/Cursor-weixin.webp" alt="Quick Start" />
+      <img src="/example/images/Cursor-weixin.png" alt="Quick Start" />
       <h3>Created a WeChat Mini Program with Zero Programming Background Using Cursor</h3>
       <div class="meta-info">
         <span class="author">👤 Author: Bai Jiuling</span>

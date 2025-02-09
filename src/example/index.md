@@ -11,7 +11,7 @@ hero:
 features:
   - title: ""
     details: |
-      <img src="./images/Cursor-coze.png" alt="Cursor+Coze工作流" />
+      <img src="/images/Cursor-coze.png" alt="Cursor+Coze工作流" />
       <h3>AI 编程最佳实践：Cursor + Coze 工作流打造网页内容提取插件</h3>
       <div class="meta-info">
         <span class="author">👤 作者：Yeadon</span>
@@ -27,7 +27,7 @@ features:
     link: ./cursor-coze-web-content-extractor
   - title: ""
     details: |
-      <img src="./images/Cursor-weixin.png" alt="用Cursor开发微信小程序" />
+      <img src="/images/Cursor-weixin.png" alt="用Cursor开发微信小程序" />
       <h3>零编程基础，用cursor做了一个微信小程序</h3>
       <div class="meta-info">
         <span class="author">👤 作者：白九龄</span>

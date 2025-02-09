@@ -1,9 +1,9 @@
 {
-  "buildCommand": "pnpm build",
-  "outputDirectory": "src/.vitepress/dist",
+  "buildCommand": "pnpm install && pnpm run build",
+  "outputDirectory": "dist",
   "devCommand": "pnpm dev",
   "installCommand": "pnpm install",
-  "framework": null,
+  "framework": "vitepress",
   "builds": [
     {
       "src": "package.json",

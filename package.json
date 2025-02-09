@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vitepress dev src",
-    "build": "vitepress build src",
+    "build": "rm -rf dist && rm -rf src/.vitepress/.temp && vitepress build src",
     "build:tsc": "vue-tsc",
     "preview": "vitepress preview src",
     "lint": "eslint . --fix",

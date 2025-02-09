@@ -23,6 +23,7 @@ export default defineConfig({
   lang: 'zh-CN',
   base: '/',
   cleanUrls: true,
+  logo: '/logo.png',
 
   srcExclude: ['wiki/index.md', '**/README.md', '**/_template.md'],
   outDir: '../dist',

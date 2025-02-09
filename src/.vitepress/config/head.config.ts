@@ -15,6 +15,15 @@ export const head: UserConfig['head'] = [
   ['meta', { property: 'og:url', content: ogUrl }],
   ['meta', { property: 'og:description', content: ogDescription }],
   ['meta', { name: 'theme-color', content: '#646cff' }],
+  // Google AdSense
+  [
+    'script',
+    {
+      async: '',
+      src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7080386900939798',
+      crossorigin: 'anonymous',
+    },
+  ],
   // AMP自动广告脚本
   [
     'script',

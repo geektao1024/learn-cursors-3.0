@@ -1,13 +1,4 @@
 {
-  "buildCommand": "pnpm install && pnpm run build",
-  "outputDirectory": "dist",
-  "devCommand": "pnpm dev",
-  "installCommand": "pnpm install",
-  "framework": "vitepress",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build"
-    }
-  ]
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist"
 }

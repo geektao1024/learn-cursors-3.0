@@ -22,7 +22,7 @@ cd my-portfolio
 npx create-next-app@latest . --typescript --tailwind --app --src-dir
 ```
 
-推荐的项目结构如下：
+推荐的最小项目结构如下：
 
 ```
 my-portfolio/

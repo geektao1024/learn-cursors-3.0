@@ -25,7 +25,7 @@ export default defineConfig({
   cleanUrls: true,
 
   srcExclude: ['wiki/index.md', '**/README.md', '**/_template.md'],
-  outDir: 'dist',
+  outDir: '../dist',
   cacheDir: '.vitepress/cache',
   appearance: true,
   lastUpdated: true,

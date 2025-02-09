@@ -1,6 +1,6 @@
 {
-  "buildCommand": "rm -rf src/dist src/.vitepress/cache && pnpm install && pnpm build",
-  "outputDirectory": "src/dist",
+  "buildCommand": "rm -rf dist src/.vitepress/cache && pnpm install && pnpm build",
+  "outputDirectory": "dist",
   "framework": "vite",
   "installCommand": "pnpm install",
   "builds": [

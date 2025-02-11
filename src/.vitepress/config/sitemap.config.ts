@@ -54,6 +54,6 @@ export const sitemap = {
       }
     })
   },
-  xslUrl: 'https://learn-cursor.com/sitemap.xsl',
+  xslUrl: '/sitemap.xsl',
   lastmodDateOnly: false,
 }

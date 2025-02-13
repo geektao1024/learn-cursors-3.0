@@ -35,11 +35,19 @@ const AD_CONFIG = {
     retryTimes: 3,
     retryInterval: 5000,
   },
+  amp: {
+    scriptId: 'amp-auto-ads',
+    scriptSrc: 'https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js',
+    clientId: 'ca-pub-6152848695010247',
+    retryTimes: 3,
+    retryInterval: 5000,
+  },
 }
 
 // 广告组件配置
 const adComponents = {
   GoogleAdsense: () => import('./components/GoogleAdsense.vue'),
+  AmpAds: () => import('./components/AmpAds.vue'),
 }
 
 // 检查广告拦截器
@@ -177,10 +185,17 @@ export default {
             components.push(h(LanguageDetectorComponent))
           }
           if (import.meta.env.PROD) {
-            const { GoogleAdsense } = adComponents
+            const { GoogleAdsense, AmpAds } = adComponents
             components.push(
               h(defineAsyncComponent({
                 loader: GoogleAdsense,
+                timeout: 5000,
+                suspensible: false,
+                loadingComponent: () => null,
+                errorComponent: () => null,
+              })),
+              h(defineAsyncComponent({
+                loader: AmpAds,
                 timeout: 5000,
                 suspensible: false,
                 loadingComponent: () => null,

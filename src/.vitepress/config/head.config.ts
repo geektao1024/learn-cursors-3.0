@@ -32,15 +32,6 @@ export const head: UserConfig['head'] = [
       enable_page_level_ads: true
     });`,
   ],
-  // AMP自动广告脚本
-  [
-    'script',
-    {
-      'async': '',
-      'custom-element': 'amp-auto-ads',
-      'src': 'https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js',
-    },
-  ],
   // 新的谷歌分析代码
   [
     'script',

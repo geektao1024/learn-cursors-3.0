@@ -16,7 +16,7 @@ export const sitemap = {
       // 确定页面类型和优先级
       const isHomePage = item.url === '/'
       const isMainSection = /^\/(?:docs-zh|blog|wiki|example|rules|shortcuts)\/?$/.test(item.url)
-      const isArticle = item.url.split('/').length > 2
+      const isArticle = item.url.split('/').length > 2 && !item.url.endsWith('/')
 
       // 设置更新频率
       let changefreq: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never' = 'monthly'

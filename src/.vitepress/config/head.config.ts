@@ -24,6 +24,14 @@ export const head: UserConfig['head'] = [
       crossorigin: 'anonymous',
     },
   ],
+  [
+    'script',
+    {},
+    `(adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-6152848695010247",
+      enable_page_level_ads: true
+    });`,
+  ],
   // AMP自动广告脚本
   [
     'script',

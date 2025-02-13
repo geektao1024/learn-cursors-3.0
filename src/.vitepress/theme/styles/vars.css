@@ -173,3 +173,11 @@ html.dark {
 
   --border-color: #3f3f46;
 }
+
+.doc-after-container {
+  margin-top: 2rem;
+}
+
+.google-ad-wrapper {
+  margin: 2rem 0;
+}

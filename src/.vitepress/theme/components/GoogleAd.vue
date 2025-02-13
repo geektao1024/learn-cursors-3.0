@@ -1,8 +1,10 @@
 <!-- 基础广告组件 -->
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { nextTick, onMounted } from 'vue'
 
-onMounted(() => {
+onMounted(async () => {
+  // 等待下一个DOM更新周期
+  await nextTick()
   try {
     // @ts-expect-error: AdSense global object
     (window.adsbygoogle = window.adsbygoogle || []).push({})

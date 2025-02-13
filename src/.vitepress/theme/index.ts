@@ -79,7 +79,10 @@ export default {
   },
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
-      'doc-after': () => h('div', [h(GoogleAd), h(DocFooter)]),
+      'doc-after': () => h('div', { class: 'doc-after-container' }, [
+        h('div', { class: 'google-ad-wrapper' }, [h(GoogleAd)]),
+        h(DocFooter),
+      ]),
       'layout-top': () => {
         if (typeof window !== 'undefined') {
           const components: VNode[] = []

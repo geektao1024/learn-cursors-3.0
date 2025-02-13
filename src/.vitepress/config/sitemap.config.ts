@@ -38,15 +38,16 @@ export const sitemap = {
 
       // 构建语言版本URL
       const urlWithoutLang = item.url.replace(/^\/(?:en|ja)/, '')
+      const urlWithHtml = isArticle ? `${item.url}.html` : item.url
       const alternateRefs = [
-        { href: `https://learn-cursor.com${urlWithoutLang}`, hreflang: 'zh-CN' },
-        { href: `https://learn-cursor.com/en${urlWithoutLang}`, hreflang: 'en' },
-        { href: `https://learn-cursor.com/ja${urlWithoutLang}`, hreflang: 'ja' },
-        { href: `https://learn-cursor.com${urlWithoutLang}`, hreflang: 'x-default' },
+        { href: `https://learn-cursor.com${isArticle ? `${urlWithoutLang}.html` : urlWithoutLang}`, hreflang: 'zh-CN' },
+        { href: `https://learn-cursor.com/en${isArticle ? `${urlWithoutLang}.html` : urlWithoutLang}`, hreflang: 'en' },
+        { href: `https://learn-cursor.com/ja${isArticle ? `${urlWithoutLang}.html` : urlWithoutLang}`, hreflang: 'ja' },
+        { href: `https://learn-cursor.com${isArticle ? `${urlWithoutLang}.html` : urlWithoutLang}`, hreflang: 'x-default' },
       ]
 
       return {
-        url: item.url,
+        url: urlWithHtml,
         lastmod: new Date().toISOString(),
         changefreq,
         priority,

@@ -17,6 +17,7 @@ import { messages } from '../i18n/messages'
 import BlogList from './components/BlogList.vue'
 import BlogPost from './components/BlogPost.vue'
 import DocFooter from './components/DocFooter.vue'
+import GoogleAd from './components/GoogleAd.vue'
 import HomeContent from './components/HomeContent.vue'
 import RulesPage from './components/RulesPage.vue'
 
@@ -51,6 +52,7 @@ export default {
     app.component('BlogList', BlogList)
     app.component('BlogPost', BlogPost)
     app.component('DocFooter', DocFooter)
+    app.component('GoogleAd', GoogleAd)
     app.component('HomeContent', HomeContent)
     app.component('RulesPage', RulesPage)
 
@@ -77,7 +79,7 @@ export default {
   },
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
-      'doc-after': () => h(DocFooter),
+      'doc-after': () => h('div', [h(GoogleAd), h(DocFooter)]),
       'layout-top': () => {
         if (typeof window !== 'undefined') {
           const components: VNode[] = []

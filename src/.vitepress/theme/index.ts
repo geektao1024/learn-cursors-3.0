@@ -10,6 +10,7 @@ import ElementPlus from 'element-plus'
 // Vue & VitePress
 import DefaultTheme from 'vitepress/theme'
 import { defineAsyncComponent, h } from 'vue'
+import { messages } from '../i18n/messages'
 
 // Components
 import BlogList from './components/BlogList.vue'
@@ -32,6 +33,18 @@ const GoogleAdsense = typeof window !== 'undefined' && import.meta.env.PROD
   ? defineAsyncComponent(() => import('./components/GoogleAdsense.vue'))
   : null
 
+// 注册语言检测组件
+const LanguageDetectorComponent = typeof window !== 'undefined'
+  ? defineAsyncComponent({
+      loader: () => import('../components/LanguageDetector.vue'),
+      timeout: 3000,
+      errorComponent: () => null,
+      onError: (error) => {
+        console.error('[LanguageDetector] Failed to load:', error)
+      },
+    })
+  : null
+
 // 定义主题配置
 export default {
   extends: DefaultTheme,
@@ -45,6 +58,21 @@ export default {
     app.component('DocFooter', DocFooter)
     app.component('HomeContent', HomeContent)
     app.component('RulesPage', RulesPage)
+
+    // 注册语言检测组件
+    if (typeof window !== 'undefined') {
+      app.component('LanguageDetector', LanguageDetectorComponent)
+    }
+
+    // 添加i18n支持
+    app.config.globalProperties.$t = (key: string, params = {}) => {
+      const path = key.split('.')
+      let value = messages[app.config.globalProperties.$lang] || messages.en
+      for (const k of path) {
+        value = value[k]
+      }
+      return value.replace(/\{(\w+)\}/g, (_, k) => params[k] || '')
+    }
 
     // 仅在生产环境加载广告组件
     if (typeof window !== 'undefined' && import.meta.env.PROD) {
@@ -65,10 +93,11 @@ export default {
     return h(DefaultTheme.Layout, null, {
       'doc-after': () => h(DocFooter),
       'layout-top': () => {
-        if (typeof window !== 'undefined' && import.meta.env.PROD) {
+        if (typeof window !== 'undefined' && LanguageDetectorComponent) {
           return [
-            GoogleAdsense && h(GoogleAdsense),
-            AmpAds && h(AmpAds),
+            h(LanguageDetectorComponent),
+            import.meta.env.PROD && GoogleAdsense && h(GoogleAdsense),
+            import.meta.env.PROD && AmpAds && h(AmpAds),
           ].filter(Boolean)
         }
         return []

@@ -1,35 +1,44 @@
 <script setup lang="ts">
+import DefaultTheme from 'vitepress/theme'
+import LanguageDetector from '../components/LanguageDetector.vue'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import './custom.css'
+
+const { Layout } = DefaultTheme
 </script>
 
 <template>
-  <div class="theme-container">
-    <header class="navbar">
-      <div class="navbar-left">
-        <a class="logo" href="/">
-          <img src="/logo.png" alt="Cursor Tutorial">
-        </a>
-        <nav class="nav-links">
-          <slot name="nav-links" />
-        </nav>
-      </div>
-      <div class="navbar-right">
-        <LanguageSwitcher />
-        <div class="social-links">
-          <slot name="social-links" />
+  <Layout>
+    <template #layout-top>
+      <LanguageDetector />
+    </template>
+    <div class="theme-container">
+      <header class="navbar">
+        <div class="navbar-left">
+          <a class="logo" href="/">
+            <img src="/logo.png" alt="Cursor Tutorial">
+          </a>
+          <nav class="nav-links">
+            <slot name="nav-links" />
+          </nav>
         </div>
-      </div>
-    </header>
-    <main class="main-content">
-      <div class="content-container">
-        <slot />
-      </div>
-    </main>
-    <footer class="footer">
-      <slot name="footer" />
-    </footer>
-  </div>
+        <div class="navbar-right">
+          <LanguageSwitcher />
+          <div class="social-links">
+            <slot name="social-links" />
+          </div>
+        </div>
+      </header>
+      <main class="main-content">
+        <div class="content-container">
+          <slot />
+        </div>
+      </main>
+      <footer class="footer">
+        <slot name="footer" />
+      </footer>
+    </div>
+  </Layout>
 </template>
 
 <style>

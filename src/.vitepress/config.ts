@@ -318,6 +318,13 @@ export default defineConfig({
     optimizeDeps: {
       exclude: ['@vueuse/core'],
     },
+    vue: {
+      template: {
+        compilerOptions: {
+          isCustomElement: tag => tag === 'Teleport',
+        },
+      },
+    },
   },
 
   sitemap,

@@ -10,7 +10,7 @@ import ElementPlus from 'element-plus'
 
 // Vue & VitePress
 import DefaultTheme from 'vitepress/theme'
-import { defineAsyncComponent, h } from 'vue'
+import { defineAsyncComponent, h, onMounted } from 'vue'
 import { messages } from '../i18n/messages'
 
 // Components
@@ -26,13 +26,78 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import './styles/vars.css'
 import './custom.css'
 
-// 仅在生产环境导入广告组件
-const AmpAds = import.meta.env.PROD && typeof window !== 'undefined'
-  ? defineAsyncComponent(() => import('./components/AmpAds.vue'))
-  : null
-const GoogleAdsense = import.meta.env.PROD && typeof window !== 'undefined'
-  ? defineAsyncComponent(() => import('./components/GoogleAdsense.vue'))
-  : null
+// 广告配置
+const AD_CONFIG = {
+  adsense: {
+    scriptId: 'google-adsense',
+    scriptSrc: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+    clientId: 'ca-pub-6152848695010247',
+    retryTimes: 3,
+    retryInterval: 5000,
+  },
+}
+
+// 广告组件配置
+const adComponents = {
+  GoogleAdsense: () => import('./components/GoogleAdsense.vue'),
+}
+
+// 检查广告拦截器
+function checkAdBlocker(): Promise<boolean> {
+  return new Promise((resolve) => {
+    const testAd = document.createElement('div')
+    testAd.innerHTML = '&nbsp;'
+    testAd.className = 'adsbox'
+    testAd.style.cssText = 'position: absolute; left: -999px;'
+    document.body.appendChild(testAd)
+
+    window.setTimeout(() => {
+      const isBlocked = testAd.offsetHeight === 0
+      testAd.remove()
+      resolve(isBlocked)
+    }, 100)
+  })
+}
+
+// 加载广告脚本
+async function loadAdScript(config: typeof AD_CONFIG.adsense, retryCount = 0): Promise<void> {
+  try {
+    // 检查是否已加载
+    if (document.getElementById(config.scriptId)) {
+      return
+    }
+
+    // 检查广告拦截器
+    const isBlocked = await checkAdBlocker()
+    if (isBlocked) {
+      return
+    }
+
+    // 加载脚本
+    const script = document.createElement('script')
+    script.id = config.scriptId
+    script.src = config.scriptSrc
+    script.async = true
+    script.defer = true
+    script.setAttribute('data-cfasync', 'false')
+    script.setAttribute('crossorigin', 'anonymous')
+    script.setAttribute('data-ad-client', config.clientId)
+
+    // 错误处理和重试
+    script.onerror = () => {
+      if (retryCount < config.retryTimes) {
+        setTimeout(() => {
+          loadAdScript(config, retryCount + 1)
+        }, config.retryInterval)
+      }
+    }
+
+    document.head.appendChild(script)
+  }
+  catch (error) {
+    console.error('[Ad] Error:', error)
+  }
+}
 
 // 注册语言检测组件
 const LanguageDetectorComponent = typeof window !== 'undefined'
@@ -77,24 +142,29 @@ export default {
       return value?.replace(/\{(\w+)\}/g, (_, k) => params[k] || '') || key
     }
 
-    // 仅在生产环境加载广告组件
+    // 仅在生产环境和客户端加载广告组件
     if (typeof window !== 'undefined' && import.meta.env.PROD) {
-      if (AmpAds)
-        app.component('AmpAds', AmpAds)
-      if (GoogleAdsense)
-        app.component('GoogleAdsense', GoogleAdsense)
+      // 异步注册广告组件
+      Object.entries(adComponents).forEach(([name, component]) => {
+        app.component(name, defineAsyncComponent({
+          loader: component,
+          timeout: 5000,
+          suspensible: false,
+          loadingComponent: () => null,
+          errorComponent: () => null,
+          onError: (error) => {
+            console.error(`[${name}] Failed to load:`, error)
+          },
+        }))
+      })
 
-      // 添加 Adsterra 广告脚本
-      try {
-        const script = document.createElement('script')
-        script.src = '//pl25383702.profitablecpmrate.com/b8386c573e08182e1305476b04b5e74e/invoke.js'
-        script.async = true
-        script.setAttribute('data-cfasync', 'false')
-        document.head.appendChild(script)
-      }
-      catch (error) {
-        console.error('[Adsterra] Failed to load:', error)
-      }
+      // 等待页面加载完成后再加载广告脚本
+      window.addEventListener('load', () => {
+        // 延迟加载以确保页面完全渲染
+        setTimeout(() => {
+          loadAdScript(AD_CONFIG.adsense)
+        }, 1000)
+      })
     }
   },
   Layout: () => {
@@ -107,10 +177,16 @@ export default {
             components.push(h(LanguageDetectorComponent))
           }
           if (import.meta.env.PROD) {
-            if (GoogleAdsense)
-              components.push(h(GoogleAdsense))
-            if (AmpAds)
-              components.push(h(AmpAds))
+            const { GoogleAdsense } = adComponents
+            components.push(
+              h(defineAsyncComponent({
+                loader: GoogleAdsense,
+                timeout: 5000,
+                suspensible: false,
+                loadingComponent: () => null,
+                errorComponent: () => null,
+              })),
+            )
           }
           return components.filter(Boolean)
         }
@@ -124,7 +200,7 @@ export default {
   setup() {
     // 客户端加载完成后执行
     if (typeof window !== 'undefined') {
-      window.addEventListener('load', async () => {
+      onMounted(() => {
         setupImagePreview()
       })
     }

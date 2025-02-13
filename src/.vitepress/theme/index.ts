@@ -13,7 +13,6 @@ import DefaultTheme from 'vitepress/theme'
 import { defineAsyncComponent, h, onMounted } from 'vue'
 import { messages } from '../i18n/messages'
 
-import AmpAds from './components/AmpAds.vue'
 // Components
 import BlogList from './components/BlogList.vue'
 import BlogPost from './components/BlogPost.vue'
@@ -54,7 +53,6 @@ export default {
     app.component('DocFooter', DocFooter)
     app.component('HomeContent', HomeContent)
     app.component('RulesPage', RulesPage)
-    app.component('AmpAds', AmpAds)
 
     // 注册语言检测组件
     if (typeof window !== 'undefined' && LanguageDetectorComponent) {
@@ -85,9 +83,6 @@ export default {
           const components: VNode[] = []
           if (LanguageDetectorComponent) {
             components.push(h(LanguageDetectorComponent))
-          }
-          if (import.meta.env.PROD) {
-            components.push(h(AmpAds))
           }
           return components.filter(Boolean)
         }

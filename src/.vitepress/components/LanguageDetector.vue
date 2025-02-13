@@ -128,15 +128,28 @@ function closeNotification(): void {
 
 // i18n helper
 function t(key: string, params: Record<string, string> = {}): string {
-  const path = key.split('.')
-  const targetLang = detectedLanguage.value || getCurrentPageLanguage()
-  let value = messages[targetLang] || messages.en
+  try {
+    const path = key.split('.')
+    const targetLang = detectedLanguage.value || getCurrentPageLanguage()
+    let value = messages[targetLang] || messages.en
 
-  for (const k of path) {
-    value = value[k]
+    for (const k of path) {
+      if (!value || typeof value !== 'object') {
+        return key
+      }
+      value = value[k]
+    }
+
+    if (typeof value !== 'string') {
+      return key
+    }
+
+    return value.replace(/\{(\w+)\}/g, (_, k) => params[k] || '')
   }
-
-  return value.replace(/\{(\w+)\}/g, (_, k) => params[k] || '')
+  catch (error) {
+    debug('Error in t function:', error)
+    return key
+  }
 }
 
 onMounted(async () => {
@@ -155,6 +168,8 @@ onMounted(async () => {
   }
   catch (error) {
     debug('Error in mounted hook:', error)
+    // 出错时使用默认语言
+    detectedLanguage.value = 'en'
   }
 })
 </script>

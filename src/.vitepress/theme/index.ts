@@ -3,6 +3,7 @@
 
 // Types
 import type { Theme } from 'vitepress'
+import type { VNode } from 'vue'
 
 // Element Plus
 import ElementPlus from 'element-plus'
@@ -26,10 +27,10 @@ import './styles/vars.css'
 import './custom.css'
 
 // 仅在生产环境导入广告组件
-const AmpAds = typeof window !== 'undefined' && import.meta.env.PROD
+const AmpAds = import.meta.env.PROD && typeof window !== 'undefined'
   ? defineAsyncComponent(() => import('./components/AmpAds.vue'))
   : null
-const GoogleAdsense = typeof window !== 'undefined' && import.meta.env.PROD
+const GoogleAdsense = import.meta.env.PROD && typeof window !== 'undefined'
   ? defineAsyncComponent(() => import('./components/GoogleAdsense.vue'))
   : null
 
@@ -38,6 +39,8 @@ const LanguageDetectorComponent = typeof window !== 'undefined'
   ? defineAsyncComponent({
       loader: () => import('../components/LanguageDetector.vue'),
       timeout: 3000,
+      suspensible: false,
+      loadingComponent: () => null,
       errorComponent: () => null,
       onError: (error) => {
         console.error('[LanguageDetector] Failed to load:', error)
@@ -60,7 +63,7 @@ export default {
     app.component('RulesPage', RulesPage)
 
     // 注册语言检测组件
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && LanguageDetectorComponent) {
       app.component('LanguageDetector', LanguageDetectorComponent)
     }
 
@@ -69,9 +72,9 @@ export default {
       const path = key.split('.')
       let value = messages[app.config.globalProperties.$lang] || messages.en
       for (const k of path) {
-        value = value[k]
+        value = value?.[k]
       }
-      return value.replace(/\{(\w+)\}/g, (_, k) => params[k] || '')
+      return value?.replace(/\{(\w+)\}/g, (_, k) => params[k] || '') || key
     }
 
     // 仅在生产环境加载广告组件
@@ -82,25 +85,36 @@ export default {
         app.component('GoogleAdsense', GoogleAdsense)
 
       // 添加 Adsterra 广告脚本
-      const script = document.createElement('script')
-      script.src = '//pl25383702.profitablecpmrate.com/b8386c573e08182e1305476b04b5e74e/invoke.js'
-      script.async = true
-      script.setAttribute('data-cfasync', 'false')
-      document.head.appendChild(script)
+      try {
+        const script = document.createElement('script')
+        script.src = '//pl25383702.profitablecpmrate.com/b8386c573e08182e1305476b04b5e74e/invoke.js'
+        script.async = true
+        script.setAttribute('data-cfasync', 'false')
+        document.head.appendChild(script)
+      }
+      catch (error) {
+        console.error('[Adsterra] Failed to load:', error)
+      }
     }
   },
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
       'doc-after': () => h(DocFooter),
       'layout-top': () => {
-        if (typeof window !== 'undefined' && LanguageDetectorComponent) {
-          return [
-            h(LanguageDetectorComponent),
-            import.meta.env.PROD && GoogleAdsense && h(GoogleAdsense),
-            import.meta.env.PROD && AmpAds && h(AmpAds),
-          ].filter(Boolean)
+        if (typeof window !== 'undefined') {
+          const components: VNode[] = []
+          if (LanguageDetectorComponent) {
+            components.push(h(LanguageDetectorComponent))
+          }
+          if (import.meta.env.PROD) {
+            if (GoogleAdsense)
+              components.push(h(GoogleAdsense))
+            if (AmpAds)
+              components.push(h(AmpAds))
+          }
+          return components.filter(Boolean)
         }
-        return []
+        return null
       },
       'nav-screen-content-after': () => null,
       'nav-bar-content-before': () => null,

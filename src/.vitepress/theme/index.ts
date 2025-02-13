@@ -73,18 +73,8 @@ export default {
 
     // 仅在生产环境和客户端加载广告脚本
     if (typeof window !== 'undefined' && import.meta.env.PROD) {
-      // 加载 AdSense 脚本
-      const adsenseScript = document.createElement('script')
-      adsenseScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6152848695010247'
-      adsenseScript.async = true
-      adsenseScript.crossOrigin = 'anonymous'
-      document.head.appendChild(adsenseScript)
-
-      // 加载 AMP 广告脚本
-      const ampScript = document.createElement('script')
-      ampScript.src = 'https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js'
-      ampScript.async = true
-      document.head.appendChild(ampScript)
+      // 加载图片预览功能
+      setupImagePreview()
     }
   },
   Layout: () => {

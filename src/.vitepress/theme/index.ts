@@ -74,6 +74,32 @@ export default {
     if (typeof window !== 'undefined' && import.meta.env.PROD) {
       // 加载图片预览功能
       setupImagePreview()
+
+      // 初始化广告
+      window.addEventListener('load', () => {
+        try {
+          // 确保广告容器存在
+          const adContainer = document.createElement('div')
+          adContainer.className = 'adsbygoogle'
+          adContainer.style.display = 'block'
+          adContainer.setAttribute('data-ad-client', 'ca-pub-6152848695010247')
+          adContainer.setAttribute('data-ad-slot', 'auto')
+          adContainer.setAttribute('data-ad-format', 'auto')
+          adContainer.setAttribute('data-full-width-responsive', 'true')
+
+          // 将广告容器插入到页面中
+          document.body.appendChild(adContainer)
+
+          // 初始化广告
+          if (typeof window.adsbygoogle === 'undefined') {
+            window.adsbygoogle = []
+          }
+          window.adsbygoogle.push({})
+        }
+        catch (error) {
+          console.error('Ad initialization error:', error)
+        }
+      })
     }
   },
   Layout: () => {

@@ -105,16 +105,29 @@ export default {
     // 处理 hydration 不匹配
     if (typeof window !== 'undefined') {
       app.config.compilerOptions = {
-        whitespace: 'preserve',
+        whitespace: 'condense',
+        comments: false,
       }
 
-      // 延迟加载可能导致不匹配的组件
+      // 优化水合过程
       app.mixin({
+        beforeMount() {
+          const { $el } = this
+          if ($el && $el.parentNode) {
+            const comment = document.createComment('')
+            $el.parentNode.insertBefore(comment, $el)
+          }
+        },
         mounted() {
           if (this.$el && this.$el.style) {
             this.$nextTick(() => {
+              // 确保样式已经应用
               if (this.$el.style.display === 'none') {
                 this.$el.style.display = ''
+              }
+              // 处理动态样式
+              if (this.$el.hasAttribute('style') && this.$el.getAttribute('style') === '') {
+                this.$el.removeAttribute('style')
               }
             })
           }

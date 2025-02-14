@@ -7,9 +7,17 @@ import './custom.css'
 
 const { Layout } = DefaultTheme
 const isClient = ref(false)
+const isHydrated = ref(false)
 
 onMounted(() => {
-  isClient.value = true
+  // 延迟设置客户端状态，等待水合完成
+  setTimeout(() => {
+    isClient.value = true
+    // 再次延迟设置水合状态，确保所有组件都已经准备就绪
+    setTimeout(() => {
+      isHydrated.value = true
+    }, 100)
+  }, 0)
 })
 </script>
 
@@ -17,19 +25,19 @@ onMounted(() => {
   <Layout>
     <template #layout-top>
       <ClientOnly>
-        <GlobalAdContainer v-if="isClient" />
+        <GlobalAdContainer v-if="isClient && isHydrated" />
       </ClientOnly>
     </template>
     <template #aside-outline-after>
-      <div class="content-ad-container">
+      <div v-if="isHydrated" class="content-ad-container">
         <ClientOnly>
-          <GlobalAdContainer v-if="isClient" />
+          <GlobalAdContainer v-if="isClient && isHydrated" />
         </ClientOnly>
       </div>
     </template>
     <div class="theme-container">
       <ClientOnly>
-        <GlobalAdContainer v-if="isClient" />
+        <GlobalAdContainer v-if="isClient && isHydrated" />
       </ClientOnly>
       <header class="navbar">
         <div class="navbar-left">
@@ -48,7 +56,7 @@ onMounted(() => {
         </div>
       </header>
       <main class="main-content">
-        <div class="content-container">
+        <div class="content-container" :class="{ 'is-hydrated': isHydrated }">
           <slot />
         </div>
       </main>
@@ -65,6 +73,12 @@ onMounted(() => {
 .theme-container {
   position: relative;
   min-height: 100vh;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.theme-container .is-hydrated {
+  opacity: 1;
 }
 
 /* 内容页面右侧广告容器样式 */
@@ -72,6 +86,12 @@ onMounted(() => {
   margin-top: 2rem;
   padding: 1rem 0;
   border-top: 1px solid var(--vp-c-divider-light);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.content-ad-container.is-hydrated {
+  opacity: 1;
 }
 
 /* 移除之前的通用广告样式 */

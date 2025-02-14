@@ -181,3 +181,29 @@ html.dark {
 .doc-after-container {
   margin-top: 2rem;
 }
+
+/* 防止广告加载时的布局偏移 */
+.adsbygoogle {
+  display: block;
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
+  min-height: 100px;
+  margin: 2rem 0;
+}
+
+/* 确保广告不会导致内容跳动 */
+.adsbygoogle[data-ad-status='unfilled'] {
+  display: none !important;
+}
+
+/* 广告加载时的平滑过渡 */
+.adsbygoogle[data-ad-status='filled'] {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* 防止广告容器影响布局 */
+ins.adsbygoogle {
+  position: relative !important;
+  background: transparent !important;
+}

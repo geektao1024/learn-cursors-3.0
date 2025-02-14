@@ -145,6 +145,16 @@ export default {
     if (typeof window !== 'undefined' && import.meta.env.PROD) {
       setupImagePreview()
     }
+
+    // 添加jQuery相关配置
+    if (typeof window !== 'undefined') {
+      window.addEventListener('DOMContentLoaded', () => {
+        // 禁用jQuery迁移警告
+        if (window.jQuery && window.jQuery.migrateWarnings) {
+          window.jQuery.migrateMute = true
+        }
+      })
+    }
   },
   Layout: () => {
     return h(DefaultTheme.Layout, null, {

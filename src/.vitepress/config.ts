@@ -168,6 +168,19 @@ export default defineConfig({
   vite: {
     define: {
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true',
+      __VUE_PROD_DEVTOOLS__: 'false',
+    },
+    build: {
+      cssCodeSplit: true,
+      chunkSizeWarningLimit: 2048,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            jquery: ['jquery'],
+            vue: ['vue', 'vue-router'],
+          },
+        },
+      },
     },
     server: {
       hmr: {

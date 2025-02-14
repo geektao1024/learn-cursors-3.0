@@ -159,6 +159,8 @@ export default defineConfig({
     template: {
       compilerOptions: {
         whitespace: 'preserve',
+        comments: true,
+        hoistStatic: false,
       },
     },
   },

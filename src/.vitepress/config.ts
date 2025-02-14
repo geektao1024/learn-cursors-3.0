@@ -6,7 +6,6 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vitepress'
 import { buildEnd } from './config/buildEnd.config'
-import { head } from './config/head.config'
 import { i18nConfig } from './config/i18n'
 import { markdown } from './config/markdown.config'
 import { redirectRules } from './config/redirects'
@@ -15,6 +14,11 @@ import { sitemap } from './config/sitemap.config'
 import { MarkdownTransform } from './utils/markdown/index'
 
 const RssIcon = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 448 512"><title>RSS</title><path d="M400 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM112 416c-26.51 0-48-21.49-48-48s21.49-48 48-48s48 21.49 48 48s-21.49 48-48 48zm157.533 0h-34.335c-6.011 0-11.051-4.636-11.442-10.634c-5.214-80.05-69.243-143.92-149.123-149.123c-5.997-.39-10.633-5.431-10.633-11.441v-34.335c0-6.535 5.468-11.777 11.994-11.425c110.546 5.974 198.997 94.536 204.964 204.964c.352 6.526-4.89 11.994-11.425 11.994zm103.027 0h-34.334c-6.161 0-11.175-4.882-11.427-11.038c-5.598-136.535-115.204-246.161-251.76-251.76C68.882 152.949 64 147.935 64 141.774V107.44c0-6.454 5.338-11.664 11.787-11.432c167.83 6.025 302.21 141.191 308.205 308.205c.232 6.449-4.978 11.787-11.432 11.787z" fill="currentColor"></path></svg>`
+
+const ogDescription = '提供最全面的Cursor AI中文教程，包括下载安装、使用教程、Rules规则配置等专业指南。全面指导你使用Cursor AI助手从0到1搭建互联网产品，涵盖项目实战、代码生成、Git集成等核心功能。无论你是想了解Cursor怎么用，还是寻求官方相关教程，都能在这里找到详细图文攻略和实战案例，让AI编程助力你的产品开发之旅。'
+const ogImage = '/logo.png'
+const ogTitle = 'Cursor中文教程 | AI编程助手入门与实战指南'
+const ogUrl = 'https://learn-cursor.com'
 
 export default defineConfig({
   title: 'Learn Cursor',
@@ -36,95 +40,122 @@ export default defineConfig({
   },
 
   head: [
-    ...(head || []),
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.png' }],
+    ['link', { rel: 'alternate', type: 'application/rss+xml', href: '/rss.rss' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:title', content: ogTitle }],
+    ['meta', { property: 'og:image', content: ogImage }],
+    ['meta', { property: 'og:url', content: ogUrl }],
+    ['meta', { property: 'og:description', content: ogDescription }],
+    ['meta', { name: 'theme-color', content: '#646cff' }],
     ['link', { rel: 'canonical', href: 'https://learn-cursor.com' }],
     ['meta', { name: 'author', content: 'Learn Cursor Team' }],
     ['meta', { name: 'keywords', content: 'Cursor,AI Programming,Cursor Tutorial,Cursor Guide,Cursor Download,AI Programming Assistant,Rules Configuration' }],
-    [
-      'script',
-      { type: 'application/ld+json' },
-      JSON.stringify({
-        '@context': 'https://schema.org',
-        '@graph': [
-          {
-            '@type': 'WebSite',
-            '@id': 'https://learn-cursor.com/#website',
-            'name': 'Cursor Tutorial',
-            'description': 'The most comprehensive Cursor AI tutorial, including installation, usage guides, and more.',
-            'url': 'https://learn-cursor.com',
-            'inLanguage': ['zh-CN', 'en', 'ja'],
-            'potentialAction': {
-              '@type': 'SearchAction',
-              'target': {
-                '@type': 'EntryPoint',
-                'urlTemplate': 'https://learn-cursor.com/search?q={search_term_string}',
-              },
-              'query-input': 'required name=search_term_string',
+    // Google AdSense
+    ['script', {
+      async: 'true',
+      src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6152848695010247',
+      crossorigin: 'anonymous',
+    } as Record<string, string>],
+    // Google Analytics
+    ['script', {
+      async: '',
+      src: 'https://www.googletagmanager.com/gtag/js?id=G-XHJEPSKT4G',
+    }],
+    ['script', {}, `window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XHJEPSKT4G');`],
+    // 百度统计
+    ['script', {}, `var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?15f47d5cafd63c84ff842289217863a5";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();`],
+    // Schema.org
+    ['script', { type: 'application/ld+json' }, JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'WebSite',
+          '@id': 'https://learn-cursor.com/#website',
+          'name': 'Cursor Tutorial',
+          'description': 'The most comprehensive Cursor AI tutorial, including installation, usage guides, and more.',
+          'url': 'https://learn-cursor.com',
+          'inLanguage': ['zh-CN', 'en', 'ja'],
+          'potentialAction': {
+            '@type': 'SearchAction',
+            'target': {
+              '@type': 'EntryPoint',
+              'urlTemplate': 'https://learn-cursor.com/search?q={search_term_string}',
             },
-            'dateModified': new Date().toISOString().split('T')[0],
-            'datePublished': '2024-01-01',
+            'query-input': 'required name=search_term_string',
           },
-          {
-            '@type': 'Organization',
+          'dateModified': new Date().toISOString().split('T')[0],
+          'datePublished': '2024-01-01',
+        },
+        {
+          '@type': 'Organization',
+          '@id': 'https://learn-cursor.com/#organization',
+          'name': 'Learn Cursor Team',
+          'url': 'https://learn-cursor.com',
+          'logo': {
+            '@type': 'ImageObject',
+            'url': 'https://learn-cursor.com/logo.png',
+            'width': '512',
+            'height': '512',
+          },
+          'sameAs': [
+            'https://github.com/wanghuihua',
+          ],
+        },
+        {
+          '@type': 'Course',
+          '@id': 'https://learn-cursor.com/#course',
+          'name': 'Cursor AI Tutorial',
+          'description': 'Learn how to use Cursor AI for programming',
+          'provider': {
             '@id': 'https://learn-cursor.com/#organization',
-            'name': 'Learn Cursor Team',
-            'url': 'https://learn-cursor.com',
-            'logo': {
-              '@type': 'ImageObject',
-              'url': 'https://learn-cursor.com/logo.png',
-              'width': '512',
-              'height': '512',
-            },
-            'sameAs': [
-              'https://github.com/wanghuihua',
-            ],
           },
-          {
-            '@type': 'Course',
-            '@id': 'https://learn-cursor.com/#course',
-            'name': 'Cursor AI Tutorial',
-            'description': 'Learn how to use Cursor AI for programming',
-            'provider': {
-              '@id': 'https://learn-cursor.com/#organization',
-            },
-            'educationalLevel': 'Beginner to Advanced',
-            'inLanguage': ['zh-CN', 'en', 'ja'],
-            'hasCourseInstance': {
-              '@type': 'CourseInstance',
-              'courseMode': 'online',
-              'url': 'https://learn-cursor.com/wiki/user-guide/programming-basics-for-beginners',
-            },
+          'educationalLevel': 'Beginner to Advanced',
+          'inLanguage': ['zh-CN', 'en', 'ja'],
+          'hasCourseInstance': {
+            '@type': 'CourseInstance',
+            'courseMode': 'online',
+            'url': 'https://learn-cursor.com/wiki/user-guide/programming-basics-for-beginners',
           },
-          {
-            '@type': 'Blog',
-            '@id': 'https://learn-cursor.com/blog/#blog',
-            'name': 'Cursor AI Blog',
-            'url': 'https://learn-cursor.com/blog/',
-            'publisher': {
-              '@id': 'https://learn-cursor.com/#organization',
+        },
+        {
+          '@type': 'Blog',
+          '@id': 'https://learn-cursor.com/blog/#blog',
+          'name': 'Cursor AI Blog',
+          'url': 'https://learn-cursor.com/blog/',
+          'publisher': {
+            '@id': 'https://learn-cursor.com/#organization',
+          },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          '@id': 'https://learn-cursor.com/#breadcrumb',
+          'itemListElement': [
+            {
+              '@type': 'ListItem',
+              'position': 1,
+              'name': 'Home',
+              'item': 'https://learn-cursor.com',
             },
-          },
-          {
-            '@type': 'BreadcrumbList',
-            '@id': 'https://learn-cursor.com/#breadcrumb',
-            'itemListElement': [
-              {
-                '@type': 'ListItem',
-                'position': 1,
-                'name': 'Home',
-                'item': 'https://learn-cursor.com',
-              },
-              {
-                '@type': 'ListItem',
-                'position': 2,
-                'name': 'Tutorial',
-                'item': 'https://learn-cursor.com/wiki/user-guide/',
-              },
-            ],
-          },
-        ],
-      }),
-    ],
+            {
+              '@type': 'ListItem',
+              'position': 2,
+              'name': 'Tutorial',
+              'item': 'https://learn-cursor.com/wiki/user-guide/',
+            },
+          ],
+        },
+      ],
+    })],
   ],
 
   themeConfig: {
@@ -321,7 +352,7 @@ export default defineConfig({
     vue: {
       template: {
         compilerOptions: {
-          isCustomElement: tag => tag === 'Teleport',
+          isCustomElement: (tag: string) => tag === 'Teleport',
         },
       },
     },

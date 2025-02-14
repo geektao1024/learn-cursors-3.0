@@ -18,7 +18,6 @@ import { messages } from '../i18n/messages'
 import BlogList from './components/BlogList.vue'
 import BlogPost from './components/BlogPost.vue'
 import DocFooter from './components/DocFooter.vue'
-import GoogleAd from './components/GoogleAd.vue'
 import HomeContent from './components/HomeContent.vue'
 import RulesPage from './components/RulesPage.vue'
 
@@ -53,7 +52,6 @@ export default {
     app.component('BlogList', BlogList)
     app.component('BlogPost', BlogPost)
     app.component('DocFooter', DocFooter)
-    app.component('GoogleAd', GoogleAd)
     app.component('HomeContent', HomeContent)
     app.component('RulesPage', RulesPage)
 
@@ -80,9 +78,8 @@ export default {
   },
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
-      // 根据页面类型和视口大小动态显示广告
       'doc-after': () => {
-        // 仅在文档页面显示广告
+        // 仅在文档页面显示页脚
         const { page } = useData()
         const isDocPage = page.value.relativePath.startsWith('wiki/')
           || page.value.relativePath.startsWith('docs-zh/')
@@ -91,24 +88,6 @@ export default {
           return null
 
         return h('div', { class: 'doc-after-container' }, [
-          // 在大屏幕上显示侧边栏广告
-          h('div', {
-            class: 'google-ad-wrapper desktop-only',
-            style: {
-              'position': 'fixed',
-              'right': '2rem',
-              'top': '6rem',
-              '@media (max-width: 1280px)': {
-                display: 'none',
-              },
-            },
-          }, [h(GoogleAd, { adSlot: 'sidebar' })]),
-
-          // 文档底部广告（移动端和桌面端都显示）
-          h('div', { class: 'google-ad-wrapper main-content' }, [
-            h(GoogleAd, { adSlot: 'content' }),
-          ]),
-
           h(DocFooter),
         ])
       },

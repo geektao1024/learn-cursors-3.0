@@ -9,7 +9,14 @@ interface SitemapItem {
   }>
 }
 
-export const sitemap = {
+interface SitemapConfig {
+  hostname: string
+  transformItems?: (items: SitemapItem[]) => SitemapItem[]
+  xslUrl?: string
+  lastmodDateOnly?: boolean
+}
+
+export const sitemap: SitemapConfig = {
   hostname: 'https://learn-cursor.com',
   transformItems: (items: SitemapItem[]) => {
     return items.map((item) => {
@@ -47,8 +54,9 @@ export const sitemap = {
       ]
 
       return {
+        ...item,
         url: urlWithHtml,
-        lastmod: new Date().toISOString(),
+        lastmod: new Date().toISOString().split('T')[0],
         changefreq,
         priority,
         alternateRefs,
@@ -56,5 +64,5 @@ export const sitemap = {
     })
   },
   xslUrl: '/sitemap.xsl',
-  lastmodDateOnly: false,
+  lastmodDateOnly: true,
 }

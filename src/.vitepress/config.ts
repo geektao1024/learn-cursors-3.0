@@ -53,10 +53,10 @@ export default defineConfig({
     ['meta', { name: 'keywords', content: 'Cursor,AI Programming,Cursor Tutorial,Cursor Guide,Cursor Download,AI Programming Assistant,Rules Configuration' }],
     // Google AdSense
     ['script', {
-      async: 'true',
+      async: '',
       src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6152848695010247',
       crossorigin: 'anonymous',
-    } as Record<string, string>],
+    }],
     // Google Analytics
     ['script', {
       async: '',

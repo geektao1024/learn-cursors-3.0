@@ -70,81 +70,10 @@ export default {
       return value?.replace(/\{(\w+)\}/g, (_, k) => params[k] || '') || key
     }
 
-    // 仅在生产环境和客户端加载广告脚本
+    // 仅在生产环境和客户端加载图片预览功能
     if (typeof window !== 'undefined' && import.meta.env.PROD) {
       // 加载图片预览功能
       setupImagePreview()
-
-      // 初始化广告
-      const setupAds = () => {
-        // 防止重复初始化
-        if (document.querySelector('.adsbygoogle')) {
-          return
-        }
-
-        try {
-          // 创建广告容器
-          const adContainer = document.createElement('ins')
-          adContainer.className = 'adsbygoogle'
-          adContainer.style.display = 'block'
-          adContainer.style.minHeight = '280px'
-          adContainer.setAttribute('data-ad-client', 'ca-pub-6152848695010247')
-          adContainer.setAttribute('data-ad-slot', 'auto')
-          adContainer.setAttribute('data-ad-format', 'auto')
-          adContainer.setAttribute('data-full-width-responsive', 'true')
-
-          // 插入广告容器
-          const mainContent = document.querySelector('.VPDoc .content') || document.querySelector('.VPContent .container')
-          if (mainContent) {
-            mainContent.insertBefore(adContainer, mainContent.firstChild)
-
-            // 设置超时，如果广告加载失败则移除容器
-            setTimeout(() => {
-              if (adContainer.innerHTML === '') {
-                adContainer.remove()
-              }
-            }, 3000)
-
-            // 初始化广告
-            try {
-              (window.adsbygoogle = window.adsbygoogle || []).push({})
-            }
-            catch (adError) {
-              console.error('Ad push error:', adError)
-              adContainer.remove()
-            }
-          }
-        }
-        catch (error) {
-          console.error('Ad initialization error:', error)
-        }
-      }
-
-      // 使用 MutationObserver 监听 DOM 变化
-      const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          if (mutation.addedNodes.length) {
-            const content = document.querySelector('.VPDoc .content') || document.querySelector('.VPContent .container')
-            if (content && !document.querySelector('.adsbygoogle')) {
-              setupAds()
-            }
-          }
-        })
-      })
-
-      // 开始观察 DOM 变化
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-      })
-
-      // 初始加载时尝试设置广告
-      if (document.readyState === 'complete') {
-        setupAds()
-      }
-      else {
-        window.addEventListener('load', setupAds)
-      }
     }
   },
   Layout: () => {

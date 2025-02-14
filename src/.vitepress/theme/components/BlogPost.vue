@@ -24,13 +24,6 @@ const { frontmatter } = useData()
       <Content />
     </article>
 
-    <!-- 广告区域 -->
-    <div class="ad-container">
-      <ClientOnly>
-        <div id="container-b8386c573e08182e1305476b04b5e74e" />
-      </ClientOnly>
-    </div>
-
     <!-- 添加评论组件 -->
     <Giscus />
   </div>
@@ -103,10 +96,5 @@ const { frontmatter } = useData()
     flex-direction: column;
     gap: 0.5rem;
   }
-}
-
-.ad-container {
-  margin: 2rem 0;
-  text-align: center;
 }
 </style>

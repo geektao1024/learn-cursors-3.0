@@ -53,6 +53,7 @@
     "radash": "12.1.0",
     "shiki": "^2.3.2",
     "shiki-languages": "^0.2.7",
+    "sitemap": "^8.0.0",
     "terser": "^5.38.1",
     "tsx": "^4.19.2",
     "typescript": "5.7.2",

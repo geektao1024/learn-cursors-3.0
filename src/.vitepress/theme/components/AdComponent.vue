@@ -15,6 +15,9 @@ const retryCount = ref(0)
 const adContainer = ref(null)
 const { page } = useData()
 
+// 用于跟踪组件是否已卸载
+const isComponentUnmounted = ref(false)
+
 // 判断是否为内容页面（除首页外的所有页面）
 const isContentPage = computed(() => {
   // 排除首页
@@ -35,37 +38,108 @@ function debounce(fn, delay) {
 
 // 初始化广告
 function initAd() {
+  // 如果组件已卸载，不再继续加载
+  if (isComponentUnmounted.value)
+    return
+
   if (retryCount.value >= 3)
     return // 最多重试3次
 
   try {
-    setTimeout(async () => {
-      ;(window.adsbygoogle = window.adsbygoogle || []).push({})
-      isAdLoaded.value = true
-      isAdError.value = false
-    }, 1000)
+    // 确保 adsbygoogle 已经定义
+    if (typeof window.adsbygoogle === 'undefined') {
+      window.adsbygoogle = []
+    }
+
+    const adPromise = new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        try {
+          // 如果组件已卸载，不执行广告加载
+          if (isComponentUnmounted.value) {
+            reject(new Error('Component unmounted'))
+            return
+          }
+
+          // 使用 try-catch 包装广告加载
+          try {
+            await window.adsbygoogle.push({})
+            resolve()
+          }
+          catch (err) {
+            reject(err)
+          }
+        }
+        catch (err) {
+          reject(err)
+        }
+      }, 1000)
+    })
+
+    // 设置超时
+    const timeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => {
+        reject(new Error('Ad load timeout'))
+      }, 5000) // 5秒超时
+    })
+
+    // 使用 Promise.race 处理超时
+    Promise.race([adPromise, timeoutPromise])
+      .then(() => {
+        if (!isComponentUnmounted.value) {
+          isAdLoaded.value = true
+          isAdError.value = false
+        }
+      })
+      .catch((err) => {
+        if (!isComponentUnmounted.value) {
+          console.error('Ad loading error:', err)
+          isAdError.value = true
+          retryCount.value++
+
+          // 重试间隔随重试次数增加
+          const retryDelay = 1000 * (2 ** retryCount.value)
+          setTimeout(() => !isComponentUnmounted.value && initAd(), retryDelay)
+        }
+      })
   }
   catch (err) {
-    console.error('Ad loading error:', err)
-    isAdError.value = true
-    retryCount.value++
-
-    // 重试间隔随重试次数增加
-    const retryDelay = 1000 * (2 ** retryCount.value)
-    setTimeout(() => initAd(), retryDelay)
+    if (!isComponentUnmounted.value) {
+      console.error('Ad initialization error:', err)
+      isAdError.value = true
+    }
   }
 }
 
 // 优化的广告加载处理
 const handleAdIntersection = debounce((entries) => {
   entries.forEach((entry) => {
-    if (entry.isIntersecting && !isAdLoaded.value) {
+    if (entry.isIntersecting && !isAdLoaded.value && !isComponentUnmounted.value) {
       initAd()
     }
   })
 }, 100) // 100ms 防抖
 
+// 清理函数
+function cleanup() {
+  isComponentUnmounted.value = true
+  if (adContainer.value) {
+    try {
+      // 尝试清理广告相关资源
+      const adFrame = adContainer.value.querySelector('iframe')
+      if (adFrame) {
+        adFrame.remove()
+      }
+    }
+    catch (err) {
+      console.error('Ad cleanup error:', err)
+    }
+  }
+}
+
 onMounted(async () => {
+  // 重置卸载标志
+  isComponentUnmounted.value = false
+
   // 等待主要内容渲染完成
   await nextTick()
 
@@ -77,12 +151,13 @@ onMounted(async () => {
 
   if (adContainer.value) {
     observer.observe(adContainer.value)
-
-    // 清理函数
-    onUnmounted(() => {
-      observer.disconnect()
-    })
   }
+
+  // 注册清理函数
+  onUnmounted(() => {
+    cleanup()
+    observer.disconnect()
+  })
 })
 </script>
 

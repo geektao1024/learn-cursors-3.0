@@ -76,10 +76,10 @@ export default {
       setupImagePreview()
 
       // 初始化广告
-      window.addEventListener('load', () => {
+      const setupAds = () => {
         try {
-          // 确保广告容器存在
-          const adContainer = document.createElement('div')
+          // 创建广告容器
+          const adContainer = document.createElement('ins')
           adContainer.className = 'adsbygoogle'
           adContainer.style.display = 'block'
           adContainer.setAttribute('data-ad-client', 'ca-pub-6152848695010247')
@@ -87,19 +87,28 @@ export default {
           adContainer.setAttribute('data-ad-format', 'auto')
           adContainer.setAttribute('data-full-width-responsive', 'true')
 
-          // 将广告容器插入到页面中
-          document.body.appendChild(adContainer)
+          // 插入广告容器
+          const mainContent = document.querySelector('.VPDoc .content') || document.querySelector('.VPContent .container') || document.body
+          mainContent.insertBefore(adContainer, mainContent.firstChild)
 
           // 初始化广告
-          if (typeof window.adsbygoogle === 'undefined') {
-            window.adsbygoogle = []
-          }
-          window.adsbygoogle.push({})
+          ;(window.adsbygoogle = window.adsbygoogle || []).push({})
         }
         catch (error) {
           console.error('Ad initialization error:', error)
         }
-      })
+      }
+
+      // 在路由变化时初始化广告
+      window.addEventListener('hashchange', setupAds)
+
+      // 初始加载时设置广告
+      if (document.readyState === 'complete') {
+        setupAds()
+      }
+      else {
+        window.addEventListener('load', setupAds)
+      }
     }
   },
   Layout: () => {

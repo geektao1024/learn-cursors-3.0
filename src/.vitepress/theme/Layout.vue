@@ -12,6 +12,11 @@ const { Layout } = DefaultTheme
     <template #layout-top>
       <LanguageDetector />
     </template>
+    <template #aside-outline-after>
+      <div class="content-ad-container">
+        <AdComponent />
+      </div>
+    </template>
     <div class="theme-container">
       <header class="navbar">
         <div class="navbar-left">
@@ -48,6 +53,20 @@ const { Layout } = DefaultTheme
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+/* 内容页面右侧广告容器样式 */
+.content-ad-container {
+  margin-top: 2rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--vp-c-divider-light);
+}
+
+/* 移除之前的通用广告样式 */
+:deep(.vp-aside-outline-after) {
+  margin-top: 0;
+  padding: 0;
+  border-top: none;
 }
 
 .navbar {

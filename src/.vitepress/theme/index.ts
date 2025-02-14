@@ -14,6 +14,7 @@ import DefaultTheme from 'vitepress/theme'
 import { defineAsyncComponent, h, onMounted } from 'vue'
 import { messages } from '../i18n/messages'
 
+import AdComponent from './components/AdComponent.vue'
 // Components
 import BlogList from './components/BlogList.vue'
 import BlogPost from './components/BlogPost.vue'
@@ -125,6 +126,7 @@ export default {
     app.component('DocFooter', DocFooter)
     app.component('HomeContent', HomeContent)
     app.component('RulesPage', RulesPage)
+    app.component('AdComponent', AdComponent)
 
     // 注册语言检测组件
     if (typeof window !== 'undefined' && LanguageDetectorComponent) {

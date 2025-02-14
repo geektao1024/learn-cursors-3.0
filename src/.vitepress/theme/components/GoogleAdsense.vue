@@ -147,6 +147,16 @@ function processAdsenseQueue() {
 }
 
 onMounted(async () => {
+  // 等待 DOM 完全加载
+  await new Promise((resolve) => {
+    if (document.readyState === 'complete') {
+      resolve(true)
+    }
+    else {
+      window.addEventListener('load', () => resolve(true), { once: true })
+    }
+  })
+
   // 延迟初始化
   setTimeout(() => {
     isClient.value = true

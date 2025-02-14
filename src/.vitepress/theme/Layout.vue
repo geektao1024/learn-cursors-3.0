@@ -1,24 +1,36 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
+import { onMounted, ref } from 'vue'
 import GlobalAdContainer from './components/GlobalAdContainer.vue'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import './custom.css'
 
 const { Layout } = DefaultTheme
+const isClient = ref(false)
+
+onMounted(() => {
+  isClient.value = true
+})
 </script>
 
 <template>
   <Layout>
     <template #layout-top>
-      <GlobalAdContainer />
+      <ClientOnly>
+        <GlobalAdContainer v-if="isClient" />
+      </ClientOnly>
     </template>
     <template #aside-outline-after>
       <div class="content-ad-container">
-        <GlobalAdContainer />
+        <ClientOnly>
+          <GlobalAdContainer v-if="isClient" />
+        </ClientOnly>
       </div>
     </template>
     <div class="theme-container">
-      <GlobalAdContainer />
+      <ClientOnly>
+        <GlobalAdContainer v-if="isClient" />
+      </ClientOnly>
       <header class="navbar">
         <div class="navbar-left">
           <a class="logo" href="/">

@@ -92,6 +92,11 @@ export default {
       app.config.performance = true
     }
 
+    // 检查文档模式
+    if (typeof window !== 'undefined' && document.compatMode === 'BackCompat') {
+      console.warn('网站正在 Quirks Mode 下运行，这可能会导致布局问题。请添加正确的 DOCTYPE 声明。')
+    }
+
     // 全局错误处理
     app.config.errorHandler = (err, vm, info) => {
       logger.debug('全局错误:', { error: err, component: vm, info })

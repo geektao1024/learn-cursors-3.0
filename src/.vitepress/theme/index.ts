@@ -96,6 +96,26 @@ export default {
       logger.debug('全局错误:', { error: err, component: vm, info })
     }
 
+    // 处理 hydration 不匹配
+    if (typeof window !== 'undefined') {
+      app.config.compilerOptions = {
+        whitespace: 'preserve',
+      }
+
+      // 延迟加载可能导致不匹配的组件
+      app.mixin({
+        mounted() {
+          if (this.$el && this.$el.style) {
+            this.$nextTick(() => {
+              if (this.$el.style.display === 'none') {
+                this.$el.style.display = ''
+              }
+            })
+          }
+        },
+      })
+    }
+
     // 监控性能
     monitorPerformance()
 

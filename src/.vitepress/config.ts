@@ -64,6 +64,11 @@ export default defineConfig({
   ],
 
   themeConfig: {
+    logo: {
+      light: '/logo.png',
+      dark: '/logo-dark.png',
+    },
+    siteTitle: 'Learn Cursor',
     nav: i18nConfig.root?.themeConfig?.nav || [],
     sidebar,
 
@@ -147,6 +152,14 @@ export default defineConfig({
     lineNumbers: true,
     headers: {
       level: [2, 3],
+    },
+  },
+
+  vue: {
+    template: {
+      compilerOptions: {
+        whitespace: 'preserve',
+      },
     },
   },
 

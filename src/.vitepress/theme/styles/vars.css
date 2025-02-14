@@ -43,6 +43,10 @@
 
   --max-width: 80rem;
   --content-width: 64rem;
+
+  /* Logo 相关样式 */
+  --vp-nav-logo-height: 30px;
+  --vp-nav-height: 64px;
 }
 
 /**

@@ -41,6 +41,11 @@ export default defineConfig({
     ['link', { rel: 'canonical', href: 'https://learn-cursor.com' }],
     ['meta', { name: 'author', content: 'Learn Cursor Team' }],
     ['meta', { name: 'keywords', content: 'Cursor,AI Programming,Cursor Tutorial,Cursor Guide,Cursor Download,AI Programming Assistant,Rules Configuration' }],
+    ['link', {
+      rel: 'preload',
+      as: 'script',
+      href: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6152848695010247',
+    }],
     ['script', {
       async: '',
       src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6152848695010247',

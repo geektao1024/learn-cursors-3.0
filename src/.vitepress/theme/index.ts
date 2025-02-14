@@ -107,6 +107,7 @@ export default {
       app.config.compilerOptions = {
         whitespace: 'condense',
         comments: false,
+        delimiters: ['{{', '}}'],
       }
 
       // 优化水合过程
@@ -128,6 +129,10 @@ export default {
               // 处理动态样式
               if (this.$el.hasAttribute('style') && this.$el.getAttribute('style') === '') {
                 this.$el.removeAttribute('style')
+              }
+              // 处理水合后的样式计算
+              if (this.$el.classList.contains('vp-doc')) {
+                this.$el.style.setProperty('--vp-offset', `calc(50% - ${this.$el.offsetWidth / 2}px)`)
               }
             })
           }

@@ -14,7 +14,7 @@ const { Layout } = DefaultTheme
     </template>
     <template #aside-outline-after>
       <div class="content-ad-container">
-        <AdComponent />
+        <GlobalAdContainer />
       </div>
     </template>
     <div class="theme-container">

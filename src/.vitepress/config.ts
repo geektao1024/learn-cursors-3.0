@@ -175,9 +175,7 @@ export default defineConfig({
       chunkSizeWarningLimit: 2048,
       rollupOptions: {
         output: {
-          manualChunks: {
-            vue: ['vue', 'vue-router'],
-          },
+          // 完全移除 manualChunks 配置
         },
       },
     },

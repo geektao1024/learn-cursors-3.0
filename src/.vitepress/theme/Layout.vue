@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
-import LanguageDetector from '../components/LanguageDetector.vue'
+import GlobalAdContainer from './components/GlobalAdContainer.vue'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import './custom.css'
 
@@ -10,7 +10,7 @@ const { Layout } = DefaultTheme
 <template>
   <Layout>
     <template #layout-top>
-      <LanguageDetector />
+      <GlobalAdContainer />
     </template>
     <template #aside-outline-after>
       <div class="content-ad-container">
@@ -18,6 +18,7 @@ const { Layout } = DefaultTheme
       </div>
     </template>
     <div class="theme-container">
+      <GlobalAdContainer />
       <header class="navbar">
         <div class="navbar-left">
           <a class="logo" href="/">
@@ -50,8 +51,7 @@ const { Layout } = DefaultTheme
 @import './custom.css';
 
 .theme-container {
-  display: flex;
-  flex-direction: column;
+  position: relative;
   min-height: 100vh;
 }
 

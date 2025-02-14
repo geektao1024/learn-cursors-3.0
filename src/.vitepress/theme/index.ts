@@ -119,35 +119,52 @@ export default {
 } satisfies Theme
 
 function setupImagePreview() {
-  const images = document.querySelectorAll('img') as NodeListOf<HTMLImageElement>
+  const images = document.querySelectorAll('img:not(.no-preview)') as NodeListOf<HTMLImageElement>
+
+  const createOverlay = (imgSrc: string) => {
+    const overlay = document.createElement('div')
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      cursor: pointer;
+    `
+
+    const previewImg = document.createElement('img')
+    previewImg.src = imgSrc
+    previewImg.style.cssText = `
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    `
+
+    overlay.appendChild(previewImg)
+
+    const closeOverlay = () => document.body.removeChild(overlay)
+    overlay.addEventListener('click', closeOverlay)
+
+    // 支持ESC关闭
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape')
+        closeOverlay()
+    }, { once: true })
+
+    return overlay
+  }
+
   images.forEach((img) => {
-    if (!img.classList.contains('no-preview')) {
-      img.addEventListener('click', () => {
-        const previewImg = document.createElement('img')
-        previewImg.src = img.src
-        previewImg.style.maxWidth = '90vw'
-        previewImg.style.maxHeight = '90vh'
-        previewImg.style.objectFit = 'contain'
-
-        const overlay = document.createElement('div')
-        overlay.style.position = 'fixed'
-        overlay.style.top = '0'
-        overlay.style.left = '0'
-        overlay.style.width = '100vw'
-        overlay.style.height = '100vh'
-        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)'
-        overlay.style.display = 'flex'
-        overlay.style.justifyContent = 'center'
-        overlay.style.alignItems = 'center'
-        overlay.style.zIndex = '9999'
-        overlay.appendChild(previewImg)
-
-        overlay.addEventListener('click', () => {
-          document.body.removeChild(overlay)
-        })
-
-        document.body.appendChild(overlay)
-      })
-    }
+    img.style.cursor = 'pointer'
+    img.addEventListener('click', () => {
+      const overlay = createOverlay(img.src)
+      document.body.appendChild(overlay)
+    })
   })
 }

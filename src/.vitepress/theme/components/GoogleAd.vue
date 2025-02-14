@@ -14,16 +14,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="google-ad">
-    <ins
-      class="adsbygoogle"
-      style="display:block"
-      data-ad-client="ca-pub-6152848695010247"
-      data-ad-slot="5887104144"
-      data-ad-format="auto"
-      data-full-width-responsive="true"
-    />
-  </div>
+  <ClientOnly>
+    <div class="google-ad">
+      <ins
+        class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-6152848695010247"
+        data-ad-slot="5887104144"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+    </div>
+  </ClientOnly>
 </template>
 
 <style scoped>

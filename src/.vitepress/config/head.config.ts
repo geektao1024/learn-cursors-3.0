@@ -22,6 +22,7 @@ export const head: UserConfig['head'] = [
       async: '',
       src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6152848695010247',
       crossorigin: 'anonymous',
+      defer: '',
     },
   ],
   // 新的谷歌分析代码

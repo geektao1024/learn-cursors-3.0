@@ -176,7 +176,6 @@ export default defineConfig({
       rollupOptions: {
         output: {
           manualChunks: {
-            jquery: ['jquery'],
             vue: ['vue', 'vue-router'],
           },
         },

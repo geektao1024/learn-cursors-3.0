@@ -15,16 +15,6 @@ export const head: UserConfig['head'] = [
   ['meta', { property: 'og:url', content: ogUrl }],
   ['meta', { property: 'og:description', content: ogDescription }],
   ['meta', { name: 'theme-color', content: '#646cff' }],
-  // Google AdSense
-  [
-    'script',
-    {
-      async: '',
-      src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6152848695010247',
-      crossorigin: 'anonymous',
-      defer: '',
-    },
-  ],
   // 新的谷歌分析代码
   [
     'script',
@@ -32,14 +22,6 @@ export const head: UserConfig['head'] = [
       async: '',
       src: 'https://www.googletagmanager.com/gtag/js?id=G-XHJEPSKT4G',
     },
-  ],
-  [
-    'script',
-    {},
-    `window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XHJEPSKT4G');`,
   ],
   // 百度统计代码
   [

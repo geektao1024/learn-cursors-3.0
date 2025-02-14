@@ -1,184 +1,97 @@
 <!-- 广告组件 -->
 <script setup lang="ts">
-import { useData } from 'vitepress'
-import { onMounted, onUnmounted, ref } from 'vue'
-
-// 声明全局类型
-declare global {
-  interface Window {
-    adsbygoogle: any[]
-  }
-}
+import { useRoute } from 'vitepress'
+import { nextTick, onBeforeUnmount, onMounted, watch } from 'vue'
 
 const props = defineProps<{
-  adSlot?: 'content' | 'sidebar'
+  adSlot: string
+  adFormat?: string
+  fullWidthResponsive?: boolean
 }>()
 
-const { isDark } = useData()
-const adComponent = ref<HTMLElement | null>(null)
-const isClient = typeof window !== 'undefined'
-const isProduction = process.env.NODE_ENV === 'production'
-const isLoaded = ref(false)
+const route = useRoute()
 
-// 广告配置
-const adConfig = {
-  'data-ad-client': 'ca-pub-6152848695010247',
-  'data-ad-slot': props.adSlot === 'sidebar' ? '5887104144' : '5887104144',
-  'data-ad-format': props.adSlot === 'sidebar' ? 'vertical' : 'auto',
-  'data-full-width-responsive': props.adSlot === 'sidebar' ? 'false' : 'true',
-}
+let adsbygoogle: any
 
-// 检查广告脚本是否加载
-function checkAdScript(): Promise<void> {
-  return new Promise((resolve) => {
-    if (window.adsbygoogle) {
-      resolve()
+function initAd() {
+  try {
+    if (typeof window === 'undefined')
       return
+
+    // 确保 adsbygoogle 已加载
+    adsbygoogle = (window as any).adsbygoogle || []
+
+    const adElement = document.getElementById(props.adSlot)
+    if (!adElement)
+      return
+
+    // 配置广告单元
+    const adUnit = document.createElement('ins')
+    adUnit.className = 'adsbygoogle'
+    adUnit.style.display = 'block'
+    adUnit.setAttribute('data-ad-client', 'ca-pub-6152848695010247')
+    adUnit.setAttribute('data-ad-slot', props.adSlot)
+
+    if (props.adFormat) {
+      adUnit.setAttribute('data-ad-format', props.adFormat)
     }
 
-    const script = document.createElement('script')
-    script.async = true
-    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6152848695010247'
-    script.crossOrigin = 'anonymous'
-    script.onload = () => resolve()
-    document.head.appendChild(script)
-  })
-}
+    if (props.fullWidthResponsive) {
+      adUnit.setAttribute('data-full-width-responsive', 'true')
+    }
 
-// 初始化广告
-async function initAd() {
-  if (!isClient || !isProduction || isLoaded.value)
-    return
+    // 清空现有内容并插入新广告单元
+    adElement.innerHTML = ''
+    adElement.appendChild(adUnit)
 
-  try {
-    await checkAdScript()
-    ;(window.adsbygoogle = window.adsbygoogle || []).push({})
-    isLoaded.value = true
+    // 推送广告请求
+    adsbygoogle.push({})
   }
   catch (error) {
-    console.error('AdSense error:', error)
+    console.error('Failed to initialize Google Ad:', error)
   }
 }
 
-// 重新加载广告
-async function reloadAd() {
-  if (!adComponent.value)
+// 加载广告脚本
+function loadAdScript() {
+  if (document.querySelector('script[src*="adsbygoogle"]'))
     return
 
-  isLoaded.value = false
-
-  // 清除现有广告
-  adComponent.value.innerHTML = ''
-
-  // 创建新的广告容器
-  const ins = document.createElement('ins')
-  ins.className = 'adsbygoogle'
-  ins.style.display = 'block'
-  Object.entries(adConfig).forEach(([key, value]) => {
-    ins.setAttribute(key, value)
-  })
-
-  // 添加到 DOM
-  adComponent.value.appendChild(ins)
-
-  // 初始化新广告
-  await initAd()
+  const script = document.createElement('script')
+  script.async = true
+  script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6152848695010247'
+  script.crossOrigin = 'anonymous'
+  document.head.appendChild(script)
 }
 
-// 监听主题变化
-let observer: MutationObserver | null = null
-onMounted(async () => {
-  if (!isClient || !isProduction)
-    return
+onMounted(() => {
+  loadAdScript()
+  initAd()
+})
 
-  // 初始化广告
-  await initAd()
-
-  // 监听主题变化，重新加载广告
-  observer = new MutationObserver(async () => {
-    await reloadAd()
-  })
-
-  const html = document.documentElement
-  observer.observe(html, {
-    attributes: true,
-    attributeFilter: ['class'],
+// 路由变化时重新初始化广告
+watch(() => route.path, () => {
+  nextTick(() => {
+    initAd()
   })
 })
 
-onUnmounted(() => {
-  observer?.disconnect()
+onBeforeUnmount(() => {
+  const adElement = document.getElementById(props.adSlot)
+  if (adElement) {
+    adElement.innerHTML = ''
+  }
 })
 </script>
 
 <template>
-  <ClientOnly>
-    <div v-if="isProduction" ref="adComponent" class="google-ad" :class="[`google-ad-${adSlot || 'content'}`]">
-      <div v-if="!isLoaded" class="ad-placeholder">
-        <div class="ad-loading">
-          广告加载中...
-        </div>
-      </div>
-      <ins
-        v-show="isLoaded"
-        class="adsbygoogle"
-        style="display:block"
-        v-bind="adConfig"
-      />
-    </div>
-  </ClientOnly>
+  <div :id="adSlot" class="google-ad" />
 </template>
 
 <style scoped>
 .google-ad {
   display: block;
   text-align: center;
-  margin: 2rem 0;
-  padding: 1rem;
-  background: v-bind('isDark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.02)"');
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-  position: relative;
-}
-
-.ad-placeholder {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: v-bind('isDark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.01)"');
-}
-
-.ad-loading {
-  font-size: 0.9rem;
-  color: v-bind('isDark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.3)"');
-}
-
-.google-ad-content {
-  min-height: 280px;
-}
-
-.google-ad-sidebar {
-  min-height: 600px;
-  width: 300px;
-}
-
-.google-ad ins {
-  background: transparent;
-}
-
-@media (max-width: 768px) {
-  .google-ad-content {
-    margin: 1rem 0;
-    min-height: 200px;
-  }
-
-  .google-ad-sidebar {
-    display: none;
-  }
+  margin: 1rem auto;
 }
 </style>

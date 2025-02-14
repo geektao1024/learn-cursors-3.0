@@ -27,19 +27,57 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import './styles/vars.css'
 import './custom.css'
 
+// 添加性能监控
+const enablePerformanceMonitoring = typeof window !== 'undefined' && import.meta.env.DEV
+
+// 自定义日志函数
+const logger = {
+  debug: (...args: any[]) => {
+    if (enablePerformanceMonitoring) {
+      // eslint-disable-next-line no-console
+      console.debug(...args)
+    }
+  },
+}
+
+// 错误处理工具
+function errorHandler(error: Error, component: string) {
+  logger.debug(`[${component}] 组件加载失败，错误堆栈:`, error.stack)
+}
+
+// 优化异步组件加载配置
+function createAsyncComponent(loader: () => Promise<any>, componentName: string) {
+  return defineAsyncComponent({
+    loader,
+    timeout: 5000,
+    suspensible: false,
+    loadingComponent: () => h('div', { class: 'async-loading' }, `${componentName} 加载中...`),
+    errorComponent: () => h('div', { class: 'async-error' }, `${componentName} 加载失败`),
+    onError: error => errorHandler(error, componentName),
+  })
+}
+
 // 注册语言检测组件
 const LanguageDetectorComponent = typeof window !== 'undefined'
-  ? defineAsyncComponent({
-      loader: () => import('../components/LanguageDetector.vue'),
-      timeout: 3000,
-      suspensible: false,
-      loadingComponent: () => null,
-      errorComponent: () => null,
-      onError: (error) => {
-        console.error('[LanguageDetector] Failed to load:', error)
-      },
-    })
+  ? createAsyncComponent(
+      () => import('../components/LanguageDetector.vue'),
+      'LanguageDetector',
+    )
   : null
+
+// 性能监控函数
+function monitorPerformance() {
+  if (!enablePerformanceMonitoring)
+    return
+
+  onMounted(() => {
+    if (window.performance) {
+      const timing = window.performance.timing
+      const pageLoad = timing.loadEventEnd - timing.navigationStart
+      logger.debug(`页面加载时间: ${pageLoad}ms`)
+    }
+  })
+}
 
 // 定义主题配置
 export default {
@@ -47,6 +85,19 @@ export default {
   enhanceApp({ app }) {
     // 注册 Element Plus
     app.use(ElementPlus)
+
+    // 开发环境启用性能追踪
+    if (enablePerformanceMonitoring) {
+      app.config.performance = true
+    }
+
+    // 全局错误处理
+    app.config.errorHandler = (err, vm, info) => {
+      logger.debug('全局错误:', { error: err, component: vm, info })
+    }
+
+    // 监控性能
+    monitorPerformance()
 
     // 注册全局组件
     app.component('BlogList', BlogList)
@@ -72,7 +123,6 @@ export default {
 
     // 仅在生产环境和客户端加载图片预览功能
     if (typeof window !== 'undefined' && import.meta.env.PROD) {
-      // 加载图片预览功能
       setupImagePreview()
     }
   },

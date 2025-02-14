@@ -1,5 +1,5 @@
 ---
-title: Cursor AI 博客
+title: Cursor AI 博客文章
 description: 分享 Cursor AI 使用技巧、最佳实践和实战案例的博客文章。
 layout: page
 aside: false

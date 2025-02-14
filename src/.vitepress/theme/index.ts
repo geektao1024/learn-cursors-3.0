@@ -8,6 +8,7 @@ import type { VNode } from 'vue'
 // Element Plus
 import ElementPlus from 'element-plus'
 
+import { useData } from 'vitepress'
 // Vue & VitePress
 import DefaultTheme from 'vitepress/theme'
 import { defineAsyncComponent, h, onMounted } from 'vue'
@@ -79,10 +80,40 @@ export default {
   },
   Layout: () => {
     return h(DefaultTheme.Layout, null, {
-      'doc-after': () => h('div', { class: 'doc-after-container' }, [
-        h('div', { class: 'google-ad-wrapper' }, [h(GoogleAd)]),
-        h(DocFooter),
-      ]),
+      // 根据页面类型和视口大小动态显示广告
+      'doc-after': () => {
+        // 仅在文档页面显示广告
+        const { page } = useData()
+        const isDocPage = page.value.relativePath.startsWith('wiki/')
+          || page.value.relativePath.startsWith('docs-zh/')
+
+        if (!isDocPage)
+          return null
+
+        return h('div', { class: 'doc-after-container' }, [
+          // 在大屏幕上显示侧边栏广告
+          h('div', {
+            class: 'google-ad-wrapper desktop-only',
+            style: {
+              'position': 'fixed',
+              'right': '2rem',
+              'top': '6rem',
+              '@media (max-width: 1280px)': {
+                display: 'none',
+              },
+            },
+          }, [h(GoogleAd, { adSlot: 'sidebar' })]),
+
+          // 文档底部广告（移动端和桌面端都显示）
+          h('div', { class: 'google-ad-wrapper main-content' }, [
+            h(GoogleAd, { adSlot: 'content' }),
+          ]),
+
+          h(DocFooter),
+        ])
+      },
+
+      // 其他插槽保持不变
       'layout-top': () => {
         if (typeof window !== 'undefined') {
           const components: VNode[] = []

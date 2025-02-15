@@ -1,3 +1,4 @@
+import type { HeadConfig } from 'vitepress'
 import { resolve } from 'node:path'
 import AutoImport from 'unplugin-auto-import/vite'
 import IconsResolver from 'unplugin-icons/resolver'
@@ -5,6 +6,7 @@ import Icons from 'unplugin-icons/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vitepress'
+import { adsConfig } from './config/ads.config'
 import { i18nConfig } from './config/i18n'
 import { sidebar } from './config/sidebar.config'
 import { sitemap } from './config/sitemap.config'
@@ -49,7 +51,25 @@ export default defineConfig({
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-XHJEPSKT4G');`],
-  ],
+    ['script', {
+      'async': true,
+      'custom-element': 'amp-auto-ads',
+      'src': 'https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js',
+    }],
+    ['script', {
+      async: true,
+      src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsConfig.client}`,
+      crossorigin: 'anonymous',
+    }],
+    ...(adsConfig.options?.autoAds
+      ? [['script', {}, `
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "${adsConfig.client}",
+        enable_page_level_ads: true
+      });
+    `]] as HeadConfig[]
+      : []),
+  ].filter(Boolean),
 
   themeConfig: {
     logo: {

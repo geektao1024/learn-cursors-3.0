@@ -53,6 +53,20 @@ onMounted(async () => {
       containerStyles: container ? window.getComputedStyle(container) : null,
       timestamp: new Date().toISOString(),
     })
+
+    // 监控广告加载
+    if (typeof window !== 'undefined') {
+      const adScript = document.querySelector('script[src*="pagead2.googlesyndication.com"]')
+      const ampScript = document.querySelector('script[src*="cdn.ampproject.org"]')
+      const ampAdsElement = document.querySelector('amp-auto-ads')
+
+      logger.log('[广告状态]', {
+        adScriptLoaded: !!adScript,
+        ampScriptLoaded: !!ampScript,
+        ampAdsElementExists: !!ampAdsElement,
+        timestamp: new Date().toISOString(),
+      })
+    }
   }
   catch (error) {
     logger.error('[错误] Layout组件 onMounted中发生错误', {

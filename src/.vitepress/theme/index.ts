@@ -238,7 +238,6 @@ function setupImagePreview() {
       object-fit: contain;
       transition: transform 0.3s ease;
     `
-
     overlay.appendChild(previewImg)
 
     const closeOverlay = () => document.body.removeChild(overlay)

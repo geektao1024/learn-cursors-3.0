@@ -208,9 +208,13 @@ export default defineConfig({
     ],
     ssr: {
       noExternal: ['element-plus'],
+      optimizeDeps: {
+        include: ['vue', '@vue/shared'],
+      },
     },
     optimizeDeps: {
       exclude: ['vue-demi'],
+      include: ['vue', '@vue/shared', 'element-plus'],
     },
   },
 

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
 import { nextTick, onMounted, ref, watch } from 'vue'
-import GlobalAdContainer from './components/GlobalAdContainer.vue'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import './custom.css'
 
@@ -101,27 +100,12 @@ function shouldShowComponent(priority: 'high' | 'medium' | 'low') {
   <Layout>
     <template #layout-top>
       <ClientOnly>
-        <Transition name="fade">
-          <GlobalAdContainer v-if="shouldShowComponent('medium')" />
-        </Transition>
+        <Transition name="fade" />
       </ClientOnly>
     </template>
 
     <template #aside-outline-after>
-      <Transition name="fade">
-        <div
-          v-if="shouldShowComponent('low')"
-          class="content-ad-container"
-          :class="{
-            'is-hydrated': hydrationState.isHydrated,
-            'is-interactive': hydrationState.isInteractive,
-          }"
-        >
-          <ClientOnly>
-            <GlobalAdContainer v-if="shouldShowComponent('medium')" />
-          </ClientOnly>
-        </div>
-      </Transition>
+      <Transition name="fade" />
     </template>
 
     <div
@@ -134,9 +118,7 @@ function shouldShowComponent(priority: 'high' | 'medium' | 'low') {
       }"
     >
       <ClientOnly>
-        <Transition name="fade">
-          <GlobalAdContainer v-if="shouldShowComponent('low')" />
-        </Transition>
+        <Transition name="fade" />
       </ClientOnly>
 
       <header

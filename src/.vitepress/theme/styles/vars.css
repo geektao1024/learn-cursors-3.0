@@ -182,11 +182,4 @@ html.dark {
   margin-top: 2rem;
 }
 
-/* AdSense 容器样式 */
-.adsbygoogle {
-  display: block;
-  min-height: 280px;
-  width: 100%;
-  margin: 1em 0;
-  overflow: hidden;
-}
+/* 其他样式 */

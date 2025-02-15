@@ -18,7 +18,6 @@ import { messages } from '../i18n/messages'
 import BlogList from './components/BlogList.vue'
 import BlogPost from './components/BlogPost.vue'
 import DocFooter from './components/DocFooter.vue'
-import GlobalAdContainer from './components/GlobalAdContainer.vue'
 import HomeContent from './components/HomeContent.vue'
 import RulesPage from './components/RulesPage.vue'
 
@@ -149,7 +148,6 @@ export default {
     app.component('DocFooter', DocFooter)
     app.component('HomeContent', HomeContent)
     app.component('RulesPage', RulesPage)
-    app.component('GlobalAdContainer', GlobalAdContainer)
 
     // 注册语言检测组件
     if (typeof window !== 'undefined' && LanguageDetectorComponent) {

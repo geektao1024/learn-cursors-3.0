@@ -40,11 +40,6 @@ export default defineConfig({
     ['meta', { name: 'theme-color', content: '#646cff' }],
     ['link', { rel: 'canonical', href: 'https://learn-cursor.com' }],
     ['meta', { name: 'author', content: 'Learn Cursor Team' }],
-    ['script', {
-      async: '',
-      src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6152848695010247',
-      crossorigin: 'anonymous',
-    }],
     ['meta', { name: 'keywords', content: 'Cursor,AI Programming,Cursor Tutorial,Cursor Guide,Cursor Download,AI Programming Assistant,Rules Configuration' }],
     ['script', {
       async: '',

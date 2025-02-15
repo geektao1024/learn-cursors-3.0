@@ -49,13 +49,6 @@ export default defineConfig({
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-XHJEPSKT4G');`],
-    ['script', {}, `var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?15f47d5cafd63c84ff842289217863a5";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();`],
   ],
 
   themeConfig: {
@@ -154,8 +147,8 @@ export default defineConfig({
     template: {
       compilerOptions: {
         whitespace: 'preserve',
-        comments: true,
-        hoistStatic: false,
+        comments: false,
+        hoistStatic: true,
       },
     },
   },
@@ -163,14 +156,13 @@ export default defineConfig({
   vite: {
     define: {
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true',
-      __VUE_PROD_DEVTOOLS__: 'false',
     },
     build: {
       cssCodeSplit: true,
       chunkSizeWarningLimit: 2048,
       rollupOptions: {
         output: {
-          // 完全移除 manualChunks 配置
+          manualChunks: undefined,
         },
       },
     },

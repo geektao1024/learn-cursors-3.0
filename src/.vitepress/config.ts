@@ -165,6 +165,14 @@ export default defineConfig({
           manualChunks: undefined,
         },
       },
+      cssMinify: true,
+    },
+    ssr: {
+      noExternal: ['element-plus'],
+      external: [
+        'element-plus/dist/index.css',
+        'element-plus/theme-chalk/dark/css-vars.css',
+      ],
     },
     server: {
       hmr: {
@@ -203,7 +211,9 @@ export default defineConfig({
         extensions: ['vue', 'md'],
         include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
         resolvers: [
-          ElementPlusResolver(),
+          ElementPlusResolver({
+            importStyle: false,
+          }),
           IconsResolver({ prefix: 'i' }),
         ],
         dts: 'src/components.d.ts',
@@ -214,6 +224,16 @@ export default defineConfig({
     optimizeDeps: {
       exclude: ['vue-demi'],
       include: ['vue', '@vue/shared', 'element-plus'],
+    },
+    css: {
+      postcss: {
+        plugins: [],
+      },
+      preprocessorOptions: {
+        scss: {
+          additionalData: '',
+        },
+      },
     },
   },
 

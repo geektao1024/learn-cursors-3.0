@@ -22,11 +22,15 @@ import RulesPage from './components/RulesPage.vue'
 import { logger as appLogger } from './utils/logger'
 
 // Styles
-import 'element-plus/dist/index.css'
-import 'element-plus/theme-chalk/dark/css-vars.css'
 import './styles/vars.css'
 import './custom.css'
 import './styles/giscus.dark.css'
+
+// 仅在客户端导入Element Plus样式
+if (inBrowser) {
+  import('element-plus/dist/index.css')
+  import('element-plus/theme-chalk/dark/css-vars.css')
+}
 
 // 添加性能监控
 const enablePerformanceMonitoring = typeof window !== 'undefined' && import.meta.env.DEV

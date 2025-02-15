@@ -1,24 +1,117 @@
 <script setup lang="ts">
+import { useRoute } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import { onMounted, ref } from 'vue'
+import { nextTick, onBeforeMount, onErrorCaptured, onMounted, onUpdated, ref, watch } from 'vue'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
+import { useHydration } from './utils/hydration'
+import { logger } from './utils/logger'
 import './custom.css'
 
 const { Layout } = DefaultTheme
+const { isHydrated } = useHydration()
+const route = useRoute()
+const componentErrors = ref<Error[]>([])
 
-// 简化状态管理，只保留一个加载状态
-const isLoaded = ref(false)
-
-onMounted(() => {
-  // 立即设置加载状态，避免不必要的延迟
-  isLoaded.value = true
+// 监控路由变化
+watch(() => route.path, (newPath, oldPath) => {
+  logger.log('[路由变化]', {
+    from: oldPath,
+    to: newPath,
+    timestamp: new Date().toISOString(),
+  })
 })
+
+// 监控水合状态
+watch(isHydrated, (newVal) => {
+  logger.log('[水合状态变化]', {
+    isHydrated: newVal,
+    timestamp: new Date().toISOString(),
+  })
+})
+
+// 生命周期钩子日志
+onBeforeMount(() => {
+  logger.log('[生命周期] Layout组件 onBeforeMount', {
+    timestamp: new Date().toISOString(),
+  })
+})
+
+onMounted(async () => {
+  logger.log('[生命周期] Layout组件 onMounted - 开始', {
+    timestamp: new Date().toISOString(),
+  })
+
+  try {
+    await nextTick()
+    isHydrated.value = true
+
+    // 检查关键DOM元素
+    const container = document.querySelector('.vp-doc.container')
+    logger.log('[DOM状态]', {
+      containerExists: !!container,
+      containerStyles: container ? window.getComputedStyle(container) : null,
+      timestamp: new Date().toISOString(),
+    })
+  }
+  catch (error) {
+    logger.error('[错误] Layout组件 onMounted中发生错误', {
+      error,
+      timestamp: new Date().toISOString(),
+    })
+  }
+
+  logger.log('[生命周期] Layout组件 onMounted - 完成', {
+    timestamp: new Date().toISOString(),
+  })
+})
+
+onUpdated(() => {
+  logger.log('[生命周期] Layout组件 onUpdated', {
+    timestamp: new Date().toISOString(),
+  })
+})
+
+// 错误捕获
+onErrorCaptured((err, instance, info) => {
+  const error = {
+    message: err.message,
+    stack: err.stack,
+    componentInfo: info,
+    timestamp: new Date().toISOString(),
+  }
+
+  componentErrors.value.push(err)
+  logger.error('[错误捕获]', error)
+
+  // 可以选择是否阻止错误向上传播
+  return false
+})
+
+// 性能监控
+if (typeof window !== 'undefined') {
+  const observer = new PerformanceObserver((list) => {
+    for (const entry of list.getEntries()) {
+      logger.log('[性能监控]', {
+        name: entry.name,
+        duration: entry.duration,
+        timestamp: new Date().toISOString(),
+      })
+    }
+  })
+
+  observer.observe({ entryTypes: ['measure', 'paint'] })
+}
 </script>
 
 <template>
   <Layout>
-    <!-- 使用固定宽度布局，避免动态计算 -->
-    <div class="theme-container">
+    <div class="theme-container" :class="{ 'is-hydrated': isHydrated }">
+      <!-- 添加错误展示区域(仅在开发环境) -->
+      <div v-if="componentErrors.length && import.meta.env.DEV" class="error-container">
+        <div v-for="(error, index) in componentErrors" :key="index" class="error-message">
+          {{ error.message }}
+        </div>
+      </div>
       <header class="navbar">
         <div class="navbar-left">
           <a class="logo" href="/">
@@ -57,6 +150,12 @@ onMounted(() => {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.theme-container.is-hydrated {
+  opacity: 1;
 }
 
 /* 内容区域样式 */
@@ -110,5 +209,33 @@ onMounted(() => {
   .navbar {
     padding: 0.5rem 1rem;
   }
+}
+
+/* 使用CSS变量设置固定宽度,避免动态计算 */
+:root {
+  --vp-layout-max-width: 1317px;
+}
+
+.vp-doc.container {
+  max-width: var(--vp-layout-max-width);
+  margin: 0 auto;
+}
+
+/* 错误消息样式 */
+.error-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  max-width: 400px;
+}
+
+.error-message {
+  background: #ff4444;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
 }
 </style>

@@ -2,6 +2,7 @@
 import { useRoute } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { nextTick, onBeforeMount, onErrorCaptured, onMounted, onUpdated, ref, watch } from 'vue'
+import { adsConfig } from '../config/ads.config'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import { useHydration } from './utils/hydration'
 import { logger } from './utils/logger'
@@ -106,6 +107,11 @@ if (typeof window !== 'undefined') {
 <template>
   <Layout>
     <div class="theme-container" :class="{ 'is-hydrated': isHydrated }">
+      <amp-auto-ads
+        v-if="isHydrated"
+        type="adsense"
+        :data-ad-client="adsConfig.client"
+      />
       <!-- 添加错误展示区域(仅在开发环境) -->
       <div v-if="componentErrors.length && import.meta.env.DEV" class="error-container">
         <div v-for="(error, index) in componentErrors" :key="index" class="error-message">
@@ -165,6 +171,8 @@ if (typeof window !== 'undefined') {
   margin: 0 auto;
   padding: 0 1.5rem;
   flex: 1;
+  position: relative;
+  z-index: 1;
 }
 
 /* 导航栏样式 */
@@ -237,5 +245,18 @@ if (typeof window !== 'undefined') {
   margin-bottom: 0.5rem;
   border-radius: 4px;
   font-size: 0.875rem;
+}
+
+/* 确保内容布局正确 */
+.content-container {
+  position: relative;
+  z-index: 1;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  .content-container {
+    padding: 0 1rem;
+  }
 }
 </style>

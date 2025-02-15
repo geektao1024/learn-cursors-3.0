@@ -109,23 +109,12 @@ export default {
         delimiters: ['{{', '}}'],
       }
 
-      // 优化水合过程
+      // 简化挂载过程
       app.mixin({
-        beforeMount() {
-          const { $el } = this
-          if ($el && $el.parentNode) {
-            const comment = document.createComment('')
-            $el.parentNode.insertBefore(comment, $el)
-          }
-        },
         mounted() {
           if (this.$el && this.$el.style) {
             this.$nextTick(() => {
-              // 确保样式已经应用
-              if (this.$el.style.display === 'none') {
-                this.$el.style.display = ''
-              }
-              // 处理动态样式
+              // 移除空样式属性
               if (this.$el.hasAttribute('style') && this.$el.getAttribute('style') === '') {
                 this.$el.removeAttribute('style')
               }

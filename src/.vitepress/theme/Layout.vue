@@ -10,17 +10,16 @@ const { Layout } = DefaultTheme
 const isLoaded = ref(false)
 
 onMounted(() => {
-  // 延迟一点显示过渡效果
-  setTimeout(() => {
-    isLoaded.value = true
-  }, 100)
+  // 立即设置加载状态，避免不必要的延迟
+  isLoaded.value = true
 })
 </script>
 
 <template>
   <Layout>
-    <div class="theme-container" :class="{ 'is-loaded': isLoaded }">
-      <header class="navbar" :class="{ 'is-loaded': isLoaded }">
+    <!-- 使用固定宽度布局，避免动态计算 -->
+    <div class="theme-container">
+      <header class="navbar">
         <div class="navbar-left">
           <a class="logo" href="/">
             <img src="/logo.png" alt="Cursor Tutorial">
@@ -38,7 +37,7 @@ onMounted(() => {
       </header>
 
       <main class="main-content">
-        <div class="content-container" :class="{ 'is-loaded': isLoaded }">
+        <div class="content-container">
           <slot />
         </div>
       </main>
@@ -58,12 +57,6 @@ onMounted(() => {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  opacity: 0.5;
-  transition: opacity 0.3s ease;
-}
-
-.theme-container.is-loaded {
-  opacity: 1;
 }
 
 /* 内容区域样式 */
@@ -100,6 +93,14 @@ onMounted(() => {
   width: auto;
 }
 
+/* 文档内容样式 */
+:deep(.vp-doc) {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
 /* 响应式布局 */
 @media (max-width: 768px) {
   .content-container {
@@ -108,15 +109,6 @@ onMounted(() => {
 
   .navbar {
     padding: 0.5rem 1rem;
-  }
-}
-
-/* 减少动画 */
-@media (prefers-reduced-motion: reduce) {
-  .theme-container,
-  .navbar,
-  .content-container {
-    transition: none;
   }
 }
 </style>

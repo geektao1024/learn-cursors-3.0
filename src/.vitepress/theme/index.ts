@@ -129,10 +129,6 @@ export default {
               if (this.$el.hasAttribute('style') && this.$el.getAttribute('style') === '') {
                 this.$el.removeAttribute('style')
               }
-              // 处理水合后的样式计算
-              if (this.$el.classList.contains('vp-doc')) {
-                this.$el.style.setProperty('--vp-offset', `calc(50% - ${this.$el.offsetWidth / 2}px)`)
-              }
             })
           }
         },

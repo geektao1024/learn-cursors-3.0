@@ -18,11 +18,6 @@ onMounted(() => {
   isClient.value = true
   nextTick(() => {
     isHydrated.value = true
-    // 计算 vp-offset
-    const docElement = document.querySelector('.vp-doc') as HTMLElement
-    if (docElement) {
-      docElement.style.setProperty('--vp-offset', `calc(50% - ${docElement.offsetWidth / 2}px)`)
-    }
   })
 })
 
@@ -115,6 +110,27 @@ const shouldShow = () => isClient.value && isHydrated.value
 .navbar.is-ready {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* 内容布局 */
+:deep(.vp-doc) {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  :deep(.vp-doc) {
+    padding: 0 48px;
+  }
+}
+
+@media (min-width: 960px) {
+  :deep(.vp-doc) {
+    padding: 0 64px;
+  }
 }
 
 /* 减少动画 */

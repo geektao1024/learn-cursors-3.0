@@ -155,7 +155,7 @@ export default defineConfig({
 
   vite: {
     define: {
-      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'false',
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true',
     },
     build: {
       cssCodeSplit: true,
@@ -185,6 +185,18 @@ export default defineConfig({
     plugins: [
       AutoImport({
         resolvers: [ElementPlusResolver()],
+        dts: 'src/auto-imports.d.ts',
+        include: [
+          /\.[tj]sx?$/,
+          /\.vue$/,
+          /\.vue\?vue/,
+          /\.md$/,
+        ],
+        imports: [
+          'vue',
+          'vue-router',
+          '@vueuse/core',
+        ],
       }),
       Components({
         dirs: ['src/.vitepress/theme/components'],
@@ -194,16 +206,11 @@ export default defineConfig({
           ElementPlusResolver(),
           IconsResolver({ prefix: 'i' }),
         ],
+        dts: 'src/components.d.ts',
       }),
       Icons(),
       MarkdownTransform(),
     ],
-    ssr: {
-      noExternal: ['element-plus'],
-      optimizeDeps: {
-        include: ['vue', '@vue/shared'],
-      },
-    },
     optimizeDeps: {
       exclude: ['vue-demi'],
       include: ['vue', '@vue/shared', 'element-plus'],

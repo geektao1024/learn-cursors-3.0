@@ -69,7 +69,16 @@ export default defineConfig({
       });
     `]] as HeadConfig[]
       : []),
-  ].filter(Boolean),
+    ['script', {}, `
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?15f47d5cafd63c84ff842289217863a5";
+        hm.defer = true;
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();`],
+  ].filter(Boolean) as HeadConfig[],
 
   themeConfig: {
     logo: {

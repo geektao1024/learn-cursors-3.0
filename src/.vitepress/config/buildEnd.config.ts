@@ -1,7 +1,9 @@
 import { writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { Feed } from 'feed'
+import { SitemapStream, streamToPromise } from 'sitemap'
 import { createContentLoader } from 'vitepress'
+import { sitemap as sitemapConfig } from './sitemap.config'
 
 const baseUrl = 'https://learn-cursor.com'
 
@@ -68,6 +70,37 @@ export async function generateFeed(config: any) {
   }
 }
 
+export async function generateSitemap(config: any) {
+  try {
+    const smStream = new SitemapStream({ hostname: sitemapConfig.hostname })
+    const pages = await createContentLoader('**/*.md', {
+      excerpt: false,
+      render: false,
+    }).load()
+
+    const transformedItems = sitemapConfig.transformItems(pages.map(page => ({
+      url: page.url,
+      lastmod: new Date().toISOString(),
+    })))
+
+    for (const item of transformedItems) {
+      smStream.write(item)
+    }
+
+    smStream.end()
+    const sitemap = await streamToPromise(smStream)
+    const outputPath = resolve(config.outDir, 'sitemap.xml')
+    writeFileSync(outputPath, sitemap.toString())
+    console.log(`Sitemap generated at ${outputPath}`)
+  }
+  catch (error) {
+    console.error('Error generating sitemap:', error)
+  }
+}
+
 export async function buildEnd(config: any) {
-  await generateFeed(config)
+  await Promise.all([
+    generateFeed(config),
+    generateSitemap(config),
+  ])
 }

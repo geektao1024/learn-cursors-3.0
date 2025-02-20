@@ -79,12 +79,16 @@ export async function generateSitemap(config: any) {
     }).load()
 
     const transformedItems = sitemapConfig.transformItems(pages.map(page => ({
-      url: page.url,
+      url: page.url.replace(/\.md$/, ''),
       lastmod: new Date().toISOString(),
     })))
 
     for (const item of transformedItems) {
-      smStream.write(item)
+      const cleanUrl = item.url.replace(/\.md$/, '')
+      smStream.write({
+        ...item,
+        url: cleanUrl,
+      })
     }
 
     smStream.end()

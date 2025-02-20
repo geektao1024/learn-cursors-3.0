@@ -4,8 +4,8 @@ export const sitemap = {
   lastmodDateOnly: true,
   transformItems: (items: any[]) => {
     return items.map((item) => {
-      // 移除 .md 和 .html 后缀
-      const url = item.url.replace(/\.(md|html)$/, '')
+      // 规范化 URL 格式
+      const url = item.url.replace(/\.(md|html)$/, '').replace(/\/+/g, '/')
 
       // 设置优先级
       let priority = 0.7 // 默认优先级
@@ -47,12 +47,9 @@ export const sitemap = {
         )
       }
 
-      // 确保 URL 是有效的网页地址
-      const finalUrl = `${url}`.replace(/\/+/g, '/') // 规范化斜杠
-
       return {
         ...item,
-        url: finalUrl,
+        url,
         priority,
         changefreq,
         alternateLinks,

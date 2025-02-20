@@ -35,9 +35,7 @@ function getDateTime(time: number) {
 
 // 获取文章URL
 function getPostUrl(url: string) {
-  // 移除 .html 后缀
-  const cleanUrl = url.replace(/\.html$/, '')
-  return withBase(cleanUrl)
+  return withBase(url)
 }
 
 // 从文章数据中统计标签

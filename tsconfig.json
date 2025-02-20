@@ -9,11 +9,18 @@
       "@/*": ["src/*"]
     },
     "resolveJsonModule": true,
-    "types": ["vite/client", "element-plus/global"],
+    "types": [
+      "vite/client",
+      "element-plus/global",
+      "vue",
+      "vitepress"
+    ],
     "strict": true,
+    "noEmit": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "skipLibCheck": true
   },
   "include": [
@@ -23,7 +30,8 @@
     "src/**/*.vue",
     "vite.config.ts",
     "src/.vitepress/config/update-time.data.ts",
-    "src/.vitepress/config.ts"
+    "src/.vitepress/config.ts",
+    "src/shims-vue.d.ts"
   ],
   "exclude": ["node_modules", "dist"]
 }

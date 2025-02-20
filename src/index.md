@@ -18,6 +18,21 @@ head:
   - - meta
     - property: og:description
       content: Learn Cursor提供最全面的Cursor教程，从安装设置到高级应用，深入讲解AI编程助手的所有功能与使用技巧。无论你是新手入门还是寻求进阶，都能在这里找到专业指南。
+  - - script
+    - type: application/ld+json
+      content: |
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Learn Cursor",
+          "url": "https://learn-cursor.com",
+          "logo": "https://learn-cursor.com/logo.png",
+          "description": "Learn Cursor提供最全面的Cursor教程，从安装设置到高级应用，深入讲解AI编程助手的所有功能与使用技巧。",
+          "sameAs": [
+            "https://github.com/cursorAI",
+            "https://twitter.com/cursor_ai"
+          ]
+        }
 
 hero:
   name: Learn Cursor

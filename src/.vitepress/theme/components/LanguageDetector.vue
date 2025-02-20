@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { messages } from '../i18n/messages'
+import { messages } from '../../i18n/messages'
 
 const showNotification = ref(false)
 const isVisible = ref(false)

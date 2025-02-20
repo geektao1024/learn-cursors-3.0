@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { ElDropdown, ElDropdownItem, ElDropdownMenu, ElIcon } from 'element-plus'
 import { useData, useRouter } from 'vitepress'
 import { computed } from 'vue'
+import 'element-plus/dist/index.css'
 
 const { lang } = useData()
 const router = useRouter()
@@ -43,25 +45,25 @@ function switchLanguage(newLocale: string) {
 
 <template>
   <div class="language-switcher">
-    <el-dropdown @command="switchLanguage">
+    <ElDropdown @command="switchLanguage">
       <span class="el-dropdown-link">
         {{ currentLang }}
-        <el-icon class="el-icon--right">
+        <ElIcon class="el-icon--right">
           <i-ep-arrow-down />
-        </el-icon>
+        </ElIcon>
       </span>
       <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item
+        <ElDropdownMenu>
+          <ElDropdownItem
             v-for="locale in availableLocales"
             :key="locale.value"
             :command="locale.value"
           >
             {{ locale.label }}
-          </el-dropdown-item>
-        </el-dropdown-menu>
+          </ElDropdownItem>
+        </ElDropdownMenu>
       </template>
-    </el-dropdown>
+    </ElDropdown>
   </div>
 </template>
 

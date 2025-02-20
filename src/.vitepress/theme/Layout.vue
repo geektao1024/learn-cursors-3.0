@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { useRoute } from 'vitepress'
+import type { SchemaType } from './types/schema'
+import { useData, useRoute } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import { nextTick, onBeforeMount, onErrorCaptured, onMounted, onUpdated, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeMount, onErrorCaptured, onMounted, onUpdated, ref, watch } from 'vue'
 import { adsConfig } from '../config/ads.config'
 import LanguageSwitcher from './components/LanguageSwitcher.vue'
 import { useHydration } from './utils/hydration'
@@ -10,6 +11,7 @@ import './custom.css'
 
 const { Layout } = DefaultTheme
 const { isHydrated } = useHydration()
+const { frontmatter } = useData()
 const route = useRoute()
 const componentErrors = ref<Error[]>([])
 
@@ -116,10 +118,269 @@ if (typeof window !== 'undefined') {
 
   observer.observe({ entryTypes: ['measure', 'paint'] })
 }
+
+// 生成结构化数据
+const structuredData = computed<SchemaType[]>(() => {
+  // 准备基础数据
+  const baseUrl = 'https://learn-cursor.com'
+  const defaultImage = '/logo.png'
+  const defaultPublisher = {
+    '@type': 'Organization' as const,
+    'name': 'Learn Cursor',
+    'logo': {
+      '@type': 'ImageObject' as const,
+      'url': `${baseUrl}${defaultImage}`,
+    },
+    'contactPoint': {
+      '@type': 'ContactPoint' as const,
+      'contactType': 'customer support',
+      'url': 'https://github.com/geektao1024/learn-cursors-3.0/issues',
+    },
+    'foundingDate': '2024-01',
+    'sameAs': [
+      'https://github.com/cursorAI',
+      'https://twitter.com/cursor_ai',
+    ],
+  } as const
+
+  // 生成面包屑导航
+  const generateBreadcrumb = () => {
+    const pathSegments = route.path.split('/').filter(Boolean)
+    if (pathSegments.length === 0)
+      return null
+
+    return {
+      '@context': 'https://schema.org' as const,
+      '@type': 'BreadcrumbList' as const,
+      'itemListElement': pathSegments.map((segment, index) => ({
+        '@type': 'ListItem' as const,
+        'position': index + 1,
+        'item': {
+          '@id': `${baseUrl}/${pathSegments.slice(0, index + 1).join('/')}`,
+          'name': segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' '),
+        },
+      })),
+    }
+  }
+
+  const schemas: any[] = []
+
+  // 添加网站全局信息（仅在首页）
+  if (route.path === '/' || route.path === '/index.html') {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      'url': baseUrl,
+      'name': 'Learn Cursor',
+      'description': frontmatter.value.description,
+      'potentialAction': {
+        '@type': 'SearchAction',
+        'target': {
+          '@type': 'EntryPoint',
+          'urlTemplate': `${baseUrl}/search?q={search_term_string}`,
+        },
+        'query-input': 'required name=search_term_string',
+      },
+      'publisher': defaultPublisher,
+    })
+  }
+
+  // 添加面包屑导航（除首页外的所有页面）
+  const breadcrumb = generateBreadcrumb()
+  if (breadcrumb) {
+    schemas.push(breadcrumb)
+  }
+
+  // 根据页面类型添加特定的结构化数据
+  if (frontmatter.value.layout === 'doc' || route.path.includes('/blog/posts/')) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      'headline': frontmatter.value.title,
+      'description': frontmatter.value.description,
+      'image': frontmatter.value.image || defaultImage,
+      'datePublished': frontmatter.value.date,
+      'dateModified': frontmatter.value.lastUpdated,
+      'author': {
+        '@type': 'Person',
+        'name': frontmatter.value.author || 'Learn Cursor Team',
+      },
+      'publisher': defaultPublisher,
+      'mainEntityOfPage': {
+        '@type': 'WebPage',
+        '@id': `${baseUrl}${route.path}`,
+      },
+    })
+  }
+  // 如果是教程页面
+  else if (route.path.includes('/wiki/')) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'Course',
+      'name': frontmatter.value.title,
+      'description': frontmatter.value.description,
+      'provider': {
+        '@type': 'Organization',
+        'name': 'Learn Cursor',
+        'sameAs': 'https://learn-cursor.com',
+      },
+      'educationalLevel': 'beginner',
+      'inLanguage': frontmatter.value.lang || 'zh-CN',
+      'coursePrerequisites': 'Basic programming knowledge',
+      'learningResourceType': 'Tutorial',
+      'image': frontmatter.value.image || '/logo.png',
+      'offers': {
+        '@type': 'Offer',
+        'price': '0',
+        'priceCurrency': 'USD',
+        'availability': 'http://schema.org/InStock',
+      },
+    })
+  }
+  // 如果是官方文档页面
+  else if (route.path.includes('/docs/')) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'TechArticle',
+      'headline': frontmatter.value.title,
+      'description': frontmatter.value.description,
+      'image': frontmatter.value.image || '/logo.png',
+      'dateModified': frontmatter.value.lastUpdated,
+      'author': {
+        '@type': 'Organization',
+        'name': 'Learn Cursor Team',
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': 'Learn Cursor',
+        'logo': {
+          '@type': 'ImageObject',
+          'url': 'https://learn-cursor.com/logo.png',
+        },
+      },
+      'about': {
+        '@type': 'SoftwareApplication',
+        'name': 'Cursor AI',
+        'applicationCategory': 'DeveloperApplication',
+      },
+    })
+  }
+  // 如果是案例分享页面
+  else if (route.path.includes('/example/')) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      'headline': frontmatter.value.title,
+      'description': frontmatter.value.description,
+      'image': frontmatter.value.image || '/logo.png',
+      'datePublished': frontmatter.value.date,
+      'dateModified': frontmatter.value.lastUpdated,
+      'articleSection': 'Case Study',
+      'author': {
+        '@type': 'Person',
+        'name': frontmatter.value.author || 'Learn Cursor Team',
+      },
+      'publisher': {
+        '@type': 'Organization',
+        'name': 'Learn Cursor',
+        'logo': {
+          '@type': 'ImageObject',
+          'url': 'https://learn-cursor.com/logo.png',
+        },
+      },
+    })
+  }
+  // 如果是规则配置页面
+  else if (route.path.includes('/rules/')) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      'name': frontmatter.value.title,
+      'description': frontmatter.value.description,
+      'image': frontmatter.value.image || '/logo.png',
+      'tool': {
+        '@type': 'SoftwareApplication',
+        'name': 'Cursor AI',
+        'applicationCategory': 'DeveloperApplication',
+      },
+      'step': [
+        {
+          '@type': 'HowToStep',
+          'name': 'Smart Prompts',
+          'text': '实时代码建议和自动补全',
+        },
+        {
+          '@type': 'HowToStep',
+          'name': 'Auto Formatting',
+          'text': '保持一致的代码风格',
+        },
+        {
+          '@type': 'HowToStep',
+          'name': 'Code Quality',
+          'text': '自动检测潜在问题',
+        },
+        {
+          '@type': 'HowToStep',
+          'name': 'Team Collaboration',
+          'text': '统一的开发标准',
+        },
+      ],
+    })
+  }
+  // 如果是快捷键指南页面
+  else if (route.path.includes('/shortcuts/')) {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'HowTo',
+      'name': frontmatter.value.title,
+      'description': frontmatter.value.description,
+      'image': frontmatter.value.image || '/logo.png',
+      'tool': {
+        '@type': 'SoftwareApplication',
+        'name': 'Cursor AI',
+        'applicationCategory': 'DeveloperApplication',
+      },
+      'step': [
+        {
+          '@type': 'HowToStep',
+          'name': 'Basic Operations',
+          'text': '基础操作快捷键',
+        },
+        {
+          '@type': 'HowToStep',
+          'name': 'Code Navigation',
+          'text': '代码导航快捷键',
+        },
+        {
+          '@type': 'HowToStep',
+          'name': 'AI Features',
+          'text': 'AI功能快捷键',
+        },
+        {
+          '@type': 'HowToStep',
+          'name': 'Editor Features',
+          'text': '编辑器功能快捷键',
+        },
+      ],
+    })
+  }
+
+  return schemas
+})
 </script>
 
 <template>
   <Layout>
+    <template #layout-top>
+      <template v-if="structuredData.length > 0">
+        <script
+          v-for="(schema, index) in structuredData"
+          :key="index"
+          type="application/ld+json"
+          v-html="JSON.stringify(schema)"
+        />
+      </template>
+    </template>
     <div class="theme-container" :class="{ 'is-hydrated': isHydrated }">
       <amp-auto-ads
         v-if="isHydrated"

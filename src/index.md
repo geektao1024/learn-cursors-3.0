@@ -18,6 +18,27 @@ head:
   - - meta
     - property: og:description
       content: Learn Cursor提供最全面的Cursor AI中文教程，包含安装配置、功能详解、实战案例与高级技巧。从零开始掌握AI编程助手，提升10倍编码效率，实现代码自动生成、智能补全与重构优化。
+  - - meta
+    - property: og:type
+      content: website
+  - - meta
+    - property: og:url
+      content: https://learn-cursor.com
+  - - meta
+    - property: og:image
+      content: https://learn-cursor.com/logo.png
+  - - meta
+    - name: twitter:card
+      content: summary_large_image
+  - - meta
+    - name: twitter:title
+      content: Cursor中文教程 | AI编程助手从入门到精通完全指南
+  - - meta
+    - name: twitter:description
+      content: 最全面的Cursor AI中文教程，包含安装配置、功能详解、实战案例与高级技巧。
+  - - meta
+    - name: twitter:image
+      content: https://learn-cursor.com/logo.png
   - - script
     - type: application/ld+json
       content: |
@@ -43,41 +64,39 @@ head:
       content: |
         {
           "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Cursor AI是什么?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Cursor AI是一款基于人工智能的代码编辑器，集成了GPT-4等大型语言模型，帮助开发者提高编程效率。它可以根据自然语言指令生成代码、解释代码、重构代码，并提供智能补全和错误修复等功能。"
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Cursor怎么用?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "使用Cursor的基本步骤：1) 下载并安装Cursor应用；2) 运行Cursor并登录账号或配置API Key；3) 创建或打开项目；4) 使用命令面板(Cmd+K或Ctrl+K)调用AI功能；5) 通过聊天面板与AI交流，输入需求生成代码；6) 使用快捷键(Ctrl+K/Cmd+K)编辑代码。"
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Cursor AI是免费的吗?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Cursor提供免费版和付费版。免费版包含基本的AI编程功能，但存在每日使用限制。付费版(Pro版)提供无限制使用、更高级的功能和优先支持，价格通常为每年$120左右。中国用户也可以通过第三方渠道以更低价格购买账号。"
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Cursor与VSCode有什么区别?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Cursor实际上是基于VSCode构建的，保留了VSCode的大部分功能和扩展性，但集成了更强大的AI功能，例如：代码生成、代码解释、智能重构和高级补全等。VSCode需要安装插件才能获得有限的AI功能，而Cursor原生内置先进的AI功能，提供更流畅的AI编程体验。"
-              }
+          "@type": "Organization",
+          "name": "Cursor AI 中文教程社区",
+          "url": "https://learn-cursor.com",
+          "logo": "https://learn-cursor.com/logo.png",
+          "description": "专注于提供高质量的Cursor AI学习资源的中文社区。",
+          "founder": {
+            "@type": "Person",
+            "name": "GeekTao"
+          }
+        }
+  - - script
+    - type: application/ld+json
+      content: |
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "Cursor AI编程助手从入门到精通完全指南",
+          "description": "最全面的Cursor AI中文教程，包含安装配置、功能详解、实战案例与高级技巧。",
+          "image": "https://learn-cursor.com/logo.png",
+          "datePublished": "2024-01-01T00:00:00+08:00",
+          "dateModified": "2024-03-19T00:00:00+08:00",
+          "author": {
+            "@type": "Person",
+            "name": "GeekTao"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Cursor AI 中文教程社区",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://learn-cursor.com/logo.png"
             }
-          ]
+          }
         }
 
 hero:

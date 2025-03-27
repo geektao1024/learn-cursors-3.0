@@ -10,6 +10,8 @@ interface Highlight {
     link: string
   }
   keywords?: string[]
+  width?: number
+  height?: number
 }
 
 defineProps<{
@@ -39,7 +41,14 @@ defineProps<{
         </a>
       </div>
       <div class="highlight-image">
-        <img :src="highlight.image" :alt="highlight.altText">
+        <img
+          :src="highlight.image"
+          :alt="highlight.altText"
+          loading="lazy"
+          decoding="async"
+          :width="highlight.width || 800"
+          :height="highlight.height || 450"
+        >
       </div>
     </div>
   </div>

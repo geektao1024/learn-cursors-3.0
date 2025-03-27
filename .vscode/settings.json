@@ -116,6 +116,18 @@
     "/wiki/user-guide/install",
     "/wiki/user-guide/programming-basics-for-beginners",
     "/wiki/user-guide/cursor-tips",
-    "/wiki/user-guide/ai-programming-guide"
+    "/wiki/user-guide/ai-programming-guide",
+    "/en/wiki/user-guide/quick-start",
+    "/en/wiki/user-guide/cursor-introduction",
+    "/en/wiki/user-guide/install",
+    "/en/wiki/user-guide/programming-basics-for-beginners",
+    "/en/wiki/user-guide/ai-programming-guide",
+    "/en/wiki/user-guide/cursor-tips",
+    "/ja/wiki/user-guide/cursor-introduction",
+    "/ja/wiki/user-guide/quick-start",
+    "/ja/wiki/user-guide/install",
+    "/ja/wiki/user-guide/programming-basics-for-beginners",
+    "/ja/wiki/user-guide/ai-programming-guide",
+    "/ja/wiki/user-guide/cursor-tips"
   ]
 }

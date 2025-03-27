@@ -106,7 +106,34 @@ export default defineConfig({
       dark: '/logo-dark.png',
     },
     siteTitle: 'Learn Cursor',
-    nav: i18nConfig.root?.themeConfig?.nav || [],
+    nav: [
+      { text: '首页', link: '/' },
+      {
+        text: '用户指南',
+        items: [
+          { text: '快速开始', link: '/wiki/user-guide/quick-start' },
+          { text: '安装指南', link: '/wiki/user-guide/install' },
+          { text: 'AI编程指南', link: '/wiki/user-guide/ai-programming-guide' },
+        ],
+      },
+      {
+        text: '功能介绍',
+        items: [
+          { text: '代码生成', link: '/wiki/user-guide/code-generation' },
+          { text: 'AI对话', link: '/wiki/user-guide/ai-chat' },
+          { text: '代码补全', link: '/wiki/user-guide/code-completion' },
+          { text: 'Agent模式', link: '/wiki/user-guide/agent' },
+        ],
+      },
+      {
+        text: '实用教程',
+        items: [
+          { text: '构建网站', link: '/wiki/user-guide/make-a-website' },
+          { text: '句子生成器', link: '/wiki/user-guide/make-a-sentence-generator' },
+          { text: 'QR码插件', link: '/wiki/user-guide/make-a-qr-code-plugin' },
+        ],
+      },
+    ],
     sidebar,
 
     search: {

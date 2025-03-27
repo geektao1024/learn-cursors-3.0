@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/geektao1024/learn-cursors-3.0/actions/workflows/ci.yml/badge.svg)](https://github.com/geektao1024/learn-cursors-3.0/actions/workflows/ci.yml)
 
-Cursor AI 教程社区是一个开源的学习平台，致力于帮助开发者掌握和精通 Cursor AI 编辑器。我们提供全面的教程、最佳实践指南和活跃的社区讨论环境，助力开发者提升开发效率和代码质量。
+Cursor AI 教程社区是一个开源的多语言学习平台，致力于帮助开发者掌握和精通 Cursor AI 编辑器。我们提供全面的教程、最佳实践指南和活跃的社区讨论环境，助力开发者提升开发效率和代码质量。
 
 ## 🌐 在线访问
 
@@ -10,85 +10,33 @@ Cursor AI 教程社区是一个开源的学习平台，致力于帮助开发者�
 - 在线文档：<https://docs.learn-cursor.com>
 - 社区论坛：<https://community.learn-cursor.com>
 
-## ✨ 核心功能
+## 🌍 多语言支持
 
-### 1. 教程系统
+网站支持以下三种语言：
 
-- **入门指南**
+- **中文**：根目录（`/`）- 默认语言
+- **英文**：`/en/` 目录
+- **日文**：`/ja/` 目录
 
-  - 环境搭建和配置
-  - 界面功能详解
-  - 基础操作教程
-  - 快捷键速查表
+## 📚 主要内容
 
-- **AI 编程指南**
+- **用户指南**：`/wiki/user-guide/` - 从入门到精通的系统学习路径
+- **文档中心**：`/docs-zh/`（中文）, `/en/docs/`（英文）, `/ja/docs/`（日文）
+- **博客文章**：`/blog/` - 分享 Cursor AI 相关经验与技巧
+- **案例分享**：`/example/` - 实战案例与使用心得
+- **规则配置**：`/rules/` - Cursor 自定义规则指南
+- **快捷键**：`/shortcuts/` - 提升效率的键盘快捷键速查表
 
-  - AI 代码生成最佳实践
-  - 提示词工程技巧
-  - 代码优化建议
-  - 自然语言转代码
+## 🛠️ 技术架构
 
-- **高级特性**
-  - 项目重构指南
-  - 代码审查技巧
-  - 性能优化方案
-  - 团队协作实践
+- **前端框架**：VitePress + Vue 3 + TypeScript
+- **UI 组件**：Element Plus + Tailwind CSS
+- **多语言**：使用 VitePress 内置的国际化系统
+- **部署**：使用 GitHub Actions 自动构建与部署
+- **分析工具**：Google Analytics + 百度统计
+- **SEO 优化**：完整的 meta 标签配置和结构化数据
 
-### 2. 实战项目
-
-- **Web 开发**
-
-  - React/Vue 项目实战
-  - 全栈应用开发
-  - 微服务架构设计
-
-- **工具开发**
-  - Cursor 插件开发
-  - 自动化工具开发
-  - CI/CD 流程搭建
-
-### 3. 社区互动
-
-- **知识分享**
-
-  - 技术博客
-  - 视频教程
-  - 案例分析
-
-- **问答系统**
-  - 技术问答
-  - 经验交流
-  - 问题诊断
-
-## 🛠 技术架构
-
-### 前端技术
-
-- **核心框架**
-
-  - VitePress ^1.0.0 - 静态站点生成
-  - Vue 3.4 - 响应式 UI 框架
-  - TypeScript 5.3 - 类型系统
-
-- **UI 框架**
-  - Element Plus ^2.5.0 - 组件库
-  - Tailwind CSS ^3.4.0 - 原子化 CSS
-  - Iconify - 图标系统
-
-### 后端服务
-
-- **API 服务**
-
-  - Node.js 18 LTS
-  - Express.js 4.18
-  - MongoDB 7.0
-
-- **部署环境**
-  - Docker
-  - Nginx
-  - GitHub Actions
-
-## 📦 快速开始
+## 📦 本地开发
 
 ### 环境要求
 
@@ -118,35 +66,31 @@ pnpm build
 
 # 代码检查
 pnpm lint
-
-# 运行测试
-pnpm test
 ```
 
 ## 📁 项目结构
 
 ```
 learn-cursors-3.0/
-├── src/                   # 源代码目录
-│   ├── .vitepress/       # VitePress 配置
-│   ├── blog/             # 博客文章
-│   ├── docs-zh/          # 中文文档
-│   ├── public/           # 静态资源
-│   ├── rules/            # 规则文档
-│   ├── shortcuts/        # 快捷键文档
-│   ├── types/            # TypeScript 类型定义
-│   ├── vitepress/        # VitePress 自定义组件
-│   ├── wiki/             # Wiki 文档
-│   └── index.md         # 首页内容
-├── dist/                 # 构建输出目录
-├── node_modules/         # 依赖包
-├── .github/             # GitHub 配置
-├── .husky/              # Git Hooks
-├── .vscode/             # VS Code 配置
-├── package.json         # 项目配置
-├── tsconfig.json        # TypeScript 配置
-├── vite.config.ts       # Vite 配置
-└── vercel.json          # Vercel 部署配置
+├── src/                  # 源代码目录
+│   ├── .vitepress/      # VitePress 配置
+│   │   ├── config/      # 配置文件
+│   │   ├── theme/       # 主题配置
+│   │   ├── i18n/        # 国际化配置
+│   │   └── config.ts    # 主配置文件
+│   ├── blog/            # 博客文章
+│   ├── docs-zh/         # 中文文档
+│   ├── en/              # 英文内容
+│   ├── ja/              # 日文内容
+│   ├── public/          # 静态资源
+│   ├── rules/           # 规则文档
+│   ├── shortcuts/       # 快捷键文档
+│   ├── wiki/            # Wiki 用户指南
+│   └── index.md         # 首页内容(中文)
+├── dist/                # 构建输出目录
+├── .github/            # GitHub 配置
+├── package.json        # 项目配置
+└── tsconfig.json       # TypeScript 配置
 ```
 
 ## 🤝 贡献指南

@@ -3,7 +3,6 @@
 
 // Types
 import type { Theme } from 'vitepress'
-import type { VNode } from 'vue'
 
 // Element Plus
 import ElementPlus from 'element-plus'
@@ -18,6 +17,10 @@ import BlogList from './components/BlogList.vue'
 import BlogPost from './components/BlogPost.vue'
 import DocFooter from './components/DocFooter.vue'
 import HomeContent from './components/HomeContent.vue'
+import HomeFAQ from './components/HomeFAQ.vue'
+import HomeFeatures from './components/HomeFeatures.vue'
+import HomeHighlights from './components/HomeHighlights.vue'
+import HomeQuickStart from './components/HomeQuickStart.vue'
 import RulesPage from './components/RulesPage.vue'
 import { logger as appLogger } from './utils/logger'
 
@@ -73,7 +76,7 @@ function createAsyncComponent(loader: () => Promise<any>, componentName: string)
 // 注册语言检测组件
 const LanguageDetectorComponent = typeof window !== 'undefined'
   ? createAsyncComponent(
-      () => import('../components/LanguageDetector.vue'),
+      () => import('./components/LanguageDetector.vue'),
       'LanguageDetector',
     )
   : null
@@ -117,12 +120,12 @@ export default {
     }
 
     if (inBrowser) {
-      // 优化水合配置
-      app.config.compilerOptions = {
+      // 优化水合配置 - 注释掉运行时编译器选项，以避免警告
+      /* app.config.compilerOptions = {
         whitespace: 'condense',
         comments: false,
         delimiters: ['{{', '}}'],
-      }
+      } */
 
       // 处理水合不匹配
       app.mixin({
@@ -153,6 +156,10 @@ export default {
     app.component('DocFooter', DocFooter)
     app.component('HomeContent', HomeContent)
     app.component('RulesPage', RulesPage)
+    app.component('HomeFeatures', HomeFeatures)
+    app.component('HomeFAQ', HomeFAQ)
+    app.component('HomeHighlights', HomeHighlights)
+    app.component('HomeQuickStart', HomeQuickStart)
 
     // 注册语言检测组件
     if (inBrowser && LanguageDetectorComponent) {

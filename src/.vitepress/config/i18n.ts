@@ -16,7 +16,7 @@ const rootConfig = {
     ],
     footer: {
       message: '基于 MIT 许可发布',
-      copyright: 'Copyright © 2024 Learn Cursor 团队',
+      copyright: 'Copyright © 2024 Learn Cursor 团队 | <a href="https://github.com/geektao1024/learn-cursors-3.0" target="_blank" rel="noopener noreferrer">GitHub</a> | <a href="https://github.com/geektao1024/learn-cursors-3.0/issues" target="_blank" rel="noopener noreferrer">反馈建议</a>',
     },
   },
 }
@@ -37,7 +37,7 @@ const enConfig = {
     ],
     footer: {
       message: 'Released under the MIT License',
-      copyright: 'Copyright © 2024 Learn Cursor Team',
+      copyright: 'Copyright © 2024 Learn Cursor Team | <a href="https://github.com/geektao1024/learn-cursors-3.0" target="_blank" rel="noopener noreferrer">GitHub</a> | <a href="https://github.com/geektao1024/learn-cursors-3.0/issues" target="_blank" rel="noopener noreferrer">Feedback</a>',
     },
   },
 }
@@ -58,7 +58,7 @@ const jaConfig = {
     ],
     footer: {
       message: 'MIT ライセンスで公開',
-      copyright: 'Copyright © 2024 Learn Cursor チーム',
+      copyright: 'Copyright © 2024 Learn Cursor チーム | <a href="https://github.com/geektao1024/learn-cursors-3.0" target="_blank" rel="noopener noreferrer">GitHub</a> | <a href="https://github.com/geektao1024/learn-cursors-3.0/issues" target="_blank" rel="noopener noreferrer">フィードバック</a>',
     },
   },
 }

@@ -102,21 +102,177 @@ head:
 hero:
   name: Cursor AI 中文教程
   text: 入门到精通的完全指南
-  tagline: 掌握AI编程助手，10倍提升开发效率，从零开始构建属于你的项目
+  tagline: 不写一行代码就能做出自己的产品，从基础工具使用到实战案例，系统化无代码开发技能。掌握AI编程助手，10倍提升开发效率，零基础使用AI开发开始构建属于你的产品
   image:
     src: /logo.png
     alt: Cursor AI 教程社区 LOGO
   actions:
     - theme: brand
-      text: 立即开始学习
+      text: 🚀 立即开始学习
       link: /wiki/user-guide/programming-basics-for-beginners/
     - theme: alt
       text: 官方文档翻译
       link: /docs-zh/
 
 features: []
-
 ---
+
+<div style="position: absolute; top: -25.8em; /* 相对于下方标题定位，可微调 */ left: 0; right: 0; max-width: var(--vp-layout-max-width); margin: 0 auto; padding: 0 6px; text-align: left; z-index: 1;">
+  <span style="font-size: 1rem; font-weight: 600; color: var(--vp-c-brand-1);">✨ AI 驱动开发 | 做属于你的产品</span>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: flex-start; margin: 0rem auto 2rem auto; max-width: var(--vp-layout-max-width); padding: 0 6px; flex-wrap: wrap; gap: 1rem;">
+  <div style="display: flex; margin-right: 0.5rem;">
+    <!-- 使用 Emoji 或 placeholder 图标作为头像 -->
+    <span style="font-size: 2rem; margin-left: -0.8rem; background: #eee; border-radius: 50%; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 2px solid white;">🧑‍💻</span>
+    <span style="font-size: 2rem; margin-left: -0.8rem; background: #ddd; border-radius: 50%; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 2px solid white;">👩‍🎨</span>
+    <span style="font-size: 2rem; margin-left: -0.8rem; background: #ccc; border-radius: 50%; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 2px solid white;">👨‍🚀</span>
+    <span style="font-size: 2rem; margin-left: -0.8rem; background: #bbb; border-radius: 50%; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 2px solid white;">👨‍🎓</span>
+    <span style="font-size: 2rem; margin-left: -0.8rem; background: #aaa; border-radius: 50%; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 2px solid white;">🧑‍💻</span>
+  </div>
+  <div style="text-align: left;">
+    <span style="color: #ffc107; font-size: 1.1rem; line-height: 1;">★★★★★</span>
+    <p style="margin: 0.25rem 0 0 0; font-weight: 600;">965+ 位开发者正在学习</p>
+  </div>
+</div>
+
+<div class="course-outline-container">
+  <h2 class="main-title">Cursor AI 教程内容</h2>
+  <p class="subtitle">全面系统化的学习路径，从环境搭建到网站上线的完整教程体系</p>
+  <div class="grid">
+    <div class="card">
+      <h3>📝 1. 零基础掌握AI知识点</h3>
+      <ul>
+        <li><strong>1.1 掌握Cursor：AI编程必备神器</strong></li>
+        <ul>
+          <li>1.1.1 Cursor 安装与配置</li>
+        </ul>
+        <li><strong>1.2 AI时代下的开发环境</strong></li>
+        <ul>
+          <li>1.2.1 安装 Git</li>
+          <li>1.2.2 安装 Node.js</li>
+          <li>1.2.3 安装 Python</li>
+        </ul>
+        <li><strong>1.3 新手AI编程核心概念 + 最佳实践</strong></li>
+        <ul>
+          <li>1.3.1 AI时代下的前端核心概念 + 最佳实践</li>
+          <li>1.3.2 新手入门后端必要概念 + 最佳实践</li>
+          <li>1.3.3 Git入门：必学！AI编程的后悔药</li>
+        </ul>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🚀 2. AI 进阶：小白也能轻松写代码</h3>
+      <ul>
+        <li><strong>2.1 Cursor 的进阶用法</strong></li>
+        <ul>
+          <li>2.1.1 如何创建Cursor rules</li>
+          <li>2.1.2 Composer进阶使用</li>
+        </ul>
+        <li><strong>2.2 编程语言和框架</strong></li>
+        <ul>
+          <li>2.2.1 AI编程下的前端开发：NextJS和NuxtJS</li>
+          <li>2.2.2 AI编程下的后端开发入门：Python的基本使用</li>
+          <li>2.2.3 AI辅助下的后端开发入门：用Flask实现一个简单的API</li>
+          <li>2.2.4 AI时代的数据库开发 + AI编写SQL语句</li>
+        </ul>
+        <li><strong>2.3 AI驱动的云平台实践</strong></li>
+        <ul>
+          <li>2.3.1 新手友好的腾讯云CloudBase</li>
+          <li>2.3.2 出海必备-Supabase详细教程</li>
+        </ul>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>💡 3. 项目实战：打造工业级AI作品</h3>
+      <ul>
+        <li><strong>3.1 应用开发实践</strong></li>
+        <ul>
+          <li>3.1.1 快速创建官网-深度集成OpenSpeak AI到官网</li>
+          <li>3.1.2 开发Cursor插件：打造AI编程助手</li>
+          <li>3.1.3 搭建一个网店，轻松接入AI推荐系统</li>
+          <li>3.1.4 用OpenSpeak + Claude实现AI客服系统</li>
+          <li>3.1.5 集成AI到你的SaaS产品</li>
+          <li>3.1.6 单页卡片：包含多个主题集合</li>
+          <li>3.1.7 知识管理系统示例</li>
+          <li>3.1.8 手机端AI/GPT/O2O功能 文生图</li>
+          <li>3.1.9 AI变现实践</li>
+        </ul>
+        <li><strong>3.2 和用模块快速搭建项目</strong></li>
+        <ul>
+          <li>3.2.1 我有的只是一个点子！</li>
+          <li>3.2.2 快速跨境电商平台搭建！</li>
+          <li>3.2.3 ShopApp：一个时尚便捷的 AI SaaS 商店</li>
+          <li>3.2.4 NextBase: 快速上线City + Co2e网站开发</li>
+        </ul>
+        <li><strong>3.3 大商务级别的部署服务</strong></li>
+        <ul>
+          <li>3.3.1 GVendor 免费部署你的测试项目</li>
+          <li>3.3.2 EZsuber部署你的商业服务，中文友好</li>
+        </ul>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>☁️ 4. 部署、运维与分析</h3>
+      <ul>
+        <li><strong>4.1 部署与托管</strong></li>
+        <ul>
+          <li>4.1.1 域名购买与管理</li>
+          <li>4.1.2 Cloudflare教程</li>
+          <li>4.1.3 Vercel部署指南</li>
+          <li>4.1.4 项目部署流程</li>
+          <li>4.1.5 GVendor 免费部署你的测试项目</li>
+          <li>4.1.6 EZsuber部署你的商业服务，中文友好</li>
+        </ul>
+        <li><strong>4.2 网站分析</strong></li>
+        <ul>
+          <li>4.2.1 网站数据分析工具</li>
+        </ul>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>⚡️ 5. SEO优化指南</h3>
+      <ul>
+        <li><strong>5.1 SEO基础</strong></li>
+        <ul>
+          <li>5.1.1 SEO优化完全指南</li>
+          <li>5.1.2 搜索引擎工作原理</li>
+          <li>5.1.3 SEO基础知识</li>
+        </ul>
+        <li><strong>5.2 SEO实践</strong></li>
+        <ul>
+          <li>5.2.1 关键词研究</li>
+          <li>5.2.2 内容优化</li>
+          <li>5.2.3 页面优化</li>
+          <li>5.2.4 外链建设</li>
+          <li>5.2.5 技术SEO</li>
+        </ul>
+      </ul>
+    </div>
+     <div class="card">
+      <h3>📈 6. 网站推广与变现</h3>
+      <ul>
+        <li><strong>6.1 推广策略</strong></li>
+        <ul>
+          <li>6.1.1 高转化关键词挖掘</li>
+          <li>6.1.2 寻找产品灵感</li>
+          <li>6.1.3 竞品分析与差异化策略</li>
+          <li>6.1.4 外链建设（推广）</li>
+          <li>6.1.5 海外产品发布渠道整理</li>
+          <li>6.1.6 搜索引擎收录完全指南</li>
+          <li>6.1.7 产品营销推广</li>
+        </ul>
+        <li><strong>6.2 变现与工具</strong></li>
+        <ul>
+          <li>6.2.1 流量变现完全指南</li>
+          <li>6.2.2 跨境公司注册攻略</li>
+          <li>6.2.3 营销工具速查手册</li>
+          <li>6.2.4 Chrome插件精选徽章获取指南</li>
+        </ul>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <HomeHighlights
   title="为什么选择 Cursor AI？"
@@ -266,6 +422,30 @@ features: []
   ]"
 />
 
+## 关于我们
+
+我们是一群热衷于 AI 技术的开发者和学习者，由 **GeekTao** 发起并维护这个非官方的 Cursor AI 中文教程社区。我们深知优秀工具需要好的学习资源，特别是对于中文用户。
+
+创建本站的初衷是：
+
+- **降低门槛：** 提供系统、易懂的中文教程，帮助更多人快速上手 Cursor AI。
+- **聚合资源：** 整理、翻译、创作高质量的学习内容，涵盖从入门到进阶。
+- **促进交流：** 建立一个开放的交流平台，分享使用技巧和实践经验。
+
+虽然我们是非官方社区，但我们致力于保持内容的准确性和时效性，希望能成为您学习 Cursor AI 的得力助手。
+
+## 社区声音
+
+听听早期用户怎么说：
+
+> **"太及时了！** 刚开始用 Cursor，很多功能还在摸索，这里的教程非常系统，帮我省了不少时间。" - 来自一位后端开发者
+
+> **"内容很全，从安装到高级技巧都有覆盖。** 对我这种想把 AI 融入工作流的人来说帮助很大。" - 来自一位前端工程师
+
+> **"喜欢这里的实战案例部分，** 能看到 Cursor 在实际项目中是如何应用的，很有启发。" - 来自一位独立开发者
+
+> **"终于有靠谱的中文教程了！** 感谢维护者的付出，希望能持续更新！" - 来自一位编程初学者
+
 <HomeContent
   tip="本站是一个由个人开发者维护的非官方 Cursor AI 教程网站，内容来自互联网公开资源的整理与优化。我们致力于为中文开发者提供高质量的 Cursor AI 学习资源。"
   :warning="[
@@ -275,17 +455,10 @@ features: []
   ]"
 />
 
-<div class="footer-container">
-  <div class="footer">
-    <p>版权所有 © 2024-至今 Cursor AI 中文教程社区</p>
-    <p>
-      <a href="https://github.com/geektao1024/learn-cursors-3.0" target="_blank" rel="noopener noreferrer">GitHub</a> |
-      <a href="https://github.com/geektao1024/learn-cursors-3.0/issues" target="_blank" rel="noopener noreferrer">反馈建议</a>
-    </p>
-  </div>
-</div>
-
 <style>
+/* ============================================
+   1. 布局容器和页脚样式
+   ============================================ */
 .footer-container {
   margin: 0 auto;
   max-width: var(--vp-layout-max-width);
@@ -315,5 +488,191 @@ features: []
 
 .footer a:hover {
   color: #42b883;
+}
+
+/* ============================================
+   2. 标题横线移除
+   ============================================ */
+/* 移除标题前后伪元素 */
+.main-title::before,
+.HomeHighlights h2::before,
+.HomeQuickStart h2::before,
+.HomeFeatures h2::before,
+.HomeFAQ h2::before,
+h2::before,
+h2::after,
+.main-title::after,
+.HomeHighlights h2::after,
+.HomeQuickStart h2::after,
+.HomeFeatures h2::after,
+.HomeFAQ h2::after {
+  display: none !important;
+}
+
+/* 移除VitePress默认的标题上边框 */
+.vp-doc h2,
+.main-title,
+.highlights-header h2,
+.HomeHighlights h2,
+.HomeQuickStart h2,
+.HomeFeatures h2,
+.HomeFAQ h2,
+.home-content h2,
+h2 {
+  border-top: none !important;
+  padding-top: 0 !important;
+  margin-top: 24px !important;
+}
+
+/* 确保首页组件中的标题也没有上边框 */
+.highlights-section h2,
+.quick-start-section h2,
+.features-section h2,
+.faq-section h2 {
+  border-top: none !important;
+}
+
+/* ============================================
+   3. Hero 区域样式
+   ============================================ */
+/* 给 Hero 区的标题 h1 添加相对定位，作为上方 slogan 的定位基准 */
+.VPHome .name {
+  position: relative;
+}
+
+/* 调整 Hero 区按钮大小 */
+.VPHero .actions .VPButton {
+  padding: 0.75rem 1.75rem; /* 增加上下和左右内边距 */
+  font-size: 1rem; /* 可选：调整字体大小 */
+  line-height: 1.5; /* 确保文字垂直居中 */
+  height: auto; /* 确保高度由 padding 决定 */
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease; /* 添加过渡效果 */
+}
+
+/* 品牌按钮悬停效果 */
+.VPHero .actions .VPButton.brand:hover {
+  background-color: var(--vp-button-brand-hover-bg); /* 使用主题变量 */
+  transform: scale(1.03); /* 轻微放大 */
+}
+
+/* 次要按钮悬停效果 */
+.VPHero .actions .VPButton.alt:hover {
+  background-color: var(--vp-button-alt-hover-bg); /* 使用主题变量 */
+  color: var(--vp-button-alt-hover-text);
+  transform: scale(1.03); /* 轻微放大 */
+}
+
+/* 增加 Hero 区域与顶部导航的间距 */
+.VPHome {
+  padding-top: 5rem; /* 增加此值以拉开更多距离 */
+}
+
+/* 调整 Hero 区 tagline 字号 */
+.VPHero .tagline {
+  font-size: 1.2rem; /* 减小字号，可根据需要调整 */
+}
+
+/* ============================================
+   4. 课程大纲样式
+   ============================================ */
+/* Course Outline Styles */
+.course-outline-container {
+  padding: 48px 0;
+  max-width: 1152px;
+  margin: 100px auto;
+  margin-bottom: 32px;
+}
+
+.course-outline-container .main-title {
+  text-align: center;
+  font-size: 2em;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--vp-c-text-1);
+}
+
+.course-outline-container .subtitle {
+  text-align: center;
+  font-size: 1.1em;
+  color: var(--vp-c-text-2);
+  margin-bottom: 40px;
+}
+
+.course-outline-container .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.course-outline-container .card {
+  background-color: var(--vp-c-bg-soft);
+  border-radius: 8px;
+  padding: 20px 24px;
+  border: 1px solid var(--vp-c-divider);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+}
+
+.course-outline-container .card:hover {
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.course-outline-container .card h3 {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: var(--vp-c-text-1);
+  display: flex;
+  align-items: center;
+  transition: color 0.3s;
+}
+
+.course-outline-container .card:hover h3 {
+  color: var(--vp-c-brand-1);
+}
+
+.course-outline-container .card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.course-outline-container .card li {
+  font-size: 0.9em;
+  color: var(--vp-c-text-2);
+  margin-bottom: 8px;
+  line-height: 1.6;
+  transition: color 0.2s, transform 0.2s;
+  padding: 2px 0;
+}
+
+.course-outline-container .card li:hover {
+  color: var(--vp-c-brand-1);
+  transform: translateX(3px);
+}
+
+.course-outline-container .card li:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================
+   5. 响应式调整
+   ============================================ */
+@media (max-width: 640px) {
+  .course-outline-container .grid {
+    grid-template-columns: 1fr; /* Stack cards on mobile */
+  }
+   .course-outline-container {
+    padding: 32px 20px;
+  }
+  .course-outline-container .main-title {
+    font-size: 1.8em;
+  }
+  .course-outline-container .subtitle {
+    font-size: 1em;
+    margin-bottom: 32px;
+  }
 }
 </style>

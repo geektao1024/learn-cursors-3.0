@@ -7,6 +7,10 @@ export const messages = {
       stayButton: '保持当前语言',
       dontShow: '不再提示',
     },
+    common: {
+      expand: '展开',
+      collapse: '收起',
+    },
   },
   en: {
     notification: {
@@ -16,6 +20,10 @@ export const messages = {
       stayButton: 'Stay Current',
       dontShow: 'Don\'t show again',
     },
+    common: {
+      expand: 'Expand',
+      collapse: 'Collapse',
+    },
   },
   ja: {
     notification: {
@@ -24,6 +32,10 @@ export const messages = {
       switchButton: '言語を切り替える',
       stayButton: '現在の言語を維持',
       dontShow: '次回から表示しない',
+    },
+    common: {
+      expand: '展開',
+      collapse: '折りたたむ',
     },
   },
 }

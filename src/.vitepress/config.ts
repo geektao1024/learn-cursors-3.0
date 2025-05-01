@@ -98,6 +98,23 @@ export default defineConfig({
         var s = document.getElementsByTagName("script")[0]; 
         s.parentNode.insertBefore(hm, s);
       })();`],
+    ['script', { type: 'text/javascript' }, `
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "r305e7l7f5");
+    `],
+    ['script', {}, `
+      window.op = window.op||function(...args){(window.op.q=window.op.q||[]).push(args);};
+      window.op('init', {
+        clientId: '4620a961-1fb3-4e14-ab21-ed36c88d386c',
+        trackScreenViews: true,
+        trackOutgoingLinks: true,
+        trackAttributes: true,
+      });
+    `],
+    ['script', { src: 'https://openpanel.dev/op1.js', defer: true, async: true }],
   ].filter(Boolean) as HeadConfig[],
 
   themeConfig: {

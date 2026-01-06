@@ -14,6 +14,10 @@ const { isHydrated } = useHydration()
 const { frontmatter } = useData()
 const route = useRoute()
 const componentErrors = ref<Error[]>([])
+const effectiveGateAd = {
+  containerId: 'container-b8386c573e08182e1305476b04b5e74e',
+  scriptSrc: 'https://pl25383702.effectivegatecpm.com/b8386c573e08182e1305476b04b5e74e/invoke.js',
+} as const
 
 // 监控路由变化
 watch(() => route.path, (newPath, oldPath) => {
@@ -58,6 +62,18 @@ onMounted(async () => {
 
     // 监控广告加载
     if (typeof window !== 'undefined') {
+      const effectiveGateContainer = document.getElementById(effectiveGateAd.containerId)
+      let effectiveGateScript = document.querySelector(`script[src="${effectiveGateAd.scriptSrc}"]`)
+
+      if (effectiveGateContainer && !effectiveGateScript) {
+        const script = document.createElement('script')
+        script.async = true
+        script.setAttribute('data-cfasync', 'false')
+        script.src = effectiveGateAd.scriptSrc
+        effectiveGateContainer.appendChild(script)
+        effectiveGateScript = script
+      }
+
       const adScript = document.querySelector('script[src*="pagead2.googlesyndication.com"]')
       const ampScript = document.querySelector('script[src*="cdn.ampproject.org"]')
       const ampAdsElement = document.querySelector('amp-auto-ads')
@@ -66,6 +82,8 @@ onMounted(async () => {
         adScriptLoaded: !!adScript,
         ampScriptLoaded: !!ampScript,
         ampAdsElementExists: !!ampAdsElement,
+        effectiveGateContainerExists: !!effectiveGateContainer,
+        effectiveGateScriptLoaded: !!effectiveGateScript,
         timestamp: new Date().toISOString(),
       })
     }
@@ -412,6 +430,9 @@ const structuredData = computed<SchemaType[]>(() => {
 
       <main class="main-content">
         <div class="content-container">
+          <div class="ad-banner">
+            <div :id="effectiveGateAd.containerId"></div>
+          </div>
           <slot />
         </div>
       </main>
@@ -448,6 +469,12 @@ const structuredData = computed<SchemaType[]>(() => {
   flex: 1;
   position: relative;
   z-index: 1;
+}
+
+.ad-banner {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
 }
 
 /* 导航栏样式 */

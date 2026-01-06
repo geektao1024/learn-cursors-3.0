@@ -90,6 +90,16 @@ export default defineConfig({
     `]] as HeadConfig[]
       : []),
     ['script', {}, `
+      atOptions = {
+        'key' : '95f7c1e9b594c8d658376f5f001678f2',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+      };
+    `],
+    ['script', { src: 'https://www.highperformanceformat.com/95f7c1e9b594c8d658376f5f001678f2/invoke.js' }],
+    ['script', {}, `
       var _hmt = _hmt || [];
       (function() {
         var hm = document.createElement("script");

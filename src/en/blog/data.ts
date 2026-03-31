@@ -25,6 +25,13 @@ function formatDate(raw: string): Post['date'] {
 // Export blog data
 export const data: Post[] = [
   {
+    title: 'After Building With Cursor, How To Finish Your Demo Video, Soundtrack, and Launch Assets',
+    url: '/en/blog/posts/product-launch-assets-guide.html',
+    date: formatDate('2026-03-31'),
+    tags: ['AI', 'Cursor', 'Product Launch', 'Content Workflow'],
+    description: 'Many indie builders finish the product and the landing page, then realize they still need launch assets. This guide covers demos, soundtrack, short-form content, and the workflow around them.',
+  },
+  {
     title: 'Cursor Quick Start: Master AI Programming Assistant in 10 Minutes',
     url: '/en/blog/posts/cursor-quick-start.html',
     date: formatDate('2023-12-25'),

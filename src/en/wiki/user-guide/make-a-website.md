@@ -209,6 +209,8 @@ export function Image({ src, alt, ...props }: ImageProps) {
 
 ### 2.2.3 Deployment
 
+Once the site itself is working, many teams still need launch assets such as demo videos, hero-background music, and short-form content for distribution. If that is part of your workflow, browse our [resource page for builders](/en/resources/). It includes tools such as [Musikalis](https://musikalis.com/), which is relevant when you need AI-generated music or soundtrack-style audio for landing pages, product demos, and branded launch content.
+
 1. **Build Project**
 
 ```bash

@@ -96,6 +96,10 @@ const zhSidebar: DefaultTheme.Sidebar = {
       collapsed: false,
       items: [
         {
+          text: '上线素材工作流：demo、配乐与发布内容',
+          link: '/blog/posts/product-launch-assets-guide',
+        },
+        {
           text: 'Cursor + V0 + Reweb 实战 🛠️',
           link: '/blog/posts/cursor-v0-reweb-guide',
         },
@@ -350,6 +354,10 @@ const enSidebar: DefaultTheme.Sidebar = {
       collapsed: false,
       items: [
         {
+          text: 'Launch Assets Workflow',
+          link: '/en/blog/posts/product-launch-assets-guide',
+        },
+        {
           text: 'Cursor + V0 + Reweb in Action 🛠️',
           link: '/en/blog/posts/cursor-v0-reweb-guide',
         },
@@ -535,6 +543,10 @@ const jaSidebar: DefaultTheme.Sidebar = {
       text: '💻 実践チュートリアル',
       collapsed: false,
       items: [
+        {
+          text: '公開素材ワークフロー',
+          link: '/ja/blog/posts/product-launch-assets-guide',
+        },
         {
           text: 'Cursor + V0 + Reweb 実践 🛠️',
           link: '/ja/blog/posts/cursor-v0-reweb-guide',

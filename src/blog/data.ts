@@ -27,6 +27,13 @@ function formatDate(raw: string): Post['date'] {
 // 导出博客数据
 export const data: Post[] = [
   {
+    title: '用 Cursor 做完产品后，如何补齐演示视频、配乐和发布素材',
+    url: '/blog/posts/product-launch-assets-guide.html',
+    date: formatDate('2026-03-31'),
+    tags: ['AI', 'Cursor', '产品发布', '内容制作'],
+    description: '独立开发者把产品做出来之后，常常还差一套能真正拿去上线的展示素材。这篇文章整理了官网、demo 视频、音频配乐与社媒分发的完整思路。',
+  },
+  {
     title: 'Cursor 快速入门：10 分钟掌握 AI 编程助手',
     url: '/blog/posts/cursor-quick-start.html',
     date: formatDate('2023-12-25'),

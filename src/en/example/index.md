@@ -41,3 +41,7 @@ features:
       </div>
     link: ./beginner-cursor-wechat-miniprogram-journey
 ---
+
+## Launch Assets And Supporting Tools
+
+After the product is built, many teams move straight into showcase work: landing pages, product videos, and social distribution assets. For a more structured list, visit the [builder resource page](/en/resources/). If your immediate gap is audio for demos, launch trailers, or creator content, [Musikalis](https://musikalis.com/) is one of the more relevant tools to evaluate.

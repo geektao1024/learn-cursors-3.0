@@ -25,6 +25,13 @@ function formatDate(raw: string): Post['date'] {
 // Export blog data
 export const data: Post[] = [
   {
+    title: 'Cursor で作ったプロダクトを公開する前に、デモ動画、音源、配信用素材をどう整えるか',
+    url: '/ja/blog/posts/product-launch-assets-guide.html',
+    date: formatDate('2026-03-31'),
+    tags: ['AI', 'Cursor', 'Product Launch', 'Content Workflow'],
+    description: 'プロダクト自体は完成していても、公開直前に必要になるのは紹介素材です。このガイドでは、デモ動画、音源、短尺コンテンツ、公開時の制作フローを整理します。',
+  },
+  {
     title: 'Cursor クイックスタート：10分でAIプログラミングアシスタントをマスター',
     url: '/ja/blog/posts/cursor-quick-start.html',
     date: formatDate('2023-12-25'),

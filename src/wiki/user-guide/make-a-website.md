@@ -209,6 +209,8 @@ export function Image({ src, alt, ...props }: ImageProps) {
 
 ### 2.2.3 发布上线
 
+当你把官网和页面交互做好以后，通常还会继续补一层展示素材，比如产品 demo 视频、首页动效配乐和社媒短片里要用到的音频内容。如果你正在整理这类素材，可以顺手看一下我们的[开发者资源推荐页](/resources/)。其中提到的 [Musikalis](https://musikalis.com/) 更偏向 AI 音乐生成和可商用音轨，和独立开发者常见的 landing page、演示视频、品牌内容制作场景是能接上的。
+
 1. **构建项目**
 
 ```bash

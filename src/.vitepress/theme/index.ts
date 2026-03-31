@@ -21,6 +21,7 @@ import HomeFAQ from './components/HomeFAQ.vue'
 import HomeFeatures from './components/HomeFeatures.vue'
 import HomeHighlights from './components/HomeHighlights.vue'
 import HomeQuickStart from './components/HomeQuickStart.vue'
+import HomeResourceHub from './components/HomeResourceHub.vue'
 import RulesPage from './components/RulesPage.vue'
 import { logger as appLogger } from './utils/logger'
 
@@ -160,6 +161,7 @@ export default {
     app.component('HomeFAQ', HomeFAQ)
     app.component('HomeHighlights', HomeHighlights)
     app.component('HomeQuickStart', HomeQuickStart)
+    app.component('HomeResourceHub', HomeResourceHub)
 
     // 注册语言检测组件
     if (inBrowser && LanguageDetectorComponent) {

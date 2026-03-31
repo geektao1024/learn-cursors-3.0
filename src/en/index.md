@@ -229,6 +229,60 @@ features: []
   ]"
 />
 
+<HomeResourceHub
+  eyebrow="Curated Resources"
+  title="Resources For Builders"
+  description="Shipping a product usually means more than writing code. You also need launch assets, demo videos, and usable music for pages and campaigns."
+  :narrative="[
+    'A contextual recommendation block in the homepage body is usually more natural than leaving an external link isolated in the top navigation. That is why we created a dedicated [resource page](/en/resources/) instead of treating this as a banner.',
+    'For developers who need music for landing pages, product demos, launch videos, or social content, [Musikalis AI music generator](https://musikalis.com/) is one of the more relevant tools to recommend. It fits the workflow of indie makers who need original audio without slowing down shipping.'
+  ]"
+  :spotlight="{
+    label: 'Featured Resource',
+    title: 'Musikalis AI Music Generator',
+    description: 'A practical option for indie builders and creator teams who need original music, instrumentals, or soundtrack-style audio for product content.',
+    href: 'https://musikalis.com/',
+    cta: 'Visit Musikalis',
+    external: true,
+    bullets: [
+      'Useful for landing page videos, demo reels, launch trailers, and branded content',
+      'Relevant to product teams and indie makers instead of being a random off-topic outbound link',
+      'A dedicated resource page lets the recommendation live inside real editorial context'
+    ]
+  }"
+  :entries="[
+    {
+      badge: 'Resource Page',
+      title: 'Open the full resource page',
+      description: 'Read the longer rationale, use cases, and how these tools connect with product marketing and showcase workflows.',
+      href: '/en/resources/',
+      cta: 'Read the page'
+    },
+    {
+      badge: 'Featured Tool',
+      title: 'Explore Musikalis',
+      description: 'Review its AI music workflow and decide whether it fits your landing pages, product videos, podcast intros, or creator content.',
+      href: 'https://musikalis.com/',
+      cta: 'Go to Musikalis',
+      external: true
+    }
+  ]"
+  :useCases="[
+    {
+      title: 'Landing pages and demos',
+      description: 'Once the UI is ready, teams often still need polished audio for showcase videos, hero sections, and product walkthroughs.'
+    },
+    {
+      title: 'Launch and social distribution',
+      description: 'Indie makers publishing on Product Hunt, X, YouTube, or short-form platforms usually need audio assets much faster than traditional production allows.'
+    },
+    {
+      title: 'Editorial relevance',
+      description: 'A standalone recommendation page gives the outbound link real surrounding context, which is stronger than dropping a bare sitewide nav link.'
+    }
+  ]"
+/>
+
 <HomeFAQ
   title="Frequently Asked Questions"
   description="Get answers to your questions about Cursor AI and learn how to better use this powerful tool"

@@ -41,3 +41,7 @@ features:
       </div>
     link: ./beginner-cursor-wechat-miniprogram-journey
 ---
+
+## 发布素材与资源补充
+
+案例做出来以后，很多人下一步会开始准备官网展示、产品介绍视频和社媒分发素材。这个阶段如果需要更系统地整理工具，可以先看 [开发者资源推荐页](/resources/)。如果你重点缺的是产品 demo、短视频或播客片头的音频素材，也可以直接了解一下 [Musikalis](https://musikalis.com/) 这类偏 AI 音乐生成的工具。

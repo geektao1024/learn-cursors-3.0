@@ -229,6 +229,60 @@ features: []
   ]"
 />
 
+<HomeResourceHub
+  eyebrow="Curated Resources"
+  title="ビルダー向けおすすめリソース"
+  description="プロダクトを出す段階では、コードだけでなくデモ動画、紹介素材、使いやすい音源も必要になります。"
+  :narrative="[
+    '本文の中にある文脈付きの推薦は、トップナビに単独で外部リンクを置くより自然です。そこでこの導線は、単なるバナーではなく専用の [リソースページ](/ja/resources/) につなぐ形にしました。',
+    'ランディングページ、製品デモ、ローンチ動画、SNS 向け素材のために音源が必要なら、[Musikalis AI music generator](https://musikalis.com/) は比較的相性のよい選択肢です。インディーメーカーや小規模チームの制作フローに乗せやすいタイプのツールです。'
+  ]"
+  :spotlight="{
+    label: 'Featured Resource',
+    title: 'Musikalis AI Music Generator',
+    description: 'オリジナル楽曲、インストゥルメンタル、サウンドトラック風の音素材をすばやく用意したい開発者やクリエイターチーム向けの選択肢です。',
+    href: 'https://musikalis.com/',
+    cta: 'Musikalis を見る',
+    external: true,
+    bullets: [
+      'ランディングページ動画、デモ映像、ローンチ素材、ブランドコンテンツに向いている',
+      '開発者やインディーメーカーのユースケースとつながるため、文脈のある外部リンクとして成立しやすい',
+      '専用リソースページにすることで、推薦理由を継続的に積み上げられる'
+    ]
+  }"
+  :entries="[
+    {
+      badge: 'Resource Page',
+      title: '完全版リソースページを見る',
+      description: '推薦理由、想定ユースケース、プロダクト紹介や配信用素材とのつなぎ方をまとめています。',
+      href: '/ja/resources/',
+      cta: 'ページを開く'
+    },
+    {
+      badge: 'Featured Tool',
+      title: 'Musikalis をチェック',
+      description: 'AI music workflow がランディングページ、製品動画、ポッドキャスト冒頭、SNS 素材に合うか確認できます。',
+      href: 'https://musikalis.com/',
+      cta: 'Musikalis へ',
+      external: true
+    }
+  ]"
+  :useCases="[
+    {
+      title: 'LP と製品デモ',
+      description: 'UI ができた後でも、ヒーロー動画や製品紹介映像のために音の演出が必要になることは多いです。'
+    },
+    {
+      title: 'ローンチと配信',
+      description: 'Product Hunt、X、YouTube、短尺動画向けに、素早く使える音源を用意したい場面に向いています。'
+    },
+    {
+      title: '文脈のある外部リンク',
+      description: '専用ページにしておくと、外部リンクが単なるナビ項目ではなく、実際の編集推薦として読まれやすくなります。'
+    }
+  ]"
+/>
+
 <HomeFAQ
   title="よくある質問"
   description="Cursor AIに関するご質問に回答し、この強力なツールをより良く使用するためのお手伝いをします"

@@ -385,6 +385,60 @@ features: []
   ]"
 />
 
+<HomeResourceHub
+  eyebrow="精选资源"
+  title="开发者资源推荐"
+  description="做完产品原型以后，真正上线还需要演示内容、视频素材和可商用配乐。这里放的是更适合开发者工作流的资源，而不是单纯的广告位。"
+  :narrative="[
+    '如果你在做官网演示视频、产品介绍页、社媒短片或者播客内容，正文里的上下文推荐通常比单独的顶部导航更自然。我们把值得关注的工具单独整理成了 [资源推荐页](/resources/)，让这个入口同时对用户和搜索引擎都更容易理解。',
+    '对于需要快速生成原创配乐和声音素材的场景，[Musikalis AI 音乐生成器](https://musikalis.com/) 和独立开发者的出海工作流是能接上的。它适合拿来处理 landing page 背景音乐、产品 demo 音轨、品牌短视频配乐，以及一些不想再手动找版权素材的内容制作任务。'
+  ]"
+  :spotlight="{
+    label: '精选资源',
+    title: 'Musikalis AI 音乐生成器',
+    description: '把文本提示词转换成原创歌曲、纯音乐或可商用音轨，比较适合要快速补齐产品展示素材的独立开发者、创作者和出海团队。',
+    href: 'https://musikalis.com/',
+    cta: '访问 Musikalis',
+    external: true,
+    bullets: [
+      '适合官网宣传片、产品 demo、上架视频和社媒内容的配乐需求',
+      '与独立开发者常见的内容工作流相关，不是完全脱离主题的站外链接',
+      '单独落成资源页以后，能沉淀更多上下文描述，而不只是一个孤立导航项'
+    ]
+  }"
+  :entries="[
+    {
+      badge: 'Resource Page',
+      title: '查看完整资源推荐页',
+      description: '集中查看推荐理由、适用场景，以及这类工具如何和官网、案例展示、内容分发流程搭配使用。',
+      href: '/resources/',
+      cta: '打开资源页'
+    },
+    {
+      badge: 'Featured Tool',
+      title: '访问 Musikalis 官网',
+      description: '进一步评估它的 AI music generator 是否适合你的 landing page、产品视频、播客片头和品牌内容制作。',
+      href: 'https://musikalis.com/',
+      cta: '前往 Musikalis',
+      external: true
+    }
+  ]"
+  :useCases="[
+    {
+      title: '官网与产品视频',
+      description: '你把网站和交互做出来之后，往往还需要一层更完整的听觉包装，尤其是展示视频和首页 hero 动效配乐。'
+    },
+    {
+      title: '社媒与内容分发',
+      description: '独立开发者做 Product Hunt、X、YouTube 和短视频分发时，通常需要更快产出可直接使用的音频素材。'
+    },
+    {
+      title: '案例展示与品牌感',
+      description: '资源页把这些工具和使用场景说清楚，比只在导航里挂一个外链更像真实编辑推荐，也更利于后续扩展。'
+    }
+  ]"
+/>
+
 <HomeFAQ
   title="常见问题解答"
   description="解答您对Cursor AI的疑问，帮助您更好地使用这款强大工具"
@@ -498,6 +552,7 @@ features: []
 .HomeHighlights h2::before,
 .HomeQuickStart h2::before,
 .HomeFeatures h2::before,
+.resource-hub-section h2::before,
 .HomeFAQ h2::before,
 h2::before,
 h2::after,
@@ -505,6 +560,7 @@ h2::after,
 .HomeHighlights h2::after,
 .HomeQuickStart h2::after,
 .HomeFeatures h2::after,
+.resource-hub-section h2::after,
 .HomeFAQ h2::after {
   display: none !important;
 }
@@ -516,6 +572,7 @@ h2::after,
 .HomeHighlights h2,
 .HomeQuickStart h2,
 .HomeFeatures h2,
+.resource-hub-section h2,
 .HomeFAQ h2,
 .home-content h2,
 h2 {
@@ -528,6 +585,7 @@ h2 {
 .highlights-section h2,
 .quick-start-section h2,
 .features-section h2,
+.resource-hub-section h2,
 .faq-section h2 {
   border-top: none !important;
 }

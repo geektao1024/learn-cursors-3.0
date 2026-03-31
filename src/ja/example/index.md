@@ -41,3 +41,7 @@ features:
       </div>
     link: ./beginner-cursor-wechat-miniprogram-journey
 ---
+
+## 公開素材と補助リソース
+
+プロダクトができたあと、多くのチームはランディングページ、製品紹介動画、SNS 配信用素材の準備に進みます。関連ツールをまとめて見たい場合は [ビルダー向けおすすめリソース](/ja/resources/) を参照してください。デモ、ローンチ動画、クリエイター向け素材の音源が必要なら、[Musikalis](https://musikalis.com/) も検討対象に入れやすいです。

@@ -2,7 +2,7 @@
 title: After Building With Cursor, How To Finish Your Demo Video, Soundtrack, and Launch Assets
 date: 2026-03-31
 author: Learn Cursor Team
-description: Many indie builders finish the product and the landing page, then realize they still need launch assets. This guide covers demos, soundtrack, short-form content, and the workflow around them.
+description: Many indie builders finish the product and the landing page, then realize they still need launch assets. This guide covers demos, soundtrack, launch visuals, short-form content, and the workflow around them.
 tags:
   - AI
   - Cursor
@@ -36,6 +36,7 @@ A product that works usually means:
 A product that is ready to present often still needs:
 
 - a homepage hero that clearly communicates value
+- a vertical visual that can work as a thumbnail, community reveal, or social cover
 - a demo that shows the product in under a minute
 - a set of screenshots for launch posts and social distribution
 - tighter launch copy and visual rhythm
@@ -82,7 +83,7 @@ That works until you start producing:
 
 At that point, audio stops being optional and starts acting like a quality multiplier.
 
-## 4. Where AI music tools fit
+## 4. Where audio and visual bonus tools fit
 
 This is why I would rather place these links in editorial context than leave them isolated in a navigation bar.
 
@@ -94,6 +95,8 @@ In the specific context of launch assets, [Musikalis](https://musikalis.com/) ma
 
 If you want the shorter, tool-focused version, open the [builder resource page](/en/resources/) as well.
 
+If the missing piece is not audio but a launch-ready visual, [CartoVoxel](https://cartovoxel.com/) belongs in a similar slot. Its main workflow turns real places into Minecraft Java or Bedrock worlds, while paid map orders can add a vertical AI city poster that works well for thumbnails, community reveals, and city-style launch posts.
+
 ## 5. A practical workflow for indie teams
 
 This sequence tends to work better than trying to perfect everything at once:
@@ -101,7 +104,7 @@ This sequence tends to work better than trying to perfect everything at once:
 1. build the product and landing page with Cursor
 2. record the shortest possible usable demo
 3. extract the 3 most important value points
-4. add soundtrack or transition audio where the presentation feels empty
+4. add soundtrack, transition audio, or one vertical visual that can carry your thumbnail and social cover
 5. export variants for the website, social distribution, and community launch posts
 
 You do not need brand-agency polish for the first release. You need a repeatable system that helps the product look shippable.
@@ -126,4 +129,4 @@ and
 
 “the product is ready to launch, present, and distribute”
 
-That is the reason a tool like [Musikalis](https://musikalis.com/) can belong in a builder workflow. Its value is not that it is new. Its value is that it can fill one of the last missing pieces in launch-ready content.
+That is the reason a tool like [Musikalis](https://musikalis.com/) or [CartoVoxel](https://cartovoxel.com/) can belong in a builder workflow. The value is not novelty. The value is that it can fill one of the last missing pieces in launch-ready content.

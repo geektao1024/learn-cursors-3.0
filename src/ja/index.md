@@ -232,10 +232,11 @@ features: []
 <HomeResourceHub
   eyebrow="Curated Resources"
   title="ビルダー向けおすすめリソース"
-  description="プロダクトを出す段階では、コードだけでなくデモ動画、紹介素材、使いやすい音源も必要になります。"
+  description="プロダクトを出す段階では、コードだけでなくデモ動画、紹介素材、使いやすい音源や、そのまま公開に使えるビジュアル素材も必要になります。"
   :narrative="[
     '本文の中にある文脈付きの推薦は、トップナビに単独で外部リンクを置くより自然です。そこでこの導線は、単なるバナーではなく専用の [リソースページ](/ja/resources/) につなぐ形にしました。',
-    'ランディングページ、製品デモ、ローンチ動画、SNS 向け素材のために音源が必要なら、[Musikalis AI music generator](https://musikalis.com/) は比較的相性のよい選択肢です。インディーメーカーや小規模チームの制作フローに乗せやすいタイプのツールです。'
+    'ランディングページ、製品デモ、ローンチ動画、SNS 向け素材のために音源が必要なら、[Musikalis AI music generator](https://musikalis.com/) は比較的相性のよい選択肢です。インディーメーカーや小規模チームの制作フローに乗せやすいタイプのツールです。',
+    'サムネイル、コミュニティ告知、都市テーマの公開ビジュアルまで補いたいなら、[CartoVoxel](https://cartovoxel.com/) も一緒に見ておく価値があります。主な成果物は実在地点から作る Minecraft Java / Bedrock ワールドで、有料マップ注文では共有向けの AI 都市ポスターも追加できます。'
   ]"
   :spotlight="{
     label: 'Featured Resource',
@@ -265,6 +266,14 @@ features: []
       href: 'https://musikalis.com/',
       cta: 'Musikalis へ',
       external: true
+    },
+    {
+      badge: 'City Poster',
+      title: 'CartoVoxel をチェック',
+      description: '実在地点ベースのワールド生成と、共有向け AI 都市ポスターがどうつながるか確認できます。',
+      href: 'https://cartovoxel.com/',
+      cta: 'CartoVoxel へ',
+      external: true
     }
   ]"
   :useCases="[
@@ -275,6 +284,10 @@ features: []
     {
       title: 'ローンチと配信',
       description: 'Product Hunt、X、YouTube、短尺動画向けに、素早く使える音源を用意したい場面に向いています。'
+    },
+    {
+      title: 'サムネイルと公開用ビジュアル',
+      description: 'デモはあっても、SNS 告知、コミュニティ投稿、都市テーマの紹介に使える縦長ビジュアルが不足することがあります。'
     },
     {
       title: '文脈のある外部リンク',

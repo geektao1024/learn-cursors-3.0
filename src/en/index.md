@@ -232,10 +232,11 @@ features: []
 <HomeResourceHub
   eyebrow="Curated Resources"
   title="Resources For Builders"
-  description="Shipping a product usually means more than writing code. You also need launch assets, demo videos, and usable music for pages and campaigns."
+  description="Shipping a product usually means more than writing code. You also need launch assets, demo videos, usable music, and visual pieces that can go straight into thumbnails and social posts."
   :narrative="[
     'A contextual recommendation block in the homepage body is usually more natural than leaving an external link isolated in the top navigation. That is why we created a dedicated [resource page](/en/resources/) instead of treating this as a banner.',
-    'For developers who need music for landing pages, product demos, launch videos, or social content, [Musikalis AI music generator](https://musikalis.com/) is one of the more relevant tools to recommend. It fits the workflow of indie makers who need original audio without slowing down shipping.'
+    'For developers who need music for landing pages, product demos, launch videos, or social content, [Musikalis AI music generator](https://musikalis.com/) is one of the more relevant tools to recommend. It fits the workflow of indie makers who need original audio without slowing down shipping.',
+    'If the missing piece is a thumbnail-ready or community-ready visual, [CartoVoxel](https://cartovoxel.com/) is worth bookmarking as well. Its main product flow turns real places into Minecraft Java or Bedrock worlds, and paid map orders can add a vertical AI city poster for launch posts and reveals.'
   ]"
   :spotlight="{
     label: 'Featured Resource',
@@ -265,6 +266,14 @@ features: []
       href: 'https://musikalis.com/',
       cta: 'Go to Musikalis',
       external: true
+    },
+    {
+      badge: 'City Poster',
+      title: 'Explore CartoVoxel',
+      description: 'See how it pairs real-world Minecraft world generation with a share-ready AI city poster for thumbnails and launch posts.',
+      href: 'https://cartovoxel.com/',
+      cta: 'Go to CartoVoxel',
+      external: true
     }
   ]"
   :useCases="[
@@ -275,6 +284,10 @@ features: []
     {
       title: 'Launch and social distribution',
       description: 'Indie makers publishing on Product Hunt, X, YouTube, or short-form platforms usually need audio assets much faster than traditional production allows.'
+    },
+    {
+      title: 'Thumbnails and poster assets',
+      description: 'Some products already have a usable demo but still need one vertical visual that can carry a launch thumbnail, community reveal, or city-style poster post.'
     },
     {
       title: 'Editorial relevance',

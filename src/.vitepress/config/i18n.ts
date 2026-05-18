@@ -14,6 +14,7 @@ const rootConfig = {
       { text: '资源推荐', link: '/resources/', activeMatch: '/resources/' },
       { text: 'Musikalis', link: 'https://musikalis.com/', target: '_blank' },
       { text: 'MUSIC AI', link: 'https://www.sunoaimusical.com', target: '_blank' },
+      { text: 'CartoVoxel', link: 'https://cartovoxel.com/', target: '_blank' },
       { text: 'ChatGPT Share', link: 'https://nf.video/Up9Xa', target: '_blank' },
     ],
     footer: {
@@ -37,6 +38,7 @@ const enConfig = {
       { text: 'Resources', link: '/en/resources/', activeMatch: '/en/resources/' },
       { text: 'Musikalis', link: 'https://musikalis.com/', target: '_blank' },
       { text: 'MUSIC AI', link: 'https://www.sunoaimusical.com', target: '_blank' },
+      { text: 'CartoVoxel', link: 'https://cartovoxel.com/', target: '_blank' },
       { text: 'ChatGPT Share', link: 'https://nf.video/Up9Xa', target: '_blank' },
     ],
     footer: {
@@ -60,6 +62,7 @@ const jaConfig = {
       { text: 'おすすめ資源', link: '/ja/resources/', activeMatch: '/ja/resources/' },
       { text: 'Musikalis', link: 'https://musikalis.com/', target: '_blank' },
       { text: 'MUSIC AI', link: 'https://www.sunoaimusical.com', target: '_blank' },
+      { text: 'CartoVoxel', link: 'https://cartovoxel.com/', target: '_blank' },
       { text: 'ChatGPT シェア', link: 'https://nf.video/Up9Xa', target: '_blank' },
     ],
     footer: {

@@ -44,4 +44,4 @@ features:
 
 ## Launch Assets And Supporting Tools
 
-After the product is built, many teams move straight into showcase work: landing pages, product videos, and social distribution assets. For a more structured list, visit the [builder resource page](/en/resources/). If your immediate gap is audio for demos, launch trailers, or creator content, [Musikalis](https://musikalis.com/) is one of the more relevant tools to evaluate.
+After the product is built, many teams move straight into showcase work: landing pages, product videos, and social distribution assets. For a more structured list, visit the [builder resource page](/en/resources/). If your immediate gap is audio for demos, launch trailers, or creator content, [Musikalis](https://musikalis.com/) is one of the more relevant tools to evaluate. If you also want a thumbnail-ready or community-ready visual, [CartoVoxel](https://cartovoxel.com/) is worth checking for its real-place Minecraft world workflow plus the AI city poster bonus attached to paid map orders.

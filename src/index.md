@@ -388,10 +388,11 @@ features: []
 <HomeResourceHub
   eyebrow="精选资源"
   title="开发者资源推荐"
-  description="做完产品原型以后，真正上线还需要演示内容、视频素材和可商用配乐。这里放的是更适合开发者工作流的资源，而不是单纯的广告位。"
+  description="做完产品原型以后，真正上线还需要演示内容、视频素材、可商用配乐，以及能直接用于缩略图和社媒发布的视觉素材。这里放的是更适合开发者工作流的资源，而不是单纯的广告位。"
   :narrative="[
     '如果你在做官网演示视频、产品介绍页、社媒短片或者播客内容，正文里的上下文推荐通常比单独的顶部导航更自然。我们把值得关注的工具单独整理成了 [资源推荐页](/resources/)，让这个入口同时对用户和搜索引擎都更容易理解。',
-    '对于需要快速生成原创配乐和声音素材的场景，[Musikalis AI 音乐生成器](https://musikalis.com/) 和独立开发者的出海工作流是能接上的。它适合拿来处理 landing page 背景音乐、产品 demo 音轨、品牌短视频配乐，以及一些不想再手动找版权素材的内容制作任务。'
+    '对于需要快速生成原创配乐和声音素材的场景，[Musikalis AI 音乐生成器](https://musikalis.com/) 和独立开发者的出海工作流是能接上的。它适合拿来处理 landing page 背景音乐、产品 demo 音轨、品牌短视频配乐，以及一些不想再手动找版权素材的内容制作任务。',
+    '如果你还想补一张适合缩略图、社区预告图或城市主题发布图的视觉资产，[CartoVoxel](https://cartovoxel.com/) 也值得一起看。它的主交付是基于真实地点生成 Minecraft Java / Bedrock 世界文件，而付费地图订单附带的 AI 城市海报，则刚好能接上发布素材这条线。'
   ]"
   :spotlight="{
     label: '精选资源',
@@ -421,6 +422,14 @@ features: []
       href: 'https://musikalis.com/',
       cta: '前往 Musikalis',
       external: true
+    },
+    {
+      badge: 'City Poster',
+      title: '查看 CartoVoxel 官网',
+      description: '了解它如何把真实地点世界生成与可分享的 AI 城市海报放进同一条浏览器工作流里。',
+      href: 'https://cartovoxel.com/',
+      cta: '前往 CartoVoxel',
+      external: true
     }
   ]"
   :useCases="[
@@ -431,6 +440,10 @@ features: []
     {
       title: '社媒与内容分发',
       description: '独立开发者做 Product Hunt、X、YouTube 和短视频分发时，通常需要更快产出可直接使用的音频素材。'
+    },
+    {
+      title: '缩略图与发布海报',
+      description: '有些产品已经有 demo，却还缺一张适合缩略图、社区预告或城市视觉展示的竖版主图，这类资产同样会影响点击和传播。'
     },
     {
       title: '案例展示与品牌感',
